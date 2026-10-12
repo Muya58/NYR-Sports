@@ -1,6 +1,8 @@
 # 📣 Folletos, trípticos y lonas
 
-Pendiente. Reutilizar [[Identidad-Visual]] y los renders de producto de la web.
+**En pausa (12/10/2026):** no se empieza hasta tener las fotos originales.
+
+Reutilizar [[Identidad-Visual]] y los renders de producto de la web.
 
 ## Ideas
 - Lona para campo: “Diseñado para dominar el campo.” + logo + QR a la tienda

@@ -6,4 +6,5 @@
 - [ ] Fotos reales para hero y productos
 - [ ] Catálogo y precios reales
 - [ ] Elegir plataforma de venta y pasarela de pago
-- [ ] Primer folleto / tríptico / lona
+- [ ] Fotos originales (bloquea folletos, trípticos y lonas)
+- [ ] Primer folleto / tríptico / lona — en pausa hasta tener fotos
