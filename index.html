@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>NYR Sports — Equipamiento de fútbol americano</title>
-  <meta name="description" content="Distribución de material deportivo de alto rendimiento: uniformes personalizados para equipos y colegios, cascos, hombreras y botas de fútbol americano.">
+  <title>NYR Sports</title>
+  <meta name="description" content="Uniformidad deportiva multimarca: equipaciones personalizadas de fútbol, baloncesto, vóley y balonmano. Distribuidor exclusivo de Forelle en la Península, Baleares y Canarias.">
   <meta name="theme-color" content="#0B1F3A">
   <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,10 +23,11 @@
         <span>NYR <b>Sports</b></span>
       </a>
       <nav class="nav__links" id="navLinks" aria-label="Principal">
-        <a href="#uniformes">Uniformes</a>
-        <a href="#equipamiento">Equipamiento</a>
-        <a href="#clubes">Clubes y colegios</a>
-        <a href="#distribucion">Distribución</a>
+        <a href="#deportes">Deportes</a>
+        <a href="#personaliza">Personaliza</a>
+        <a href="#tienda">Tienda</a>
+        <a href="#forelle">Forelle</a>
+        <a href="#clubes">Clubes</a>
       </nav>
       <div class="nav__actions">
         <button class="icon-btn" id="searchBtn" aria-label="Buscar">
@@ -44,7 +45,7 @@
     <div class="search" id="search" hidden>
       <div class="search__inner">
         <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>
-        <input type="search" id="searchInput" placeholder="Buscar cascos, hombreras, uniformes…" aria-label="Buscar productos">
+        <input type="search" id="searchInput" placeholder="Buscar equipaciones, balones, Forelle…" aria-label="Buscar productos">
       </div>
       <div class="search__results" id="searchResults"></div>
     </div>
@@ -54,84 +55,103 @@
     <!-- ============ HERO ============ -->
     <section class="hero" id="top">
       <div class="hero__copy reveal">
-        <p class="eyebrow">Temporada 2027</p>
-        <h1>Diseñado para <br><span class="grad">dominar el campo.</span></h1>
-        <p class="lead">Equipamiento técnico de fútbol americano y uniformes a medida para equipos y colegios. Distribución oficial, entrega en toda Europa.</p>
+        <p class="eyebrow">Uniformidad deportiva · Multimarca</p>
+        <h1>Vistiendo equipos. <br><span class="grad">En cada deporte.</span></h1>
+        <p class="lead">Equipaciones personalizadas de fútbol, baloncesto, vóley, balonmano y mucho más, y las mejores marcas del mercado. Distribuidor exclusivo de Forelle en la Península, Baleares y Canarias.</p>
         <div class="hero__cta">
-          <a href="#equipamiento" class="btn btn--lime">Comprar ahora</a>
-          <a href="#clubes" class="link-arrow">Presupuesto para tu equipo</a>
+          <a href="#personaliza" class="btn btn--lime">Diseña tu equipación</a>
+          <a href="#clubes" class="link-arrow">Presupuesto para tu club</a>
         </div>
       </div>
 
-      <div class="stage reveal" aria-label="Atleta con equipamiento NYR">
+      <div class="stage reveal" aria-label="Equipaciones de baloncesto, fútbol y béisbol">
         <div class="stage__glow"></div>
         <div class="stage__field"></div>
-        <div class="stage__art" id="heroArt"></div>
-        <!-- Coloca aquí tu fotografía: assets/img/hero-athlete.jpg (2400×1400 recomendado). Si no existe, se muestra el render. -->
-        <img class="stage__photo" src="assets/img/hero-athlete.jpg" alt="Atleta de fútbol americano con casco y hombreras NYR" onerror="this.remove()">
+        <div class="lineup">
+          <div class="lineup__item lineup__item--l" data-art="tank" data-a="#F2F4F7" data-b="#0B1F3A" data-num="23" data-team="NYR"></div>
+          <div class="lineup__item lineup__item--c" data-art="jersey" data-a="#C6F432" data-b="#0B1F3A" data-num="10" data-style="soccer"></div>
+          <div class="lineup__item lineup__item--r" data-art="jersey" data-a="#16335C" data-b="#F2F4F7" data-num="7" data-team="Bravos" data-style="baseball"></div>
+          <div class="lineup__ball lineup__ball--1" data-art="ball" data-a="basket"></div>
+          <div class="lineup__ball lineup__ball--2" data-art="ball" data-a="volley"></div>
+          <div class="lineup__ball lineup__ball--3" data-art="ball" data-a="baseball"></div>
+        </div>
+        <!-- Coloca aquí tu fotografía: assets/img/hero.jpg (2400×1400 recomendado). Si no existe, se muestra la composición. -->
+        <img class="stage__photo" src="assets/img/hero.jpg" alt="Equipo con equipaciones NYR Sports" onerror="this.remove()">
         <div class="chip chip--tl glass">
           <span class="dot"></span>
-          <div><b>Certificación NOCSAE</b><small>Cascos homologados</small></div>
+          <div><b>Distribuidor exclusivo Forelle</b><small>Península · Baleares · Canarias</small></div>
         </div>
         <div class="chip chip--br glass">
-          <b class="big">10 días</b><small>Uniformes personalizados</small>
+          <b class="big">100%</b><small>Personalizable: colores, escudo y dorsales</small>
         </div>
       </div>
 
       <ul class="stats reveal">
-        <li><b data-count="350">+350</b><span>equipos equipados</span></li>
-        <li><b data-count="120">+120</b><span>colegios y academias</span></li>
-        <li><b data-count="48" data-suffix="h">48h</b><span>envío en stock</span></li>
-        <li><b data-count="30" data-suffix=" días">30 días</b><span>devolución gratuita</span></li>
+        <li><b data-count="7" data-suffix="+">7+</b><span>deportes</span></li>
+        <li><b>Multimarca</b><span>primeras marcas del sector</span></li>
+        <li><b>Exclusiva</b><span>Forelle en España</span></li>
+        <li><b>A medida</b><span>producción para clubes y colegios</span></li>
       </ul>
     </section>
 
-    <!-- ============ BENTO CATEGORÍAS ============ -->
-    <section class="section">
+    <!-- ============ DEPORTES ============ -->
+    <section class="section" id="deportes">
       <header class="section__head reveal">
-        <h2>Todo lo que tu equipo necesita.<br><span class="muted">En un solo lugar.</span></h2>
+        <h2>Un proveedor para todo el club.<br><span class="muted">Sea cual sea tu deporte.</span></h2>
       </header>
       <div class="bento">
-        <a href="#uniformes" class="tile tile--xl tile--navy reveal">
+        <a href="#tienda" data-filter="futbol" class="tile tile--xl tile--navy reveal">
           <div class="tile__text">
-            <p class="eyebrow eyebrow--lime">Personalizable</p>
-            <h3>Uniformes de equipo</h3>
-            <p>Tus colores, tu escudo, tus dorsales.</p>
-            <span class="link-arrow link-arrow--light">Diseñar uniforme</span>
+            <p class="eyebrow eyebrow--lime">Fútbol y fútbol sala</p>
+            <h3>Equipaciones de fútbol</h3>
+            <p>Camiseta, pantalón y medias. Portero incluido.</p>
+            <span class="link-arrow link-arrow--light">Ver equipaciones</span>
           </div>
-          <div class="tile__art" data-art="jersey" data-a="#C6F432" data-b="#0B1F3A" data-num="27"></div>
+          <div class="tile__art" data-art="jersey" data-a="#C6F432" data-b="#0B1F3A" data-num="9" data-style="soccer"></div>
         </a>
-        <a href="#equipamiento" data-filter="cascos" class="tile reveal">
-          <div class="tile__text"><h3>Cascos</h3><p>Protección certificada.</p></div>
-          <div class="tile__art" data-art="helmet" data-a="#0B1F3A"></div>
+        <a href="#tienda" data-filter="baloncesto" class="tile reveal">
+          <div class="tile__text"><h3>Baloncesto</h3><p>Reversibles y de partido.</p></div>
+          <div class="tile__art" data-art="tank" data-a="#1F6FEB" data-b="#F2F4F7" data-num="23"></div>
         </a>
-        <a href="#equipamiento" data-filter="hombreras" class="tile reveal">
-          <div class="tile__text"><h3>Hombreras</h3><p>Ligeras. Ventiladas.</p></div>
-          <div class="tile__art" data-art="pads" data-a="#0B1F3A"></div>
+        <a href="#tienda" data-filter="voley" class="tile reveal">
+          <div class="tile__text"><h3>Vóley</h3><p>Pista y playa.</p></div>
+          <div class="tile__art" data-art="ball" data-a="volley"></div>
         </a>
-        <a href="#equipamiento" data-filter="botas" class="tile tile--wide reveal">
-          <div class="tile__text"><h3>Botas</h3><p>Tracción para cada posición.</p></div>
-          <div class="tile__art" data-art="cleat" data-a="#0B1F3A" data-b="#C6F432"></div>
+        <a href="#tienda" data-filter="balonmano" class="tile reveal">
+          <div class="tile__text"><h3>Balonmano</h3><p>Ajuste y resistencia.</p></div>
+          <div class="tile__art" data-art="ball" data-a="hand"></div>
         </a>
-        <a href="#equipamiento" data-filter="accesorios" class="tile reveal">
-          <div class="tile__text"><h3>Accesorios</h3><p>Guantes y balones oficiales.</p></div>
-          <div class="tile__art" data-art="ball"></div>
+        <a href="#tienda" data-filter="americano" class="tile reveal">
+          <div class="tile__text"><p class="eyebrow">Forelle</p><h3>Fútbol americano</h3><p>Cascos, hombreras y jerseys.</p></div>
+          <div class="tile__art" data-art="helmet" data-a="#0B1F3A" data-b="#C6F432"></div>
+        </a>
+        <a href="#tienda" data-filter="beisbol" class="tile reveal">
+          <div class="tile__text"><p class="eyebrow">Forelle</p><h3>Béisbol y softball</h3><p>Bates, guantes y uniformes.</p></div>
+          <div class="tile__art" data-art="bat"></div>
         </a>
       </div>
     </section>
 
-    <!-- ============ UNIFORMES / CONFIGURADOR ============ -->
-    <section class="section section--soft" id="uniformes">
+    <!-- ============ CONFIGURADOR ============ -->
+    <section class="section section--soft" id="personaliza">
       <header class="section__head reveal">
-        <p class="eyebrow">Equipos y colegios</p>
-        <h2>Uniformes que se ven<br>tan bien como juegan.</h2>
-        <p class="lead">Sublimación de alta definición, tejidos técnicos transpirables y numeración incluida. Pruébalo en directo.</p>
+        <p class="eyebrow">Equipos, clubes y colegios</p>
+        <h2>Tu equipación,<br>diseñada en directo.</h2>
+        <p class="lead">Elige deporte y colores, añade dorsal y nombre del equipo. Sublimación de alta definición en tejidos técnicos transpirables.</p>
       </header>
 
       <div class="config reveal">
         <div class="config__preview">
+          <div class="segmented segmented--float" id="cfgSport" role="tablist" aria-label="Deporte">
+            <button role="tab" class="is-on" data-s="futbol">Fútbol</button>
+            <button role="tab" data-s="baloncesto">Baloncesto</button>
+            <button role="tab" data-s="voley">Vóley</button>
+            <button role="tab" data-s="balonmano">Balonmano</button>
+            <button role="tab" data-s="americano">F. americano</button>
+            <button role="tab" data-s="beisbol">Béisbol</button>
+          </div>
           <div id="configArt" class="config__art"></div>
-          <p class="config__caption" id="configCaption">Local · Navy / Lima · #27</p>
+          <p class="config__caption" id="configCaption"></p>
         </div>
         <form class="config__panel" id="configForm" onsubmit="return false">
           <fieldset>
@@ -143,6 +163,7 @@
               <button type="button" style="--c:#F5F5F7" data-c="#F5F5F7" data-n="Blanco" aria-label="Blanco"></button>
               <button type="button" style="--c:#1D1D1F" data-c="#1D1D1F" data-n="Negro" aria-label="Negro"></button>
               <button type="button" style="--c:#1F6FEB" data-c="#1F6FEB" data-n="Royal" aria-label="Azul royal"></button>
+              <button type="button" style="--c:#0E8A4F" data-c="#0E8A4F" data-n="Verde" aria-label="Verde"></button>
             </div>
           </fieldset>
           <fieldset>
@@ -158,60 +179,66 @@
           <div class="row">
             <label class="field">
               <span>Dorsal</span>
-              <input id="cfgNum" inputmode="numeric" maxlength="2" value="27">
+              <input id="cfgNum" inputmode="numeric" maxlength="2" value="10">
             </label>
             <label class="field">
               <span>Equipación</span>
-              <select id="cfgKit"><option>Local</option><option>Visitante</option><option>Entrenamiento</option></select>
+              <select id="cfgKit"><option>Primera</option><option>Segunda</option><option>Entrenamiento</option></select>
             </label>
           </div>
           <label class="field">
             <span>Nombre del equipo (opcional)</span>
-            <input id="cfgTeam" placeholder="p. ej. Madrid Bravos" maxlength="22">
+            <input id="cfgTeam" placeholder="p. ej. CD Las Rozas" maxlength="18">
           </label>
           <div class="config__foot">
-            <div><small>Desde</small><b class="price">49,00 €</b><small>/ unidad · mín. 15</small></div>
+            <div><small>Desde</small><b class="price" id="cfgPrice">39,00 €</b><small>/ unidad · mín. 15</small></div>
             <button class="btn btn--lime" id="cfgAdd" type="button">Añadir al pedido</button>
           </div>
         </form>
       </div>
-
-      <div class="grid" id="gridUniforms" aria-live="polite"></div>
     </section>
 
-    <!-- ============ EQUIPAMIENTO ============ -->
-    <section class="section" id="equipamiento">
+    <!-- ============ TIENDA ============ -->
+    <section class="section" id="tienda">
       <header class="section__head section__head--row reveal">
         <div>
-          <p class="eyebrow">Equipamiento técnico</p>
-          <h2>Ingeniería de protección.</h2>
+          <p class="eyebrow">Tienda</p>
+          <h2>Equipaciones y material.</h2>
         </div>
-        <div class="segmented" role="tablist" id="filters">
+        <div class="segmented" role="tablist" id="filters" aria-label="Filtrar por deporte">
           <button role="tab" class="is-on" data-f="todo">Todo</button>
-          <button role="tab" data-f="cascos">Cascos</button>
-          <button role="tab" data-f="hombreras">Hombreras</button>
-          <button role="tab" data-f="botas">Botas</button>
-          <button role="tab" data-f="accesorios">Accesorios</button>
+          <button role="tab" data-f="futbol">Fútbol</button>
+          <button role="tab" data-f="baloncesto">Baloncesto</button>
+          <button role="tab" data-f="voley">Vóley</button>
+          <button role="tab" data-f="balonmano">Balonmano</button>
+          <button role="tab" data-f="americano">F. americano</button>
+          <button role="tab" data-f="beisbol">Béisbol y softball</button>
+          <button role="tab" data-f="forelle" class="seg-brand">Forelle</button>
         </div>
       </header>
-      <div class="grid" id="gridGear" aria-live="polite"></div>
+      <div class="grid" id="gridShop" aria-live="polite"></div>
     </section>
 
-    <!-- ============ FEATURE BANDA NAVY ============ -->
-    <section class="feature">
+    <!-- ============ FORELLE ============ -->
+    <section class="feature" id="forelle">
       <div class="feature__inner">
         <div class="feature__copy reveal">
-          <p class="eyebrow eyebrow--lime">NYR Pro Shell</p>
-          <h2>Absorbe más.<br>Pesa menos.</h2>
-          <p>Carcasa de policarbonato con revestimiento interior de espuma TPU de triple densidad. Un 18% más ligero que la generación anterior, con ajuste por aire en 7 zonas.</p>
-          <ul class="specs">
-            <li><b>1,48 kg</b><span>peso total</span></li>
-            <li><b>7</b><span>zonas de ajuste</span></li>
-            <li><b>5★</b><span>Virginia Tech</span></li>
+          <p class="eyebrow eyebrow--lime">Distribución exclusiva</p>
+          <h2>Forelle.<br>Solo con nosotros.</h2>
+          <p>Somos el distribuidor exclusivo de Forelle para la Península, Baleares y Canarias. Equipamiento de referencia para fútbol americano, béisbol, softball y el resto de deportes americanos, con stock y servicio en España.</p>
+          <ul class="territories">
+            <li><b>Península</b></li><li><b>Baleares</b></li><li><b>Canarias</b></li>
           </ul>
-          <button class="btn btn--lime" data-open="h-pro">Ver casco Pro</button>
+          <div class="feature__cta">
+            <a href="#tienda" data-filter="forelle" class="btn btn--lime">Ver catálogo Forelle</a>
+            <a href="#distribucion" class="link-arrow link-arrow--light">Soy tienda o federación</a>
+          </div>
         </div>
-        <div class="feature__art reveal" id="featureArt"></div>
+        <div class="feature__art reveal">
+          <div class="fa fa--helmet" data-art="helmet" data-a="#132B4F" data-b="#C6F432"></div>
+          <div class="fa fa--mitt" data-art="mitt"></div>
+          <div class="fa fa--ball" data-art="ball" data-a="baseball"></div>
+        </div>
       </div>
     </section>
 
@@ -219,12 +246,13 @@
     <section class="section" id="clubes">
       <header class="section__head reveal">
         <p class="eyebrow">Para clubes, colegios y federaciones</p>
-        <h2>Equipar a todo un equipo<br><span class="muted">nunca fue tan sencillo.</span></h2>
+        <h2>Equipar a todo un club<br><span class="muted">nunca fue tan sencillo.</span></h2>
       </header>
-      <ol class="steps">
+      <ol class="steps steps--4">
         <li class="reveal"><span class="steps__n">01</span><h3>Diseña</h3><p>Configura colores, escudos y dorsales online o con nuestro equipo de diseño.</p></li>
-        <li class="reveal"><span class="steps__n">02</span><h3>Aprueba</h3><p>Recibe un mockup 3D y una muestra física en 72 horas antes de producir.</p></li>
-        <li class="reveal"><span class="steps__n">03</span><h3>Recibe</h3><p>Producción en 10 días y entrega embolsada por jugador, lista para el vestuario.</p></li>
+        <li class="reveal"><span class="steps__n">02</span><h3>Aprueba</h3><p>Te enviamos el boceto de cada prenda para tu visto bueno antes de producir.</p></li>
+        <li class="reveal"><span class="steps__n">03</span><h3>Fabricamos</h3><p>Producción a medida con nuestras fábricas asociadas y control de calidad en cada lote.</p></li>
+        <li class="reveal"><span class="steps__n">04</span><h3>Recibe</h3><p>Entrega embolsada por jugador, lista para el vestuario, en toda España.</p></li>
       </ol>
       <div class="tiers reveal">
         <div class="tier"><small>15 – 29 uds.</small><b>−10%</b></div>
@@ -239,24 +267,26 @@
     <section class="section section--soft" id="distribucion">
       <div class="split">
         <div class="reveal">
-          <p class="eyebrow">Distribución oficial</p>
-          <h2>Stock en Europa.<br>Servicio de cerca.</h2>
-          <p class="lead">Almacén central en Madrid con más de 4.000 referencias. Gestor de cuenta dedicado para clubes, tiendas y federaciones.</p>
-          <blockquote class="quote">
-            “Equipamos a 62 jugadores en dos semanas. Calidad impecable y un trato que no habíamos encontrado en ningún otro proveedor.”
-            <cite>— Director deportivo, Valencia Firebats</cite>
-          </blockquote>
+          <p class="eyebrow">Multimarca y fabricación propia</p>
+          <h2>Las marcas que buscas.<br>La equipación que imaginas.</h2>
+          <p class="lead">Trabajamos con las principales marcas del sector y producimos uniformidad a medida para cualquier deporte. Un solo interlocutor para clubes, colegios, tiendas y federaciones.</p>
+          <ul class="checks">
+            <li>Fútbol, fútbol sala, baloncesto, vóley y balonmano</li>
+            <li>Fútbol americano, béisbol y softball con Forelle</li>
+            <li>Ropa de paseo, chándales y textil para el club</li>
+            <li>Gestor de cuenta para pedidos de club y tiendas</li>
+          </ul>
         </div>
         <form class="card form reveal" id="quoteForm" novalidate>
           <h3>Pide tu presupuesto</h3>
-          <label class="field"><span>Club o colegio</span><input name="club" required autocomplete="organization"></label>
+          <label class="field"><span>Club, colegio o tienda</span><input id="qClub" name="club" required autocomplete="organization"></label>
           <div class="row">
-            <label class="field"><span>Nombre</span><input name="name" required autocomplete="name"></label>
-            <label class="field"><span>Jugadores</span><input name="players" inputmode="numeric" required></label>
+            <label class="field"><span>Nombre</span><input id="qName" name="name" required autocomplete="name"></label>
+            <label class="field"><span>Unidades</span><input id="qUnits" name="players" inputmode="numeric" required></label>
           </div>
-          <label class="field"><span>Email</span><input name="email" type="email" required autocomplete="email"></label>
-          <label class="field"><span>¿Qué necesitáis?</span>
-            <select name="need"><option>Uniformes completos</option><option>Cascos y protecciones</option><option>Equipación completa</option><option>Reposición de material</option></select>
+          <label class="field"><span>Email</span><input id="qEmail" name="email" type="email" required autocomplete="email"></label>
+          <label class="field"><span>Deporte</span>
+            <select id="qSport" name="sport"><option>Fútbol</option><option>Baloncesto</option><option>Vóley</option><option>Balonmano</option><option>Fútbol americano (Forelle)</option><option>Béisbol / softball (Forelle)</option><option>Otro</option></select>
           </label>
           <button class="btn btn--lime btn--block" type="submit">Enviar solicitud</button>
           <p class="fine">Te respondemos en menos de 24 h laborables.</p>
@@ -270,14 +300,14 @@
     <div class="footer__inner">
       <div class="footer__brand">
         <img src="assets/logo.svg" alt="" width="44" height="44">
-        <p>NYR Sports<br><small>Distribución de material deportivo de alto rendimiento.</small></p>
+        <p>NYR Sports<br><small>Uniformidad deportiva multimarca. Distribuidor exclusivo de Forelle en la Península, Baleares y Canarias.</small></p>
       </div>
-      <div><h4>Tienda</h4><a href="#uniformes">Uniformes</a><a href="#equipamiento" data-filter="cascos">Cascos</a><a href="#equipamiento" data-filter="hombreras">Hombreras</a><a href="#equipamiento" data-filter="botas">Botas</a></div>
-      <div><h4>Clubes</h4><a href="#clubes">Pedidos de equipo</a><a href="#clubes">Colegios</a><a href="#distribucion">Distribuidores</a></div>
+      <div><h4>Deportes</h4><a href="#tienda" data-filter="futbol">Fútbol</a><a href="#tienda" data-filter="baloncesto">Baloncesto</a><a href="#tienda" data-filter="voley">Vóley</a><a href="#tienda" data-filter="balonmano">Balonmano</a></div>
+      <div><h4>Forelle</h4><a href="#tienda" data-filter="americano">Fútbol americano</a><a href="#tienda" data-filter="beisbol">Béisbol y softball</a><a href="#distribucion">Tiendas y federaciones</a></div>
       <div><h4>Ayuda</h4><a href="#">Envíos</a><a href="#">Devoluciones</a><a href="#">Guía de tallas</a><a href="#">Contacto</a></div>
       <form class="footer__news" id="newsForm">
         <h4>Novedades</h4>
-        <div class="news"><input type="email" placeholder="Tu email" aria-label="Email" required><button class="btn btn--lime btn--sm">Unirme</button></div>
+        <div class="news"><input id="newsEmail" type="email" placeholder="Tu email" aria-label="Email" required><button class="btn btn--lime btn--sm">Unirme</button></div>
       </form>
     </div>
     <div class="footer__legal">© <span id="year"></span> NYR Sports. Todos los derechos reservados. · Privacidad · Términos · Cookies</div>

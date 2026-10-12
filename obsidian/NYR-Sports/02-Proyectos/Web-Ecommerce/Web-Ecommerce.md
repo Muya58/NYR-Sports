@@ -18,11 +18,13 @@ tags: [proyecto, web]
 `npx serve .` en la carpeta del repo y abrir `http://localhost:3000`.
 
 ## Cómo editar productos
-Array `PRODUCTS` en `js/app.js`: `id, cat, name, sub, price, art, sizes, custom, tag, desc`.
+Array `PRODUCTS` en `js/app.js`: `id, sport, brand, name, sub, price, art, sizes, custom, tag, desc`.
+- `sport`: futbol · baloncesto · voley · balonmano · americano · beisbol · multi
+- `brand: 'Forelle'` → aparece con etiqueta y en el filtro Forelle
 
 ## Reglas de negocio implementadas
 - Envío estándar 4,90 € · gratis desde 150 € · exprés 9,90 € · entrega en club gratis
-- Uniformes: −10% (15+), −15% (30+), −22% (60+)
+- Equipaciones personalizables: −10% (15+), −15% (30+), −22% (60+)
 - Código promo demo: `EQUIPO10` (−10%)
 
 ## Para producción
@@ -32,3 +34,4 @@ Array `PRODUCTS` en `js/app.js`: `id, cat, name, sub, price, art, sizes, custom,
 
 ## Historial
 - [[2026-10-12]] — creación del prototipo
+- [[2026-10-12]] (sesión 2) — reorientación multideporte, multimarca y Forelle

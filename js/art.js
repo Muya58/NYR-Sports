@@ -82,20 +82,113 @@
       </svg>`;
     },
 
-    jersey(a = '#0B1F3A', b = '#C6F432', num = '27', team = '') {
+    // style: 'football' (fútbol americano) · 'soccer' (fútbol, vóley, balonmano) · 'baseball'
+    jersey(a = '#0B1F3A', b = '#C6F432', num = '27', team = '', style = 'football') {
       const f = id('j'), g = id('g');
       const ink = isLight(a) ? (isLight(b) ? '#0B1F3A' : b) : b;
-      const label = (team || '').toUpperCase().slice(0, 18);
+      const label = (team || '').toUpperCase().slice(0, 18).replace(/[<&>"]/g, '');
+      const n = String(num || '').replace(/\D/g, '').slice(0, 2);
+      const font = 'Inter,-apple-system,Arial,sans-serif';
+      const shapes = {
+        football: 'M80 30c12 10 68 10 80 0l46 20 22 58-32 12-12-24v118c-34 8-94 8-128 0V96l-12 24-32-12 22-58z',
+        soccer: 'M82 30c12 8 64 8 76 0l40 14 30 52-28 16-18-28v130c-34 8-94 8-128 0V84l-18 28-28-16 30-52z',
+      };
+      const d = style === 'football' ? shapes.football : shapes.soccer;
+      const stroke = isLight(ink) ? shade(a, -0.4) : '#fff';
+      let detail = '';
+      if (style === 'football') {
+        detail = `<path d="M80 30c16 22 64 22 80 0" stroke="${b}" stroke-width="7" fill="none"/>
+          <path d="M18 100l30 11M222 100l-30 11" stroke="${b}" stroke-width="6"/>
+          ${label ? `<text x="120" y="88" text-anchor="middle" font-family="${font}" font-size="11" font-weight="700" letter-spacing="2" fill="${ink}">${label}</text>` : ''}
+          <text x="120" y="168" text-anchor="middle" font-family="${font}" font-size="74" font-weight="800" letter-spacing="-3" fill="${ink}" stroke="${stroke}" stroke-opacity=".35" stroke-width="2">${n}</text>`;
+      } else if (style === 'soccer') {
+        detail = `<path d="M82 30c14 14 62 14 76 0" stroke="${b}" stroke-width="6" fill="none"/>
+          <path d="M226 94l-27 15M14 94l27 15" stroke="${b}" stroke-width="6"/>
+          <path d="M60 84v128M180 84v128" stroke="${b}" stroke-width="3" opacity=".8"/>
+          <circle cx="150" cy="78" r="9" fill="none" stroke="${ink}" stroke-width="2.5"/><path d="M146 78h8M150 74v8" stroke="${ink}" stroke-width="2"/>
+          ${label ? `<text x="120" y="110" text-anchor="middle" font-family="${font}" font-size="11" font-weight="700" letter-spacing="2" fill="${ink}">${label}</text>` : ''}
+          <text x="120" y="178" text-anchor="middle" font-family="${font}" font-size="64" font-weight="800" letter-spacing="-3" fill="${ink}" stroke="${stroke}" stroke-opacity=".35" stroke-width="2">${n}</text>`;
+      } else {
+        detail = `<path d="M82 30c14 14 62 14 76 0" stroke="${b}" stroke-width="5" fill="none"/>
+          <path d="M120 40v176" stroke="${b}" stroke-width="5"/>
+          <g fill="${ink}">${[64, 92, 120, 148, 176].map((y) => `<circle cx="128" cy="${y}" r="2.6"/>`).join('')}</g>
+          <path d="M226 94l-27 15M14 94l27 15" stroke="${b}" stroke-width="5"/>
+          <text x="120" y="112" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-style="italic" font-size="${label.length > 10 ? 16 : 24}" font-weight="700" fill="${ink}" transform="rotate(-6 120 112)">${label ? label[0] + label.slice(1).toLowerCase() : 'Team'}</text>
+          <text x="86" y="176" text-anchor="middle" font-family="${font}" font-size="34" font-weight="800" fill="${ink}">${n}</text>`;
+      }
       return `<svg class="art" viewBox="0 0 240 240" aria-hidden="true"><defs>${body(f, a)}
         <radialGradient id="${g}" cx=".3" cy=".2" r=".9"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>
         ${floor(120, 228, 84)}
-        <path d="M80 30c12 10 68 10 80 0l46 20 22 58-32 12-12-24v118c-34 8-94 8-128 0V96l-12 24-32-12 22-58z" fill="url(#${f})"/>
-        <path d="M80 30c12 10 68 10 80 0l46 20 22 58-32 12-12-24v118c-34 8-94 8-128 0V96l-12 24-32-12 22-58z" fill="url(#${g})"/>
-        <path d="M80 30c16 22 64 22 80 0" stroke="${b}" stroke-width="7" fill="none"/>
-        <path d="M18 100l30 11M222 100l-30 11" stroke="${b}" stroke-width="6"/>
-        <path d="M24 86l30 11M216 86l-30 11" stroke="${ink === b ? '#fff' : b}" stroke-opacity=".7" stroke-width="3"/>
-        ${label ? `<text x="120" y="88" text-anchor="middle" font-family="Inter,-apple-system,Arial,sans-serif" font-size="11" font-weight="700" letter-spacing="2" fill="${ink}">${label.replace(/[<&>"]/g, '')}</text>` : ''}
-        <text x="120" y="168" text-anchor="middle" font-family="Inter,-apple-system,Arial,sans-serif" font-size="74" font-weight="800" letter-spacing="-3" fill="${ink}" stroke="${isLight(ink) ? shade(a, -0.4) : '#fff'}" stroke-opacity=".35" stroke-width="2">${String(num).replace(/\D/g, '').slice(0, 2)}</text>
+        <path d="${d}" fill="url(#${f})"/><path d="${d}" fill="url(#${g})"/>
+        ${detail}
+      </svg>`;
+    },
+
+    // Camiseta de baloncesto (sin mangas)
+    tank(a = '#1F6FEB', b = '#F2F4F7', num = '23', team = '') {
+      const f = id('k'), g = id('g');
+      const ink = isLight(a) ? (isLight(b) ? '#0B1F3A' : b) : b;
+      const label = (team || '').toUpperCase().slice(0, 14).replace(/[<&>"]/g, '');
+      const n = String(num || '').replace(/\D/g, '').slice(0, 2);
+      const d = 'M84 24c10 22 62 22 72 0l22 4c0 30 8 50 24 58v128c-40 8-124 8-164 0V86c16-8 24-28 24-58z';
+      return `<svg class="art" viewBox="0 0 240 240" aria-hidden="true"><defs>${body(f, a)}
+        <radialGradient id="${g}" cx=".3" cy=".2" r=".9"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>
+        ${floor(120, 228, 84)}
+        <path d="${d}" fill="url(#${f})"/><path d="${d}" fill="url(#${g})"/>
+        <path d="M84 24c10 26 62 26 72 0" stroke="${b}" stroke-width="6" fill="none"/>
+        <path d="M62 28c0 30-8 50-24 58M178 28c0 30 8 50 24 58" stroke="${b}" stroke-width="6" fill="none"/>
+        <text x="120" y="98" text-anchor="middle" font-family="Inter,-apple-system,Arial,sans-serif" font-size="13" font-weight="800" letter-spacing="2" fill="${ink}">${label}</text>
+        <text x="120" y="172" text-anchor="middle" font-family="Inter,-apple-system,Arial,sans-serif" font-size="70" font-weight="800" letter-spacing="-3" fill="${ink}" stroke="${isLight(ink) ? shade(a, -0.4) : '#fff'}" stroke-opacity=".35" stroke-width="2">${n}</text>
+        <path d="M38 200c40 8 124 8 164 0" stroke="${b}" stroke-width="4" fill="none"/>
+      </svg>`;
+    },
+
+    shorts(a = '#0B1F3A', b = '#C6F432') {
+      const f = id('s');
+      return `<svg class="art" viewBox="0 0 240 200" aria-hidden="true"><defs>${body(f, a)}</defs>
+        ${floor(120, 186, 84)}
+        <path d="M56 30h128l18 140-70 8-12-64-12 64-70-8z" fill="url(#${f})"/>
+        <rect x="56" y="30" width="128" height="14" rx="4" fill="${shade(a, -0.25)}"/>
+        <path d="M60 46l-14 118M180 46l14 118" stroke="${b}" stroke-width="6"/>
+        <path d="M38 166l70 8M202 166l-70 8" stroke="${b}" stroke-width="4"/>
+      </svg>`;
+    },
+
+    cap(a = '#0B1F3A', b = '#C6F432') {
+      const f = id('cp');
+      return `<svg class="art" viewBox="0 0 240 180" aria-hidden="true"><defs>${body(f, a)}</defs>
+        ${floor(120, 166, 90)}
+        <path d="M44 120c-4-50 30-86 80-86s76 34 76 82c-40-6-110-6-156 4z" fill="url(#${f})"/>
+        <path d="M196 116c22 2 36 10 34 20-30 6-62 2-86-6z" fill="${shade(a, -0.35)}"/>
+        <path d="M124 34c-20 20-30 50-30 82M124 34c10 24 14 50 12 80" stroke="${shade(a, -0.4)}" stroke-width="2" fill="none"/>
+        <circle cx="124" cy="36" r="5" fill="${shade(a, -0.2)}"/>
+        <path d="M76 86l18-14 12 14 12-14 18 14" stroke="${b}" stroke-width="6" fill="none" stroke-linejoin="round"/>
+        <path d="M46 118c46-10 116-10 154-2" stroke="${b}" stroke-width="3" fill="none"/>
+      </svg>`;
+    },
+
+    bat() {
+      const f = id('bt');
+      return `<svg class="art" viewBox="0 0 240 200" aria-hidden="true"><defs>
+        <linearGradient id="${f}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E7ECF3"/><stop offset=".5" stop-color="#9AA6B8"/><stop offset="1" stop-color="#3A4A63"/></linearGradient></defs>
+        ${floor(120, 186, 96)}
+        <g transform="rotate(-28 120 100)">
+          <path d="M20 94h70c40-6 90-12 126-12 8 0 12 8 12 18s-4 18-12 18c-36 0-86-6-126-12H20z" fill="url(#${f})"/>
+          <rect x="14" y="90" width="10" height="20" rx="4" fill="#0B1F3A"/>
+          <path d="M24 94h56v12H24z" fill="#0B1F3A"/>
+          <path d="M120 96h60" stroke="#C6F432" stroke-width="4" stroke-linecap="round"/>
+        </g>
+      </svg>`;
+    },
+
+    mitt(a = '#8A4B22', b = '#0B1F3A') {
+      const f = id('mt');
+      return `<svg class="art" viewBox="0 0 240 220" aria-hidden="true"><defs>${body(f, a)}</defs>
+        ${floor(120, 206, 80)}
+        <path d="M70 196c-26-30-40-70-34-110 4-26 20-28 26-6l8 30 4-70c2-16 20-16 22 0l4 64 6-74c2-16 20-16 22 0l2 72 10-62c4-16 22-14 20 2l-8 76 22-34c10-14 26-6 20 10-14 40-30 80-62 106z" fill="url(#${f})"/>
+        <path d="M84 150c24 10 52 10 74 0" stroke="${shade(a, 0.4)}" stroke-width="3" stroke-dasharray="4 5" fill="none"/>
+        <rect x="70" y="182" width="96" height="20" rx="6" fill="${b}"/>
+        <path d="M110 70v60M134 70l-2 60" stroke="${shade(a, -0.4)}" stroke-width="2"/>
       </svg>`;
     },
 
@@ -122,8 +215,31 @@
       </svg>`;
     },
 
-    ball() {
+    // kind: football · soccer · basket · volley · hand · baseball · softball
+    ball(kind = 'football') {
       const f = id('b');
+      const grad = (c0, c1, c2) => `<radialGradient id="${f}" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="${c0}"/><stop offset=".6" stop-color="${c1}"/><stop offset="1" stop-color="${c2}"/></radialGradient>`;
+      const wrap = (defs, inner) => `<svg class="art" viewBox="0 0 240 200" aria-hidden="true"><defs>${defs}</defs>${floor(120, 186, 70)}${inner}</svg>`;
+      const shine = `<ellipse cx="96" cy="66" rx="30" ry="14" fill="#fff" opacity=".25" transform="rotate(-25 96 66)"/>`;
+      if (kind === 'soccer') return wrap(grad('#FFFFFF', '#E9ECF1', '#AEB6C3'), `<circle cx="120" cy="100" r="72" fill="url(#${f})"/>
+        <path d="M120 72l26 19-10 31h-32l-10-31z" fill="#0B1F3A"/>
+        <g stroke="#0B1F3A" stroke-width="3" fill="none"><path d="M120 72V40M146 91l30-10M136 122l18 26M104 122l-18 26M94 91l-30-10"/></g>
+        <g fill="#0B1F3A"><path d="M108 30h24l-12 12z"/><path d="M184 70l8 22-16-4z"/><path d="M164 160l-20 8 4-16z"/><path d="M76 160l20 8-4-16z"/><path d="M56 70l-8 22 16-4z"/></g>${shine}`);
+      if (kind === 'basket') return wrap(grad('#F5A25D', '#D96A1E', '#8C3B0B'), `<circle cx="120" cy="100" r="72" fill="url(#${f})"/>
+        <g stroke="#2B1406" stroke-width="3.5" fill="none"><path d="M48 100h144M120 28v144"/><path d="M70 48c24 26 24 78 0 104M170 48c-24 26-24 78 0 104"/></g>${shine}`);
+      if (kind === 'volley') return wrap(grad('#FFFFFF', '#EEF0F4', '#B9C0CC'), `<circle cx="120" cy="100" r="72" fill="url(#${f})"/>
+        <path d="M120 28c-30 30-30 80 6 112 30 26 60 24 64-6-30 10-60-6-70-40-6-24-6-50 0-66z" fill="#1F6FEB"/>
+        <path d="M56 70c30-6 70 6 92 40 14 22 16 46 4 60 28-12 40-40 38-70-34-20-90-40-134-30z" fill="#F2C230" opacity=".95"/>
+        <circle cx="120" cy="100" r="72" fill="none" stroke="#0B1F3A" stroke-opacity=".15" stroke-width="2"/>${shine}`);
+      if (kind === 'hand') return wrap(grad('#E4FF7A', '#C6F432', '#7FA60F'), `<circle cx="120" cy="100" r="62" fill="url(#${f})"/>
+        <g stroke="#0B1F3A" stroke-width="3.5" fill="none"><path d="M70 64c30 14 70 14 100 0M70 136c30-14 70-14 100 0"/><path d="M92 44c-10 36-10 76 0 112M148 44c10 36 10 76 0 112"/></g>
+        <path d="M100 86h40v28h-40z" fill="#0B1F3A" opacity=".85"/>${shine}`);
+      if (kind === 'baseball' || kind === 'softball') {
+        const c = kind === 'softball' ? ['#FFF8A8', '#F2E43A', '#B5A80E'] : ['#FFFFFF', '#F1F2F4', '#BCC2CC'];
+        return wrap(grad(...c), `<circle cx="120" cy="100" r="64" fill="url(#${f})"/>
+          <g stroke="#D92D20" stroke-width="3" fill="none"><path d="M76 52c22 30 22 66 0 96M164 52c-22 30-22 66 0 96"/></g>
+          <g stroke="#D92D20" stroke-width="2.5">${[62, 76, 90, 104, 118, 132].map((y, i) => `<path d="M${84 + (i > 2 ? 5 - i : i) * 2} ${y}l8 -3M${156 - (i > 2 ? 5 - i : i) * 2} ${y}l-8 -3"/>`).join('')}</g>${shine}`);
+      }
       return `<svg class="art" viewBox="0 0 240 200" aria-hidden="true"><defs>
         <radialGradient id="${f}" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#B0683A"/><stop offset=".6" stop-color="#7A3B1A"/><stop offset="1" stop-color="#4A220E"/></radialGradient></defs>
         ${floor(120, 182, 84)}
@@ -141,7 +257,7 @@
   function renderAll(root = document) {
     root.querySelectorAll('[data-art]').forEach((el) => {
       const fn = A[el.dataset.art];
-      if (fn) el.innerHTML = fn(el.dataset.a, el.dataset.b, el.dataset.num, el.dataset.team);
+      if (fn) el.innerHTML = fn(el.dataset.a, el.dataset.b, el.dataset.num, el.dataset.team, el.dataset.style);
     });
   }
 

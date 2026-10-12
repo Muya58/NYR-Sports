@@ -9,57 +9,79 @@
 
   const NAVY = '#0B1F3A', LIME = '#C6F432', WHITE = '#F2F4F7', BLACK = '#1D1D1F', ROYAL = '#1F6FEB', MAROON = '#B3122E';
 
-  /* ---------------- Catálogo ---------------- */
+  /* ---------------- Catálogo ----------------
+     sport: futbol · baloncesto · voley · balonmano · americano · beisbol · multi
+     brand: 'Forelle' para la gama en distribución exclusiva.
+     art: [render, colorA, colorB, dorsal, equipo, estilo] — ver js/art.js
+     Productos y precios de ejemplo: sustituir por el catálogo real. */
   const SIZES = {
-    ropa: ['YS', 'YM', 'YL', 'S', 'M', 'L', 'XL', '2XL', '3XL'],
+    ropa: ['4XS', '2XS', 'XS', 'S', 'M', 'L', 'XL', '2XL', '3XL'],
     casco: ['S', 'M', 'L', 'XL'],
     hombrera: ['S', 'M', 'L', 'XL', '2XL'],
     bota: ['39', '40', '41', '42', '43', '44', '45', '46', '47'],
     guante: ['S', 'M', 'L', 'XL'],
+    mitt: ['11"', '11,5"', '12"', '12,5"'],
+    bate: ['30"', '31"', '32"', '33"'],
+    cap: ['S/M', 'L/XL'],
+    balmano: ['1', '2', '3'],
+    bal: ['3', '4', '5'],
+    bal7: ['5', '6', '7'],
     unica: [],
+  };
+  const SPORTS = {
+    futbol: 'Fútbol', baloncesto: 'Baloncesto', voley: 'Vóley', balonmano: 'Balonmano',
+    americano: 'Fútbol americano', beisbol: 'Béisbol y softball', multi: 'Multideporte',
   };
 
   const PRODUCTS = [
-    // Uniformes
-    { id: 'u-pro', cat: 'uniformes', name: 'Jersey Pro Elite', sub: 'Sublimado · Malla técnica', price: 49, art: ['jersey', NAVY, LIME, '27'], sizes: 'ropa', custom: true, tag: 'Más vendido', desc: 'Corte atlético con paneles de malla ventilada y refuerzos en hombros. Numeración y nombre sublimados que no se agrietan.' },
-    { id: 'u-away', cat: 'uniformes', name: 'Jersey Visitante Pro', sub: 'Sublimado · Malla técnica', price: 49, art: ['jersey', WHITE, NAVY, '12'], sizes: 'ropa', custom: true, desc: 'La versión visitante de nuestro jersey más vendido. Tejido de secado rápido y costuras planas.' },
-    { id: 'u-school', cat: 'uniformes', name: 'Kit Colegio Varsity', sub: 'Jersey + pantalón', price: 69, art: ['jersey', ROYAL, WHITE, '08'], sizes: 'ropa', custom: true, tag: 'Tarifa edu', desc: 'Equipación completa para colegios y academias con escudo bordado. Tallas infantiles y adultas.' },
-    { id: 'u-flag', cat: 'uniformes', name: 'Kit Flag Football Junior', sub: 'Camiseta + cinturón', price: 34, art: ['jersey', LIME, NAVY, '05'], sizes: 'ropa', custom: true, desc: 'Ligero y resistente, pensado para escuelas de flag football. Incluye cinturón con banderines.' },
-    { id: 'u-pants', cat: 'uniformes', name: 'Pantalón Game Day', sub: 'Protecciones integradas', price: 39, art: ['pants', WHITE, NAVY], sizes: 'ropa', desc: 'Licra de 4 vías con bolsillos para protecciones de muslo y rodilla. Franja lateral personalizable.' },
-    { id: 'u-train', cat: 'uniformes', name: 'Camiseta Practice', sub: 'Entrenamiento', price: 24, art: ['jersey', MAROON, WHITE, '44'], sizes: 'ropa', custom: true, desc: 'Camiseta de entrenamiento reversible en dos colores. Perfecta para dividir equipos en el entrenamiento.' },
-    // Cascos
-    { id: 'h-pro', cat: 'cascos', name: 'Casco NYR Pro Shell', sub: 'Adulto · 5★ Virginia Tech', price: 389, art: ['helmet', NAVY, LIME], sizes: 'casco', tag: 'Nuevo', desc: 'Carcasa de policarbonato y espuma TPU de triple densidad con ajuste por aire en 7 zonas. Incluye máscara de acero ligero.' },
-    { id: 'h-speed', cat: 'cascos', name: 'Casco Speed Flex', sub: 'Adulto · Panel flexible', price: 299, art: ['helmet', BLACK, LIME], sizes: 'casco', desc: 'Panel frontal flexible que reduce la energía de impacto. Acolchado interior extraíble y lavable.' },
-    { id: 'h-youth', cat: 'cascos', name: 'Casco Varsity Youth', sub: 'Juvenil · NOCSAE', price: 219, art: ['helmet', WHITE, NAVY], sizes: 'casco', desc: 'Diseñado para jugadores de 8 a 15 años. Ligero, homologado y con barboquejo de copa rígida.' },
-    // Hombreras
-    { id: 'p-lite', cat: 'hombreras', name: 'Hombreras Air Lite', sub: 'Skill · QB / WR / DB', price: 179, art: ['pads', NAVY, LIME], sizes: 'hombrera', tag: 'Ultraligeras', desc: 'Perfil bajo para máxima movilidad. Arco de PE y espuma perforada para una ventilación total.' },
-    { id: 'p-line', cat: 'hombreras', name: 'Hombreras Lineman Max', sub: 'Línea · OL / DL', price: 249, art: ['pads', BLACK, LIME], sizes: 'hombrera', desc: 'Protección de cobertura amplia para el juego en trinchera. Placas reforzadas y cierre de doble lazo.' },
-    { id: 'p-youth', cat: 'hombreras', name: 'Hombreras Youth Flex', sub: 'Juvenil · Todas las posiciones', price: 119, art: ['pads', ROYAL, WHITE], sizes: 'hombrera', desc: 'Ajuste versátil para jugadores en crecimiento. Ligeras, resistentes y fáciles de ajustar.' },
-    // Botas
-    { id: 'b-velo', cat: 'botas', name: 'Botas Velocity Low', sub: 'Skill · Tacos moldeados', price: 139, art: ['cleat', NAVY, LIME], sizes: 'bota', tag: 'Nuevo', desc: 'Placa de tracción agresiva y empeine de punto técnico. Ligereza pensada para receptores y backs.' },
-    { id: 'b-trench', cat: 'botas', name: 'Botas Trench Mid', sub: 'Línea · Caña media', price: 159, art: ['cleat', BLACK, WHITE], sizes: 'bota', desc: 'Estabilidad lateral y soporte de tobillo para linieros. Mediasuela de alta densidad.' },
-    { id: 'b-rookie', cat: 'botas', name: 'Botas Rookie Junior', sub: 'Juvenil · Multitaco', price: 79, art: ['cleat', WHITE, NAVY], sizes: 'bota', desc: 'Comodidad desde el primer día. Ideal para escuelas y primeras temporadas.' },
-    // Accesorios
-    { id: 'a-grip', cat: 'accesorios', name: 'Guantes Grip Receiver', sub: 'Palma de silicona', price: 49, art: ['gloves', NAVY, LIME], sizes: 'guante', desc: 'Agarre máximo en cualquier condición. Dorso transpirable y cierre de velcro.' },
-    { id: 'a-line', cat: 'accesorios', name: 'Guantes Lineman', sub: 'Acolchado reforzado', price: 45, art: ['gloves', BLACK, WHITE], sizes: 'guante', desc: 'Protección acolchada en nudillos y dedos para el contacto en la línea.' },
-    { id: 'a-ball', cat: 'accesorios', name: 'Balón Oficial Composite', sub: 'Talla 9 · Oficial', price: 59, art: ['ball'], sizes: 'unica', desc: 'Piel compuesta de grano profundo y laces de alto agarre. Homologado para competición.' },
+    // Equipaciones personalizables (fabricación propia)
+    { id: 'fu-kit', sport: 'futbol', name: 'Equipación Fútbol Pro', sub: 'Camiseta + pantalón + medias', price: 39, art: ['jersey', NAVY, LIME, '9', '', 'soccer'], sizes: 'ropa', custom: true, tag: 'Más vendido', desc: 'Kit completo sublimado en tejido técnico de secado rápido. Escudo, dorsal y nombre incluidos.' },
+    { id: 'fu-gk', sport: 'futbol', name: 'Equipación Portero', sub: 'Manga larga · acolchado', price: 45, art: ['jersey', LIME, BLACK, '1', '', 'soccer'], sizes: 'ropa', custom: true, desc: 'Camiseta de manga larga con refuerzo en codos y pantalón acolchado. Colores de alta visibilidad.' },
+    { id: 'bk-kit', sport: 'baloncesto', name: 'Equipación Baloncesto Reversible', sub: 'Camiseta + pantalón', price: 42, art: ['tank', ROYAL, WHITE, '23'], sizes: 'ropa', custom: true, tag: 'Reversible', desc: 'Dos colores en una sola prenda, ideal para entrenamientos y partidos. Malla transpirable de alto gramaje.' },
+    { id: 'bk-short', sport: 'baloncesto', name: 'Pantalón Baloncesto', sub: 'Largo · cintura elástica', price: 19, art: ['shorts', ROYAL, WHITE], sizes: 'ropa', custom: false, desc: 'Pantalón amplio con franja lateral personalizable y cintura con cordón interior.' },
+    { id: 'vo-kit', sport: 'voley', name: 'Equipación Vóley', sub: 'Corte femenino y masculino', price: 36, art: ['jersey', MAROON, WHITE, '7', '', 'soccer'], sizes: 'ropa', custom: true, desc: 'Ajuste ceñido y elástico para máxima libertad de movimiento. Tejido ligero de secado rápido.' },
+    { id: 'hb-kit', sport: 'balonmano', name: 'Equipación Balonmano', sub: 'Camiseta + pantalón', price: 38, art: ['jersey', '#0E8A4F', WHITE, '14', '', 'soccer'], sizes: 'ropa', custom: true, desc: 'Costuras reforzadas para el contacto y tejido elástico en hombros. Numeración sublimada.' },
+    { id: 'af-jersey', sport: 'americano', name: 'Jersey Fútbol Americano', sub: 'Malla técnica · sublimado', price: 49, art: ['jersey', NAVY, LIME, '27'], sizes: 'ropa', custom: true, desc: 'Corte atlético con paneles de malla y refuerzos en hombros, compatible con hombreras.' },
+    { id: 'bs-jersey', sport: 'beisbol', name: 'Camiseta Béisbol', sub: 'Abotonada · sublimada', price: 44, art: ['jersey', WHITE, NAVY, '7', 'Bravos', 'baseball'], sizes: 'ropa', custom: true, desc: 'Camiseta abotonada con nombre del equipo en script y numeración. Para béisbol y softball.' },
+    { id: 'bs-cap', sport: 'beisbol', name: 'Gorra Béisbol Personalizada', sub: 'Bordado 3D', price: 18, art: ['cap', NAVY, LIME], sizes: 'cap', desc: 'Gorra de seis paneles con escudo bordado en relieve y cierre ajustable.' },
+    { id: 'mu-short', sport: 'multi', name: 'Pantalón Técnico Multideporte', sub: 'Entrenamiento', price: 15, art: ['shorts', NAVY, LIME], sizes: 'ropa', desc: 'Pantalón corto ligero para entrenamiento de cualquier deporte. Personalizable con escudo.' },
+    // Forelle — distribución exclusiva
+    { id: 'fo-helmet', sport: 'americano', brand: 'Forelle', name: 'Casco Fútbol Americano', sub: 'Adulto · con máscara', price: 289, art: ['helmet', NAVY, LIME], sizes: 'casco', tag: 'Exclusiva', desc: 'Casco de policarbonato con acolchado interior ajustable y máscara de acero. Gama Forelle.' },
+    { id: 'fo-pads', sport: 'americano', brand: 'Forelle', name: 'Hombreras', sub: 'Todas las posiciones', price: 169, art: ['pads', NAVY, LIME], sizes: 'hombrera', desc: 'Hombreras ligeras con ventilación y ajuste de doble lazo. Gama Forelle.' },
+    { id: 'fo-gloves', sport: 'americano', brand: 'Forelle', name: 'Guantes Receptor', sub: 'Palma de agarre', price: 39, art: ['gloves', NAVY, LIME], sizes: 'guante', desc: 'Guantes con palma de alto agarre y dorso transpirable. Gama Forelle.' },
+    { id: 'fo-ball', sport: 'americano', brand: 'Forelle', name: 'Balón Fútbol Americano', sub: 'Composite', price: 45, art: ['ball', 'football'], sizes: 'unica', desc: 'Balón de piel compuesta con laces de alto agarre. Gama Forelle.' },
+    { id: 'fo-bat', sport: 'beisbol', brand: 'Forelle', name: 'Bate de Aluminio', sub: 'Béisbol · aleación', price: 79, art: ['bat'], sizes: 'bate', tag: 'Exclusiva', desc: 'Bate de aluminio equilibrado con empuñadura antideslizante. Gama Forelle.' },
+    { id: 'fo-mitt', sport: 'beisbol', brand: 'Forelle', name: 'Guante de Béisbol', sub: 'Piel · infield / outfield', price: 69, art: ['mitt'], sizes: 'mitt', desc: 'Guante de piel con bolsillo profundo y ajuste en muñeca. Gama Forelle.' },
+    { id: 'fo-softball', sport: 'beisbol', brand: 'Forelle', name: 'Bolas de Softball', sub: '12" · pack de 12', price: 54, art: ['ball', 'softball'], sizes: 'unica', desc: 'Bolas de softball de 12 pulgadas para entrenamiento y competición. Gama Forelle.' },
+    // Balones
+    { id: 'ba-futbol', sport: 'futbol', name: 'Balón de Fútbol', sub: 'Termosellado · talla 3 a 5', price: 29, art: ['ball', 'soccer'], sizes: 'bal', desc: 'Balón termosellado de bote regular para césped natural y artificial.' },
+    { id: 'ba-basket', sport: 'baloncesto', name: 'Balón de Baloncesto', sub: 'Interior / exterior · 5 a 7', price: 32, art: ['ball', 'basket'], sizes: 'bal7', desc: 'Composite de agarre profundo para pista interior y exterior.' },
+    { id: 'ba-voley', sport: 'voley', name: 'Balón de Vóley', sub: 'Microfibra · talla 5', price: 34, art: ['ball', 'volley'], sizes: 'unica', desc: 'Superficie de microfibra con paneles laminados para un toque suave.' },
+    { id: 'ba-hand', sport: 'balonmano', name: 'Balón de Balonmano', sub: 'Tallas 1 a 3', price: 27, art: ['ball', 'hand'], sizes: 'balmano', desc: 'Agarre óptimo con o sin resina. Tallas para todas las categorías.' },
   ];
-  const byId = Object.fromEntries(PRODUCTS.map((p) => [p.id, p]));
-  const artOf = (p, override) => {
-    const [kind, ...args] = p.art;
-    return Art[kind](...(override || args));
-  };
 
-  /* ---------------- Grids ---------------- */
+  const byId = Object.fromEntries(PRODUCTS.map((p) => [p.id, p]));
+  const draw = (art) => Art[art[0]](...art.slice(1));
+  const artOf = (p) => draw(p.art);
+  const itemArt = (i) => draw(i.art || byId[i.id].art);
+  const withNum = (art, num, team) => {
+    const a = [...art];
+    a[3] = num; if (team !== undefined) a[4] = team;
+    return a;
+  };
+  const catLabel = (p) => [SPORTS[p.sport], p.brand].filter(Boolean).join(' · ');
+
+  /* ---------------- Tienda ---------------- */
   function card(p) {
     return `<article class="product reveal" data-id="${p.id}" tabindex="0" aria-label="${p.name}, ${money(p.price)}">
       ${p.tag ? `<span class="tag">${p.tag}</span>` : ''}
+      ${p.brand ? `<span class="brand-tag">${p.brand}</span>` : ''}
       <div class="product__art">${artOf(p)}</div>
       <div class="product__info">
         <h3>${p.name}</h3>
         <p class="muted">${p.sub}</p>
         <div class="product__row">
-          <b>${money(p.price)}</b>
+          <b>${p.custom ? '<small>desde</small> ' : ''}${money(p.price)}</b>
           <button class="add" data-quick="${p.id}" aria-label="Añadir ${p.name}">
             <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
           </button>
@@ -71,22 +93,24 @@
     el.innerHTML = list.map(card).join('');
     observeReveal(el);
   }
-  renderGrid($('#gridUniforms'), PRODUCTS.filter((p) => p.cat === 'uniformes'));
-  const gear = PRODUCTS.filter((p) => p.cat !== 'uniformes');
-  function filterGear(f) {
+  function filterShop(f) {
     $$('#filters button').forEach((b) => {
       const on = b.dataset.f === f;
       b.classList.toggle('is-on', on);
       b.setAttribute('aria-selected', on);
+      if (on) b.scrollIntoView({ block: 'nearest', inline: 'center' });
     });
-    renderGrid($('#gridGear'), f === 'todo' ? gear : gear.filter((p) => p.cat === f));
+    const list = f === 'todo' ? PRODUCTS
+      : f === 'forelle' ? PRODUCTS.filter((p) => p.brand === 'Forelle')
+      : PRODUCTS.filter((p) => p.sport === f || (p.sport === 'multi' && f !== 'americano' && f !== 'beisbol'));
+    renderGrid($('#gridShop'), list);
   }
-  filterGear('todo');
+  filterShop('todo');
   $('#filters').addEventListener('click', (e) => {
     const b = e.target.closest('button');
-    if (b) filterGear(b.dataset.f);
+    if (b) filterShop(b.dataset.f);
   });
-  $$('[data-filter]').forEach((a) => a.addEventListener('click', () => filterGear(a.dataset.filter)));
+  $$('[data-filter]').forEach((a) => a.addEventListener('click', () => filterShop(a.dataset.filter)));
 
   document.addEventListener('click', (e) => {
     const quick = e.target.closest('[data-quick]');
@@ -102,17 +126,37 @@
 
   /* ---------------- Art estático ---------------- */
   Art.renderAll();
-  $('#heroArt').innerHTML = Art.helmet(NAVY, LIME);
-  $('#featureArt').innerHTML = Art.helmet('#132B4F', LIME);
 
   /* ---------------- Configurador ---------------- */
-  const cfg = { a: NAVY, an: 'Navy', b: LIME, bn: 'Lima' };
-  function drawConfig() {
+  // Cada deporte se asocia al producto que se añade al pedido
+  const CFG_SPORT = {
+    futbol: { id: 'fu-kit', kind: 'jersey', style: 'soccer' },
+    baloncesto: { id: 'bk-kit', kind: 'tank' },
+    voley: { id: 'vo-kit', kind: 'jersey', style: 'soccer' },
+    balonmano: { id: 'hb-kit', kind: 'jersey', style: 'soccer' },
+    americano: { id: 'af-jersey', kind: 'jersey', style: 'football' },
+    beisbol: { id: 'bs-jersey', kind: 'jersey', style: 'baseball' },
+  };
+  const cfg = { sport: 'futbol', a: NAVY, an: 'Navy', b: LIME, bn: 'Lima' };
+  const cfgArt = () => {
+    const s = CFG_SPORT[cfg.sport];
     const num = $('#cfgNum').value.replace(/\D/g, '') || '0';
     const team = $('#cfgTeam').value.trim();
-    $('#configArt').innerHTML = Art.jersey(cfg.a, cfg.b, num, team);
-    $('#configCaption').textContent = `${$('#cfgKit').value} · ${cfg.an} / ${cfg.bn} · #${num}`;
+    return s.kind === 'tank' ? ['tank', cfg.a, cfg.b, num, team] : ['jersey', cfg.a, cfg.b, num, team, s.style];
+  };
+  function drawConfig() {
+    const art = cfgArt();
+    $('#configArt').innerHTML = draw(art);
+    $('#configCaption').textContent = `${SPORTS[cfg.sport]} · ${$('#cfgKit').value} · ${cfg.an} / ${cfg.bn} · #${art[3]}`;
+    $('#cfgPrice').textContent = money(byId[CFG_SPORT[cfg.sport].id].price);
   }
+  $('#cfgSport').addEventListener('click', (e) => {
+    const b = e.target.closest('button');
+    if (!b) return;
+    cfg.sport = b.dataset.s;
+    $$('#cfgSport button').forEach((x) => x.classList.toggle('is-on', x === b));
+    drawConfig();
+  });
   $$('.swatches').forEach((group) =>
     group.addEventListener('click', (e) => {
       const b = e.target.closest('button');
@@ -125,12 +169,12 @@
   );
   ['#cfgNum', '#cfgTeam', '#cfgKit'].forEach((s) => $(s).addEventListener('input', drawConfig));
   $('#cfgAdd').addEventListener('click', () => {
-    const num = $('#cfgNum').value.replace(/\D/g, '') || '0';
+    const art = cfgArt();
     const team = $('#cfgTeam').value.trim();
     addToCart({
-      id: 'u-pro', size: 'M', qty: 15,
-      custom: `${$('#cfgKit').value} · ${cfg.an}/${cfg.bn} · #${num}${team ? ' · ' + team : ''}`,
-      art: ['jersey', cfg.a, cfg.b, num, team],
+      id: CFG_SPORT[cfg.sport].id, size: 'M', qty: 15,
+      custom: `${$('#cfgKit').value} · ${cfg.an}/${cfg.bn} · #${art[3]}${team ? ' · ' + team : ''}`,
+      art,
     });
   });
   drawConfig();
@@ -140,14 +184,14 @@
   function openProduct(pid) {
     const p = byId[pid];
     if (!p) return;
-    Object.assign(pm, { id: pid, size: SIZES[p.sizes][Math.floor(SIZES[p.sizes].length / 2)] || null, qty: 1 });
+    const sizes = SIZES[p.sizes] || [];
+    Object.assign(pm, { id: pid, size: sizes[Math.floor(sizes.length / 2)] || null, qty: 1 });
     $('#pmArt').innerHTML = artOf(p);
-    $('#pmCat').textContent = p.cat === 'uniformes' ? 'Uniformes' : p.cat[0].toUpperCase() + p.cat.slice(1);
+    $('#pmCat').textContent = catLabel(p);
     $('#pmTitle').textContent = p.name;
-    $('#pmPrice').textContent = money(p.price);
+    $('#pmPrice').textContent = (p.custom ? 'Desde ' : '') + money(p.price);
     $('#pmDesc').textContent = p.desc;
     $('#pmQty').textContent = '1';
-    const sizes = SIZES[p.sizes];
     $('#pmOptions').innerHTML = `
       ${sizes.length ? `<p class="opt-label">Talla <a href="#" class="fine" onclick="return false">Guía de tallas</a></p>
       <div class="sizes" role="radiogroup">${sizes.map((s) => `<button type="button" role="radio" aria-checked="${s === pm.size}" class="${s === pm.size ? 'is-on' : ''}" data-size="${s}">${s}</button>`).join('')}</div>` : ''}
@@ -164,8 +208,7 @@
       $('#pmNum').addEventListener('input', (e) => {
         const n = e.target.value.replace(/\D/g, '');
         e.target.value = n;
-        const [, a, b] = p.art;
-        $('#pmArt').innerHTML = Art.jersey(a, b, n || p.art[3]);
+        $('#pmArt').innerHTML = draw(withNum(p.art, n || p.art[3]));
       });
     }
     openOverlay('#productOverlay');
@@ -183,7 +226,7 @@
       const n = $('#pmNum').value, nm = $('#pmName').value.trim();
       if (n || nm) {
         custom = [n && `#${n}`, nm].filter(Boolean).join(' · ');
-        art = ['jersey', p.art[1], p.art[2], n || p.art[3]];
+        art = withNum(p.art, n || p.art[3]);
       }
     }
     addToCart({ id: p.id, size: pm.size, qty: pm.qty, custom, art });
@@ -194,13 +237,13 @@
   const FREE_SHIP = 150;
   let cart = [];
   try { cart = JSON.parse(localStorage.getItem('nyr-cart')) || []; } catch (_) { cart = []; }
-  cart = cart.filter((i) => byId[i.id]);
+  cart = cart.filter((i) => byId[i.id] && (!i.art || Art[i.art[0]]));
   const save = () => { try { localStorage.setItem('nyr-cart', JSON.stringify(cart)); } catch (_) {} };
   const keyOf = (i) => `${i.id}|${i.size || ''}|${i.custom || ''}`;
   const volumeRate = (qty) => (qty >= 60 ? 0.22 : qty >= 30 ? 0.15 : qty >= 15 ? 0.1 : 0);
   const lineTotal = (i) => {
     const p = byId[i.id];
-    const disc = p.cat === 'uniformes' ? volumeRate(i.qty) : 0;
+    const disc = p.custom ? volumeRate(i.qty) : 0;
     return p.price * i.qty * (1 - disc);
   };
   const subtotal = () => cart.reduce((s, i) => s + lineTotal(i), 0);
@@ -229,12 +272,12 @@
     $('#cartFoot').hidden = c === 0;
     $('#cartSubtotal').textContent = money(sub);
     $('#cartList').innerHTML = c === 0
-      ? `<li class="empty"><div>${Art.helmet('#C9CED8', '#E5E8EE')}</div><p>Tu bolsa está vacía.</p><a href="#equipamiento" class="link-arrow" data-close>Descubrir equipamiento</a></li>`
+      ? `<li class="empty"><div>${Art.jersey('#D9DDE4', '#EEF0F4', '', '', 'soccer')}</div><p>Tu bolsa está vacía.</p><a href="#equipamiento" class="link-arrow" data-close>Descubrir equipamiento</a></li>`
       : cart.map((i, idx) => {
           const p = byId[i.id];
-          const disc = p.cat === 'uniformes' ? volumeRate(i.qty) : 0;
+          const disc = p.custom ? volumeRate(i.qty) : 0;
           return `<li class="line">
-            <div class="line__art">${artOf(p, i.art && i.art.slice(1))}</div>
+            <div class="line__art">${itemArt(i)}</div>
             <div class="line__info">
               <b>${p.name}</b>
               <small>${[i.size && `Talla ${i.size}`, i.custom].filter(Boolean).join(' · ')}</small>
@@ -305,7 +348,7 @@
   $('#searchInput').addEventListener('input', (e) => {
     const q = e.target.value.trim().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
     const norm = (t) => t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
-    const hits = q ? PRODUCTS.filter((p) => norm(`${p.name} ${p.sub} ${p.cat}`).includes(q)).slice(0, 6) : [];
+    const hits = q ? PRODUCTS.filter((p) => norm(`${p.name} ${p.sub} ${SPORTS[p.sport]} ${p.brand || ''}`).includes(q)).slice(0, 6) : [];
     $('#searchResults').innerHTML = q && !hits.length
       ? '<p class="muted">Sin resultados.</p>'
       : hits.map((p) => `<button class="hit" data-open="${p.id}"><span>${artOf(p)}</span><b>${p.name}</b><small>${money(p.price)}</small></button>`).join('');
@@ -321,7 +364,7 @@
   function renderSummary() {
     $('#sumList').innerHTML = cart.map((i) => {
       const p = byId[i.id];
-      return `<li><div class="sum-art">${artOf(p, i.art && i.art.slice(1))}<span>${i.qty}</span></div>
+      return `<li><div class="sum-art">${itemArt(i)}<span>${i.qty}</span></div>
         <div><b>${p.name}</b><small>${[i.size && `Talla ${i.size}`, i.custom].filter(Boolean).join(' · ')}</small></div>
         <b>${money(lineTotal(i))}</b></li>`;
     }).join('');
