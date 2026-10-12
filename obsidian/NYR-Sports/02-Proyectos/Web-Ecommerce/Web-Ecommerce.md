@@ -5,7 +5,7 @@ tags: [proyecto, web]
 ---
 # 🛒 Web e-commerce NYR Sports
 
-**Estado:** prototipo funcional (front-end) · Repo `muya58/nyr-sports`, rama `claude/relaxed-keller-sriibd`
+**Estado:** prototipo funcional (front-end) · **Plataforma final: Shopify** → [[Shopify]] · Repo `muya58/nyr-sports`, rama `claude/relaxed-keller-sriibd`
 
 ## Archivos
 - `index.html` — estructura de todas las secciones, modal, bolsa y checkout

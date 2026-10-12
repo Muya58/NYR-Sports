@@ -5,6 +5,7 @@
 - [ ] Plazos de producción y pedido mínimo reales
 - [ ] Fotos reales para hero y productos
 - [ ] Catálogo y precios reales
-- [ ] Elegir plataforma de venta y pasarela de pago
+- [x] Elegir plataforma de venta → **Shopify** (ver [[Shopify]])
+- [ ] Decidir con el socio qué cuenta de Shopify usamos
 - [ ] Fotos originales (bloquea folletos, trípticos y lonas)
 - [ ] Primer folleto / tríptico / lona — en pausa hasta tener fotos
