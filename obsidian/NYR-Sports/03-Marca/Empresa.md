@@ -4,6 +4,7 @@ actualizado: 2026-10-12
 ---
 # 🏢 NYR Sports — Qué somos
 
+- Lema: **Ropa • Calzado • Equipamiento**
 - **Uniformidad deportiva de todo tipo**: fútbol, baloncesto, vóley, balonmano y más (no solo fútbol americano).
 - **Multimarca**: distribuimos muchas marcas. *(Pendiente: lista de marcas para la web)*
 - **Forelle — distribución exclusiva** para la **Península, Baleares y Canarias**. Con Forelle cubrimos fútbol americano, **béisbol, softball** y demás deportes americanos.
@@ -14,7 +15,7 @@ actualizado: 2026-10-12
 Clubes, colegios, federaciones y tiendas.
 
 ## Pendiente de confirmar con José
-- [ ] Logo oficial (enviará archivo)
+- [x] Logo oficial (recibido 12/10)
 - [ ] Marcas que se pueden mostrar en la web
 - [ ] Plazos reales de producción y pedido mínimo
 - [ ] Catálogo y precios reales (incl. Forelle)

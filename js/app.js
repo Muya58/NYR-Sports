@@ -7,7 +7,7 @@
   const eur = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' });
   const money = (n) => eur.format(n);
 
-  const NAVY = '#0B1F3A', LIME = '#C6F432', WHITE = '#F2F4F7', BLACK = '#1D1D1F', ROYAL = '#1F6FEB', MAROON = '#B3122E';
+  const NAVY = '#01144C', LIME = '#B8FC0B', WHITE = '#F2F4F7', BLACK = '#1D1D1F', ROYAL = '#1F6FEB', MAROON = '#B3122E';
 
   /* ---------------- Catálogo ----------------
      sport: futbol · baloncesto · voley · balonmano · americano · beisbol · multi
@@ -53,6 +53,12 @@
     { id: 'fo-bat', sport: 'beisbol', brand: 'Forelle', name: 'Bate de Aluminio', sub: 'Béisbol · aleación', price: 79, art: ['bat'], sizes: 'bate', tag: 'Exclusiva', desc: 'Bate de aluminio equilibrado con empuñadura antideslizante. Gama Forelle.' },
     { id: 'fo-mitt', sport: 'beisbol', brand: 'Forelle', name: 'Guante de Béisbol', sub: 'Piel · infield / outfield', price: 69, art: ['mitt'], sizes: 'mitt', desc: 'Guante de piel con bolsillo profundo y ajuste en muñeca. Gama Forelle.' },
     { id: 'fo-softball', sport: 'beisbol', brand: 'Forelle', name: 'Bolas de Softball', sub: '12" · pack de 12', price: 54, art: ['ball', 'softball'], sizes: 'unica', desc: 'Bolas de softball de 12 pulgadas para entrenamiento y competición. Gama Forelle.' },
+    // Calzado
+    { id: 'ca-futbol', sport: 'futbol', type: 'calzado', name: 'Botas de Fútbol', sub: 'Tacos moldeados · césped artificial', price: 69, art: ['cleat', NAVY, LIME, 'studs'], sizes: 'bota', desc: 'Botas ligeras con empeine de punto técnico y suela de tacos moldeados para césped natural y artificial.' },
+    { id: 'ca-sala', sport: 'futbol', type: 'calzado', name: 'Zapatillas Fútbol Sala', sub: 'Suela de goma no marcante', price: 59, art: ['cleat', WHITE, NAVY, 'indoor'], sizes: 'bota', desc: 'Suela de goma no marcante con máxima tracción en pista y puntera reforzada.' },
+    { id: 'ca-basket', sport: 'baloncesto', type: 'calzado', name: 'Zapatillas Baloncesto', sub: 'Amortiguación · sujeción de tobillo', price: 89, art: ['cleat', BLACK, LIME, 'indoor'], sizes: 'bota', desc: 'Amortiguación reactiva y collar acolchado para saltos y cambios de dirección.' },
+    { id: 'ca-indoor', sport: 'voley', type: 'calzado', name: 'Zapatillas Indoor', sub: 'Vóley y balonmano', price: 75, art: ['cleat', ROYAL, WHITE, 'indoor'], sizes: 'bota', desc: 'Zapatilla de pista con suela de goma gum para vóley y balonmano.' },
+    { id: 'ca-americano', sport: 'americano', type: 'calzado', name: 'Botas Fútbol Americano', sub: 'Caña media · tacos', price: 99, art: ['cleat', BLACK, WHITE, 'studs'], sizes: 'bota', desc: 'Estabilidad lateral y soporte de tobillo con placa de tacos para hierba y césped artificial.' },
     // Balones
     { id: 'ba-futbol', sport: 'futbol', name: 'Balón de Fútbol', sub: 'Termosellado · talla 3 a 5', price: 29, art: ['ball', 'soccer'], sizes: 'bal', desc: 'Balón termosellado de bote regular para césped natural y artificial.' },
     { id: 'ba-basket', sport: 'baloncesto', name: 'Balón de Baloncesto', sub: 'Interior / exterior · 5 a 7', price: 32, art: ['ball', 'basket'], sizes: 'bal7', desc: 'Composite de agarre profundo para pista interior y exterior.' },
@@ -98,10 +104,12 @@
       const on = b.dataset.f === f;
       b.classList.toggle('is-on', on);
       b.setAttribute('aria-selected', on);
-      if (on) b.scrollIntoView({ block: 'nearest', inline: 'center' });
+      // Centra la pestaña activa sin desplazar la página
+      if (on) b.parentElement.scrollTo({ left: b.offsetLeft - (b.parentElement.clientWidth - b.offsetWidth) / 2, behavior: 'smooth' });
     });
     const list = f === 'todo' ? PRODUCTS
       : f === 'forelle' ? PRODUCTS.filter((p) => p.brand === 'Forelle')
+      : f === 'calzado' ? PRODUCTS.filter((p) => p.type === 'calzado')
       : PRODUCTS.filter((p) => p.sport === f || (p.sport === 'multi' && f !== 'americano' && f !== 'beisbol'));
     renderGrid($('#gridShop'), list);
   }
@@ -348,7 +356,7 @@
   $('#searchInput').addEventListener('input', (e) => {
     const q = e.target.value.trim().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
     const norm = (t) => t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
-    const hits = q ? PRODUCTS.filter((p) => norm(`${p.name} ${p.sub} ${SPORTS[p.sport]} ${p.brand || ''}`).includes(q)).slice(0, 6) : [];
+    const hits = q ? PRODUCTS.filter((p) => norm(`${p.name} ${p.sub} ${SPORTS[p.sport]} ${p.brand || ''} ${p.type || ''}`).includes(q)).slice(0, 6) : [];
     $('#searchResults').innerHTML = q && !hits.length
       ? '<p class="muted">Sin resultados.</p>'
       : hits.map((p) => `<button class="hit" data-open="${p.id}"><span>${artOf(p)}</span><b>${p.name}</b><small>${money(p.price)}</small></button>`).join('');

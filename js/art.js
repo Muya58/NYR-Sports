@@ -31,10 +31,10 @@
       <stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>`;
   }
   const floor = (cx, cy, rx) =>
-    `<ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="${rx * 0.09}" fill="#0B1F3A" opacity=".16" filter="blur(4px)"/>`;
+    `<ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="${rx * 0.09}" fill="#01144C" opacity=".16" filter="blur(4px)"/>`;
 
   const A = {
-    helmet(a = '#0B1F3A', b = '#C6F432') {
+    helmet(a = '#01144C', b = '#B8FC0B') {
       const f = id('h'), g = id('g'), m = id('m');
       return `<svg class="art" viewBox="0 0 240 200" aria-hidden="true"><defs>${body(f, a)}${gloss(g)}
         <linearGradient id="${m}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E9ECF1"/><stop offset="1" stop-color="#8A93A3"/></linearGradient></defs>
@@ -53,7 +53,7 @@
       </svg>`;
     },
 
-    pads(a = '#0B1F3A', b = '#C6F432') {
+    pads(a = '#01144C', b = '#B8FC0B') {
       const f = id('p'), g = id('g'), w = id('w');
       return `<svg class="art" viewBox="0 0 240 200" aria-hidden="true"><defs>${body(f, a)}${gloss(g)}${body(w, '#F2F4F7')}</defs>
         ${floor(120, 182, 100)}
@@ -68,7 +68,8 @@
       </svg>`;
     },
 
-    cleat(a = '#0B1F3A', b = '#C6F432') {
+    // sole: 'studs' (botas de tacos) · 'indoor' (zapatilla de pista)
+    cleat(a = '#01144C', b = '#B8FC0B', sole = 'studs') {
       const f = id('c'), g = id('g');
       return `<svg class="art" viewBox="0 0 260 160" aria-hidden="true"><defs>${body(f, a)}${gloss(g)}</defs>
         ${floor(134, 146, 108)}
@@ -78,14 +79,16 @@
         <g stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".9">${[0, 1, 2, 3].map((i) => `<path d="M${118 + i * 14} ${46 + i * 5}l10 -8"/>`).join('')}</g>
         <path d="M26 108h212c6 0 8 8 2 12-20 6-180 8-210 4-8-2-10-14-4-16z" fill="#F2F4F7"/>
         <path d="M26 112h214" stroke="${b}" stroke-width="2"/>
-        <g fill="${shade(a, -0.3)}">${[46, 78, 150, 182, 212].map((x) => `<path d="M${x} 124h14l-2 12h-10z"/>`).join('')}</g>
+        ${sole === 'indoor'
+          ? `<path d="M24 116h216c2 8 0 14-6 16-30 6-176 6-206 2-6-2-8-12-4-18z" fill="${shade(b, -0.25)}"/><path d="M40 126h180" stroke="#fff" stroke-opacity=".5" stroke-width="2" stroke-dasharray="6 6"/>`
+          : `<g fill="${shade(a, -0.3)}">${[46, 78, 150, 182, 212].map((x) => `<path d="M${x} 124h14l-2 12h-10z"/>`).join('')}</g>`}
       </svg>`;
     },
 
     // style: 'football' (fútbol americano) · 'soccer' (fútbol, vóley, balonmano) · 'baseball'
-    jersey(a = '#0B1F3A', b = '#C6F432', num = '27', team = '', style = 'football') {
+    jersey(a = '#01144C', b = '#B8FC0B', num = '27', team = '', style = 'football') {
       const f = id('j'), g = id('g');
-      const ink = isLight(a) ? (isLight(b) ? '#0B1F3A' : b) : b;
+      const ink = isLight(a) ? (isLight(b) ? '#01144C' : b) : b;
       const label = (team || '').toUpperCase().slice(0, 18).replace(/[<&>"]/g, '');
       const n = String(num || '').replace(/\D/g, '').slice(0, 2);
       const font = 'Inter,-apple-system,Arial,sans-serif';
@@ -127,7 +130,7 @@
     // Camiseta de baloncesto (sin mangas)
     tank(a = '#1F6FEB', b = '#F2F4F7', num = '23', team = '') {
       const f = id('k'), g = id('g');
-      const ink = isLight(a) ? (isLight(b) ? '#0B1F3A' : b) : b;
+      const ink = isLight(a) ? (isLight(b) ? '#01144C' : b) : b;
       const label = (team || '').toUpperCase().slice(0, 14).replace(/[<&>"]/g, '');
       const n = String(num || '').replace(/\D/g, '').slice(0, 2);
       const d = 'M84 24c10 22 62 22 72 0l22 4c0 30 8 50 24 58v128c-40 8-124 8-164 0V86c16-8 24-28 24-58z';
@@ -143,7 +146,7 @@
       </svg>`;
     },
 
-    shorts(a = '#0B1F3A', b = '#C6F432') {
+    shorts(a = '#01144C', b = '#B8FC0B') {
       const f = id('s');
       return `<svg class="art" viewBox="0 0 240 200" aria-hidden="true"><defs>${body(f, a)}</defs>
         ${floor(120, 186, 84)}
@@ -154,7 +157,7 @@
       </svg>`;
     },
 
-    cap(a = '#0B1F3A', b = '#C6F432') {
+    cap(a = '#01144C', b = '#B8FC0B') {
       const f = id('cp');
       return `<svg class="art" viewBox="0 0 240 180" aria-hidden="true"><defs>${body(f, a)}</defs>
         ${floor(120, 166, 90)}
@@ -174,14 +177,14 @@
         ${floor(120, 186, 96)}
         <g transform="rotate(-28 120 100)">
           <path d="M20 94h70c40-6 90-12 126-12 8 0 12 8 12 18s-4 18-12 18c-36 0-86-6-126-12H20z" fill="url(#${f})"/>
-          <rect x="14" y="90" width="10" height="20" rx="4" fill="#0B1F3A"/>
-          <path d="M24 94h56v12H24z" fill="#0B1F3A"/>
-          <path d="M120 96h60" stroke="#C6F432" stroke-width="4" stroke-linecap="round"/>
+          <rect x="14" y="90" width="10" height="20" rx="4" fill="#01144C"/>
+          <path d="M24 94h56v12H24z" fill="#01144C"/>
+          <path d="M120 96h60" stroke="#B8FC0B" stroke-width="4" stroke-linecap="round"/>
         </g>
       </svg>`;
     },
 
-    mitt(a = '#8A4B22', b = '#0B1F3A') {
+    mitt(a = '#8A4B22', b = '#01144C') {
       const f = id('mt');
       return `<svg class="art" viewBox="0 0 240 220" aria-hidden="true"><defs>${body(f, a)}</defs>
         ${floor(120, 206, 80)}
@@ -192,19 +195,19 @@
       </svg>`;
     },
 
-    pants(a = '#F2F4F7', b = '#0B1F3A') {
+    pants(a = '#F2F4F7', b = '#01144C') {
       const f = id('t');
       return `<svg class="art" viewBox="0 0 240 240" aria-hidden="true"><defs>${body(f, a)}</defs>
         ${floor(120, 222, 80)}
         <path d="M64 30h112l14 170-56 6-14-96-14 96-56-6z" fill="url(#${f})"/>
         <rect x="64" y="30" width="112" height="14" rx="3" fill="${shade(a, -0.2)}"/>
         <path d="M68 50l-12 148M172 50l12 148" stroke="${b}" stroke-width="7"/>
-        <path d="M72 50l-12 148M168 50l12 148" stroke="#C6F432" stroke-width="2"/>
+        <path d="M72 50l-12 148M168 50l12 148" stroke="#B8FC0B" stroke-width="2"/>
         <path d="M120 44v40" stroke="${shade(a, -0.3)}" stroke-width="2"/>
       </svg>`;
     },
 
-    gloves(a = '#0B1F3A', b = '#C6F432') {
+    gloves(a = '#01144C', b = '#B8FC0B') {
       const f = id('v'), g = id('g');
       return `<svg class="art" viewBox="0 0 240 240" aria-hidden="true"><defs>${body(f, a)}${gloss(g)}</defs>
         ${floor(118, 226, 64)}
@@ -222,18 +225,18 @@
       const wrap = (defs, inner) => `<svg class="art" viewBox="0 0 240 200" aria-hidden="true"><defs>${defs}</defs>${floor(120, 186, 70)}${inner}</svg>`;
       const shine = `<ellipse cx="96" cy="66" rx="30" ry="14" fill="#fff" opacity=".25" transform="rotate(-25 96 66)"/>`;
       if (kind === 'soccer') return wrap(grad('#FFFFFF', '#E9ECF1', '#AEB6C3'), `<circle cx="120" cy="100" r="72" fill="url(#${f})"/>
-        <path d="M120 72l26 19-10 31h-32l-10-31z" fill="#0B1F3A"/>
-        <g stroke="#0B1F3A" stroke-width="3" fill="none"><path d="M120 72V40M146 91l30-10M136 122l18 26M104 122l-18 26M94 91l-30-10"/></g>
-        <g fill="#0B1F3A"><path d="M108 30h24l-12 12z"/><path d="M184 70l8 22-16-4z"/><path d="M164 160l-20 8 4-16z"/><path d="M76 160l20 8-4-16z"/><path d="M56 70l-8 22 16-4z"/></g>${shine}`);
+        <path d="M120 72l26 19-10 31h-32l-10-31z" fill="#01144C"/>
+        <g stroke="#01144C" stroke-width="3" fill="none"><path d="M120 72V40M146 91l30-10M136 122l18 26M104 122l-18 26M94 91l-30-10"/></g>
+        <g fill="#01144C"><path d="M108 30h24l-12 12z"/><path d="M184 70l8 22-16-4z"/><path d="M164 160l-20 8 4-16z"/><path d="M76 160l20 8-4-16z"/><path d="M56 70l-8 22 16-4z"/></g>${shine}`);
       if (kind === 'basket') return wrap(grad('#F5A25D', '#D96A1E', '#8C3B0B'), `<circle cx="120" cy="100" r="72" fill="url(#${f})"/>
         <g stroke="#2B1406" stroke-width="3.5" fill="none"><path d="M48 100h144M120 28v144"/><path d="M70 48c24 26 24 78 0 104M170 48c-24 26-24 78 0 104"/></g>${shine}`);
       if (kind === 'volley') return wrap(grad('#FFFFFF', '#EEF0F4', '#B9C0CC'), `<circle cx="120" cy="100" r="72" fill="url(#${f})"/>
         <path d="M120 28c-30 30-30 80 6 112 30 26 60 24 64-6-30 10-60-6-70-40-6-24-6-50 0-66z" fill="#1F6FEB"/>
         <path d="M56 70c30-6 70 6 92 40 14 22 16 46 4 60 28-12 40-40 38-70-34-20-90-40-134-30z" fill="#F2C230" opacity=".95"/>
-        <circle cx="120" cy="100" r="72" fill="none" stroke="#0B1F3A" stroke-opacity=".15" stroke-width="2"/>${shine}`);
-      if (kind === 'hand') return wrap(grad('#E4FF7A', '#C6F432', '#7FA60F'), `<circle cx="120" cy="100" r="62" fill="url(#${f})"/>
-        <g stroke="#0B1F3A" stroke-width="3.5" fill="none"><path d="M70 64c30 14 70 14 100 0M70 136c30-14 70-14 100 0"/><path d="M92 44c-10 36-10 76 0 112M148 44c10 36 10 76 0 112"/></g>
-        <path d="M100 86h40v28h-40z" fill="#0B1F3A" opacity=".85"/>${shine}`);
+        <circle cx="120" cy="100" r="72" fill="none" stroke="#01144C" stroke-opacity=".15" stroke-width="2"/>${shine}`);
+      if (kind === 'hand') return wrap(grad('#DAFF6E', '#B8FC0B', '#7FA60F'), `<circle cx="120" cy="100" r="62" fill="url(#${f})"/>
+        <g stroke="#01144C" stroke-width="3.5" fill="none"><path d="M70 64c30 14 70 14 100 0M70 136c30-14 70-14 100 0"/><path d="M92 44c-10 36-10 76 0 112M148 44c10 36 10 76 0 112"/></g>
+        <path d="M100 86h40v28h-40z" fill="#01144C" opacity=".85"/>${shine}`);
       if (kind === 'baseball' || kind === 'softball') {
         const c = kind === 'softball' ? ['#FFF8A8', '#F2E43A', '#B5A80E'] : ['#FFFFFF', '#F1F2F4', '#BCC2CC'];
         return wrap(grad(...c), `<circle cx="120" cy="100" r="64" fill="url(#${f})"/>

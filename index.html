@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>NYR Sports</title>
   <meta name="description" content="Uniformidad deportiva multimarca: equipaciones personalizadas de fútbol, baloncesto, vóley y balonmano. Distribuidor exclusivo de Forelle en la Península, Baleares y Canarias.">
-  <meta name="theme-color" content="#0B1F3A">
+  <meta name="theme-color" content="#01144C">
+  <link rel="apple-touch-icon" href="assets/logo.svg">
   <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,8 +20,8 @@
   <header class="nav" id="nav">
     <div class="nav__inner">
       <a href="#top" class="brand" aria-label="NYR Sports, inicio">
-        <img src="assets/logo.svg" alt="" width="34" height="34">
-        <span>NYR <b>Sports</b></span>
+        <img class="brand__icon" src="assets/logo.svg" alt="" width="34" height="34">
+        <img class="brand__word" src="assets/brand/wordmark-navy.png" alt="NYR Sports" height="26">
       </a>
       <nav class="nav__links" id="navLinks" aria-label="Principal">
         <a href="#deportes">Deportes</a>
@@ -55,9 +56,9 @@
     <!-- ============ HERO ============ -->
     <section class="hero" id="top">
       <div class="hero__copy reveal">
-        <p class="eyebrow">Uniformidad deportiva · Multimarca</p>
+        <p class="eyebrow">Ropa · Calzado · Equipamiento</p>
         <h1>Vistiendo equipos. <br><span class="grad">En cada deporte.</span></h1>
-        <p class="lead">Equipaciones personalizadas de fútbol, baloncesto, vóley, balonmano y mucho más, y las mejores marcas del mercado. Distribuidor exclusivo de Forelle en la Península, Baleares y Canarias.</p>
+        <p class="lead">Equipaciones personalizadas, calzado y material para fútbol, baloncesto, vóley, balonmano y mucho más, con las mejores marcas del mercado. Distribuidor exclusivo de Forelle en la Península, Baleares y Canarias.</p>
         <div class="hero__cta">
           <a href="#personaliza" class="btn btn--lime">Diseña tu equipación</a>
           <a href="#clubes" class="link-arrow">Presupuesto para tu club</a>
@@ -68,9 +69,9 @@
         <div class="stage__glow"></div>
         <div class="stage__field"></div>
         <div class="lineup">
-          <div class="lineup__item lineup__item--l" data-art="tank" data-a="#F2F4F7" data-b="#0B1F3A" data-num="23" data-team="NYR"></div>
-          <div class="lineup__item lineup__item--c" data-art="jersey" data-a="#C6F432" data-b="#0B1F3A" data-num="10" data-style="soccer"></div>
-          <div class="lineup__item lineup__item--r" data-art="jersey" data-a="#16335C" data-b="#F2F4F7" data-num="7" data-team="Bravos" data-style="baseball"></div>
+          <div class="lineup__item lineup__item--l" data-art="tank" data-a="#F2F4F7" data-b="#01144C" data-num="23" data-team="NYR"></div>
+          <div class="lineup__item lineup__item--c" data-art="jersey" data-a="#B8FC0B" data-b="#01144C" data-num="10" data-style="soccer"></div>
+          <div class="lineup__item lineup__item--r" data-art="jersey" data-a="#0D2470" data-b="#F2F4F7" data-num="7" data-team="Bravos" data-style="baseball"></div>
           <div class="lineup__ball lineup__ball--1" data-art="ball" data-a="basket"></div>
           <div class="lineup__ball lineup__ball--2" data-art="ball" data-a="volley"></div>
           <div class="lineup__ball lineup__ball--3" data-art="ball" data-a="baseball"></div>
@@ -94,6 +95,25 @@
       </ul>
     </section>
 
+    <!-- ============ MARCA ============ -->
+    <section class="brandband" id="marca">
+      <div class="brandband__inner">
+        <figure class="brandband__logo reveal">
+          <img src="assets/brand/logo-cristal.jpg" alt="Logotipo NYR Sports en cristal" width="1400" height="1400" loading="lazy">
+        </figure>
+        <div class="brandband__copy reveal">
+          <p class="eyebrow eyebrow--lime">NYR Sports</p>
+          <h2>Ropa.<br>Calzado.<br>Equipamiento.</h2>
+          <p>Todo lo que un club necesita para competir, de la primera equipación a la última bota. Fabricamos uniformidad a medida, distribuimos las mejores marcas y somos la casa de Forelle en España.</p>
+          <ul class="brandband__pillars">
+            <li><b>Ropa</b><span>Equipaciones, chándales y textil de club</span></li>
+            <li><b>Calzado</b><span>Botas y zapatillas por deporte</span></li>
+            <li><b>Equipamiento</b><span>Protecciones, balones y material</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
     <!-- ============ DEPORTES ============ -->
     <section class="section" id="deportes">
       <header class="section__head reveal">
@@ -107,7 +127,7 @@
             <p>Camiseta, pantalón y medias. Portero incluido.</p>
             <span class="link-arrow link-arrow--light">Ver equipaciones</span>
           </div>
-          <div class="tile__art" data-art="jersey" data-a="#C6F432" data-b="#0B1F3A" data-num="9" data-style="soccer"></div>
+          <div class="tile__art" data-art="jersey" data-a="#B8FC0B" data-b="#01144C" data-num="9" data-style="soccer"></div>
         </a>
         <a href="#tienda" data-filter="baloncesto" class="tile reveal">
           <div class="tile__text"><h3>Baloncesto</h3><p>Reversibles y de partido.</p></div>
@@ -123,7 +143,7 @@
         </a>
         <a href="#tienda" data-filter="americano" class="tile reveal">
           <div class="tile__text"><p class="eyebrow">Forelle</p><h3>Fútbol americano</h3><p>Cascos, hombreras y jerseys.</p></div>
-          <div class="tile__art" data-art="helmet" data-a="#0B1F3A" data-b="#C6F432"></div>
+          <div class="tile__art" data-art="helmet" data-a="#01144C" data-b="#B8FC0B"></div>
         </a>
         <a href="#tienda" data-filter="beisbol" class="tile reveal">
           <div class="tile__text"><p class="eyebrow">Forelle</p><h3>Béisbol y softball</h3><p>Bates, guantes y uniformes.</p></div>
@@ -157,8 +177,8 @@
           <fieldset>
             <legend>Color principal</legend>
             <div class="swatches" data-target="a">
-              <button type="button" style="--c:#0B1F3A" data-c="#0B1F3A" data-n="Navy" class="is-on" aria-label="Navy"></button>
-              <button type="button" style="--c:#C6F432" data-c="#C6F432" data-n="Lima" aria-label="Lima"></button>
+              <button type="button" style="--c:#01144C" data-c="#01144C" data-n="Navy" class="is-on" aria-label="Navy"></button>
+              <button type="button" style="--c:#B8FC0B" data-c="#B8FC0B" data-n="Lima" aria-label="Lima"></button>
               <button type="button" style="--c:#B3122E" data-c="#B3122E" data-n="Granate" aria-label="Granate"></button>
               <button type="button" style="--c:#F5F5F7" data-c="#F5F5F7" data-n="Blanco" aria-label="Blanco"></button>
               <button type="button" style="--c:#1D1D1F" data-c="#1D1D1F" data-n="Negro" aria-label="Negro"></button>
@@ -169,10 +189,10 @@
           <fieldset>
             <legend>Color de detalle</legend>
             <div class="swatches" data-target="b">
-              <button type="button" style="--c:#C6F432" data-c="#C6F432" data-n="Lima" class="is-on" aria-label="Lima"></button>
+              <button type="button" style="--c:#B8FC0B" data-c="#B8FC0B" data-n="Lima" class="is-on" aria-label="Lima"></button>
               <button type="button" style="--c:#F5F5F7" data-c="#F5F5F7" data-n="Blanco" aria-label="Blanco"></button>
               <button type="button" style="--c:#D4A72C" data-c="#D4A72C" data-n="Oro" aria-label="Oro"></button>
-              <button type="button" style="--c:#0B1F3A" data-c="#0B1F3A" data-n="Navy" aria-label="Navy"></button>
+              <button type="button" style="--c:#01144C" data-c="#01144C" data-n="Navy" aria-label="Navy"></button>
               <button type="button" style="--c:#B3122E" data-c="#B3122E" data-n="Granate" aria-label="Granate"></button>
             </div>
           </fieldset>
@@ -213,6 +233,7 @@
           <button role="tab" data-f="balonmano">Balonmano</button>
           <button role="tab" data-f="americano">F. americano</button>
           <button role="tab" data-f="beisbol">Béisbol y softball</button>
+          <button role="tab" data-f="calzado">Calzado</button>
           <button role="tab" data-f="forelle" class="seg-brand">Forelle</button>
         </div>
       </header>
@@ -235,7 +256,7 @@
           </div>
         </div>
         <div class="feature__art reveal">
-          <div class="fa fa--helmet" data-art="helmet" data-a="#132B4F" data-b="#C6F432"></div>
+          <div class="fa fa--helmet" data-art="helmet" data-a="#0A2163" data-b="#B8FC0B"></div>
           <div class="fa fa--mitt" data-art="mitt"></div>
           <div class="fa fa--ball" data-art="ball" data-a="baseball"></div>
         </div>
@@ -299,8 +320,8 @@
   <footer class="footer">
     <div class="footer__inner">
       <div class="footer__brand">
-        <img src="assets/logo.svg" alt="" width="44" height="44">
-        <p>NYR Sports<br><small>Uniformidad deportiva multimarca. Distribuidor exclusivo de Forelle en la Península, Baleares y Canarias.</small></p>
+        <img class="footer__logo" src="assets/brand/logo-white.png" alt="NYR Sports · Ropa, calzado, equipamiento" width="156">
+        <p><small>Uniformidad deportiva multimarca. Distribuidor exclusivo de Forelle en la Península, Baleares y Canarias.</small></p>
       </div>
       <div><h4>Deportes</h4><a href="#tienda" data-filter="futbol">Fútbol</a><a href="#tienda" data-filter="baloncesto">Baloncesto</a><a href="#tienda" data-filter="voley">Vóley</a><a href="#tienda" data-filter="balonmano">Balonmano</a></div>
       <div><h4>Forelle</h4><a href="#tienda" data-filter="americano">Fútbol americano</a><a href="#tienda" data-filter="beisbol">Béisbol y softball</a><a href="#distribucion">Tiendas y federaciones</a></div>
@@ -357,7 +378,7 @@
   <!-- ============ CHECKOUT ============ -->
   <div class="checkout" id="checkout" hidden role="dialog" aria-modal="true" aria-label="Pago">
     <header class="checkout__bar">
-      <a class="brand" href="#" data-close-checkout><img src="assets/logo.svg" alt="" width="30" height="30"><span>NYR <b>Sports</b></span></a>
+      <a class="brand" href="#" data-close-checkout><img class="brand__icon" src="assets/logo.svg" alt="" width="30" height="30"><img class="brand__word" src="assets/brand/wordmark-navy.png" alt="NYR Sports" height="24"></a>
       <ol class="progress" id="progress">
         <li class="is-on">Información</li><li>Envío</li><li>Pago</li>
       </ol>
@@ -425,7 +446,7 @@
           <div class="paypane is-on" data-pane="card">
             <div class="cc" id="cc">
               <div class="cc__glass"></div>
-              <div class="cc__top"><img src="assets/logo.svg" alt="" width="34" height="34"><span id="ccBrand">VISA</span></div>
+              <div class="cc__top"><img src="assets/brand/nyr-mark.svg" alt="" width="40" height="29"><span id="ccBrand">VISA</span></div>
               <div class="cc__chip"></div>
               <div class="cc__num" id="ccNum">•••• •••• •••• ••••</div>
               <div class="cc__bot"><div><small>Titular</small><span id="ccName">NOMBRE APELLIDO</span></div><div><small>Caduca</small><span id="ccExp">MM/AA</span></div></div>
