@@ -2,10 +2,12 @@
 """Convierte el feed XML de Forelle (ArrayOfProduct) en CSV de importación de productos de Shopify.
 
 Uso:
-  python3 -I tools/forelle_to_shopify.py FEED.xml SALIDA_DIR [--status draft|active]
+  python3 -I tools/forelle_to_shopify.py FEED.csv[,FEED.xml] SALIDA_DIR [--status draft|active]
          [--no-price | --markup 1.0] [--policy continue|deny] [--only-stock] [--skip-fanzone]
          [--translations catalogo/traduccion/es.json] [--per-file 500]
 
+- Acepta el feed en CSV y/o XML (separados por comas). Si se pasan ambos se combinan por Id
+  (manda el primero). Las filas PARENT del CSV dan el nombre limpio del modelo.
 - Agrupa las variantes (CHILD) por ParentId; los SINGLE son productos de una variante.
 - Opciones: «Talla» y/o «Color» según lo que varíe; si hay combinaciones repetidas usa «Modelo».
 - Etiquetas: deporte, tipo, subcategoría, «forelle», «calzado», género.
@@ -32,7 +34,8 @@ TYPE1 = {
     'Catcher Equipment': 'Equipo de receptor', 'Gloves (LH = Left Hand catch)': 'Guantes de béisbol',
     'NBA': 'NBA', 'NHL Fan Merchandise': 'NHL', 'Basketball': 'Baloncesto', 'Volleyball': 'Vóley', 'Soccer': 'Fútbol',
     'Hockey': 'Hockey', 'Street Hockey': 'Hockey', 'Lacrosse': 'Lacrosse', 'Rugby': 'Rugby', 'Cricket': 'Críquet',
-    'Golf': 'Golf', 'Racquet Sports': 'Raqueta',
+    'Golf': 'Golf', 'Racquet Sports': 'Raqueta', 'Brand Clothing': 'Ropa de marca', 'Gloves': 'Guantes',
+    'Handball': 'Balonmano', 'Tug-Of-War': 'Tira y afloja',
 }
 TYPE2 = {
     'Adult': 'Adulto', 'Youth': 'Juvenil', 'Women': 'Mujer', 'Junior': 'Junior', 'Pee Wee': 'Pee Wee',
@@ -137,6 +140,57 @@ def price(v, markup):
     return f'{v:.2f}'
 
 
+# Columnas del CSV de Forelle -> etiquetas del XML (ExtraData)
+CSV_EXTRA = {'Sport': 'Sport', 'Type 1': 'Type1', 'Type 2': 'Type2', 'Gender': 'Gender',
+             'Categorie Samengevoegd': 'CategorieSamengevoegd', 'GPSR Market Participant': 'GPSRMarketParticipant'}
+CSV_MAIN = ['Id', 'Name', 'Description', 'Details', 'Brand', 'Size', 'Color', 'Ean', 'GroupNo', 'MerchantProductNo',
+            'Stock', 'Price', 'ListPrice', 'Url', 'ImageUrl', 'CategoryTrail', 'Category', 'ParentId', 'Type'] + \
+           [f'ExtraImageUrl{i}' for i in range(1, 10)]
+SPORT_FROM_CAT = [('american football', 'American Football'), ('baseball', 'Baseball/Softball'),
+                  ('softball', 'Baseball/Softball'), ('nba', 'Fanzone'), ('nhl', 'Fanzone'), ('nfl', 'Fanzone'),
+                  ('mlb', 'Fanzone'), ('fan', 'Fanzone')]
+
+
+def load_csv(path):
+    """Lee el CSV de Forelle y devuelve elementos con la misma forma que el XML."""
+    out = []
+    with open(path, encoding='utf-8-sig', newline='') as f:
+        for r in csv.DictReader(f):
+            e = ET.Element('Product')
+            for k in CSV_MAIN:
+                ET.SubElement(e, k).text = (r.get(k) or '').replace('\r', ' ').replace('\n', ' ')
+            x = ET.SubElement(e, 'ExtraData')
+            for k, t in CSV_EXTRA.items():
+                ET.SubElement(x, t).text = r.get(k) or ''
+            ET.SubElement(x, 'Color').text = r.get('Color') or ''
+            out.append(e)
+    return out
+
+
+def load_feeds(paths):
+    seen, products = set(), []
+    for path in paths.split(','):
+        items = load_csv(path) if path.lower().endswith('.csv') else ET.parse(path).getroot().findall('Product')
+        for p in items:
+            pid = txt(p, 'Id')
+            if pid in seen:
+                continue
+            seen.add(pid)
+            products.append(p)
+    return products
+
+
+def sport_of(p):
+    sp = ext(p, 'Sport')
+    if sp:
+        return sp
+    hay = ' '.join([ext(p, 'CategorieSamengevoegd'), txt(p, 'CategoryTrail'), txt(p, 'Category'), txt(p, 'Name')]).lower()
+    for needle, sport in SPORT_FROM_CAT:
+        if needle in hay:
+            return sport
+    return ''
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('feed'); ap.add_argument('out')
@@ -152,7 +206,8 @@ def main():
     if a.translations and os.path.exists(a.translations):
         TR.update(json.load(open(a.translations, encoding='utf-8')))
 
-    products = ET.parse(a.feed).getroot().findall('Product')
+    products = load_feeds(a.feed)
+    parent_names = {txt(p, 'Id'): re.sub(r'\s+', ' ', txt(p, 'Name')) for p in products if txt(p, 'Type') == 'PARENT'}
     # Agrupación: CHILD por ParentId. Los SINGLE que son tallas/manos del mismo modelo
     # se unen por GroupNo o, si no lo tienen, por el nombre sin talla ni color.
     groups = collections.OrderedDict()
@@ -183,14 +238,14 @@ def main():
     current = []
     for key, vs in groups.items():
         first = vs[0]
-        sport_raw = ext(first, 'Sport')
+        sport_raw = sport_of(first)
         if a.skip_fanzone and sport_raw == 'Fanzone':
             stats['skip_fanzone'] += 1; continue
         if a.only_stock and not any(int(txt(v, 'Stock') or 0) > 0 for v in vs):
             stats['skip_nostock'] += 1; continue
 
         titles = collections.Counter(base_title(v) for v in vs)
-        title = max(titles.items(), key=lambda kv: (kv[1], len(kv[0])))[0] or txt(first, 'Name')
+        title = parent_names.get(key) or max(titles.items(), key=lambda kv: (kv[1], len(kv[0])))[0] or txt(first, 'Name')
         handle = slug(f'{title}-{key.lstrip("GT")[:12]}')[:240]
         if handle in handles:
             handle = f'{handle}-{key}'
@@ -213,9 +268,16 @@ def main():
             stats['modelo_fallback'] += 1
 
         sport_es, sport_tag = SPORT.get(sport_raw, SPORT[''])
-        t1 = ext(first, 'Type1'); t2 = ext(first, 'Type2')
+        norm = lambda t: t.replace(' & ', '  ')  # el CSV usa «&», el XML doble espacio
+        t1 = norm(ext(first, 'Type1')); t2 = norm(ext(first, 'Type2'))
         ptype = TYPE1.get(t1, t1 or 'Otros')
         tags = {sport_tag, 'forelle', slug(ptype)}
+        if sport_raw == 'Fanzone':
+            # En el CSV la categoría del fan shop viene revuelta: se clasifica por liga según el nombre
+            ptype = 'Fan shop'
+            tags = {sport_tag, 'forelle', 'fan-shop'}
+            name_l = f' {title.lower()} '
+            tags |= {liga for liga in ('nfl', 'nba', 'nhl', 'mlb') if f' {liga} ' in name_l or f' {liga}:' in name_l}
         if t2: tags.add('sub-' + slug(TYPE2.get(t2, t2)))
         if t1.startswith('Shoes'): tags.add('calzado')
         g = GENDER.get(ext(first, 'Gender'))
@@ -264,6 +326,8 @@ def main():
 
         current.append(rows)
         stats['products'] += 1; stats['variants'] += len(vs); stats[sport_tag] += 1
+        if txt(first, 'Brand') == 'Forelle':
+            stats['marca_forelle'] += 1
         if len(current) >= a.per_file:
             rows_by_file.append(current); current = []
     if current:

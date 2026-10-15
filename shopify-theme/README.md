@@ -23,9 +23,17 @@ Los CSV están en [`catalogo/shopify/`](../catalogo/shopify/) (generados con `to
    **sin precio** (0 €, el tema muestra «Precio a consultar») y con **venta sin stock permitida** (bajo pedido a Forelle).
    El PVP alemán del feed queda como referencia en la etiqueta `pvp-de-XX`.
 3. Regenerar (p. ej. con precios cuando haya tarifa, o con más traducciones):
-   `python3 -I tools/forelle_to_shopify.py catalogo/origen/forelle-feed.xml catalogo/shopify --no-price --policy continue --translations catalogo/traduccion/es.json`
+   `python3 -I tools/forelle_to_shopify.py catalogo/origen/forelle-feed.csv,catalogo/origen/forelle-feed.xml catalogo/shopify --no-price --policy continue --translations catalogo/traduccion/es.json`
+   (combina el CSV y el XML de Forelle; los feeds van en `catalogo/origen/`, que no se sube al repositorio)
 4. Traducción de descripciones: `tools/extract_texts.py` crea lotes en `catalogo/traduccion/pendiente/`;
    las traducciones se acumulan en `catalogo/traduccion/es.json` (lo no traducido queda en inglés).
+
+## 2b. Pedidos a Forelle
+El SKU de cada variante es la **referencia de Forelle** (MerchantProductNo). Para preparar el pedido:
+1. Pedidos → filtra los pendientes de preparar → **Exportar** (CSV).
+2. `python3 -I tools/pedido_forelle.py pedidos_export.csv catalogo/origen/forelle-feed.csv pedido-forelle.csv`
+3. Sale una hoja con referencia, EAN, talla, color, unidades sumadas, stock actual en Forelle,
+   aviso de «Falta stock» y los números de pedido de cliente.
 
 ## 3. Crear colecciones automáticas (Productos → Colecciones → Crear)
 Tipo **Automatizada**, condición «Etiqueta del producto es igual a»:
@@ -41,6 +49,8 @@ Tipo **Automatizada**, condición «Etiqueta del producto es igual a»:
 | Bates | `bates` |
 | Guantes de béisbol | `guantes-de-beisbol` |
 | En stock | `en-stock` |
+| Fan shop | `fan-shop` |
+| NFL | `nfl` |
 
 Después, en el editor del tema → sección **Tienda por colecciones**, asigna cada pestaña a su colección,
 y en **Deportes (mosaico)** enlaza cada tarjeta.
