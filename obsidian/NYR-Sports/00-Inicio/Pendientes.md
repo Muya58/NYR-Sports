@@ -9,5 +9,6 @@
 - [ ] Decidir con el socio qué cuenta de Shopify usamos
 - [ ] Fotos originales (bloquea folletos, trípticos y lonas)
 - [ ] Primer folleto / tríptico / lona — en pausa hasta tener fotos
-- [ ] Confirmar tienda Shopify de pago y subir el tema
+- [ ] Cargar todo en «Mi tienda» (decidido 15/10): subir tema (José) + importar catálogo y colecciones (Claude)
 - [ ] Decidir precios, stock, idioma y alcance del catálogo Forelle
+- [ ] Decidir método de traducción (workflow / Claude solo / solo prioritario)
