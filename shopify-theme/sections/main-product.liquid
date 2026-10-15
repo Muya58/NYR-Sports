@@ -1,6 +1,10 @@
 {%- liquid
   assign product_form_id = 'product-form-' | append: section.id
   assign current = product.selected_or_first_available_variant
+  assign quote = false
+  if settings.hide_prices or product.price_max == 0
+    assign quote = true
+  endif
   assign personalizable = false
   if product.tags contains 'personalizable'
     assign personalizable = true
@@ -34,13 +38,18 @@
         <p class="eyebrow">{{ product.vendor | escape }}{% if product.tags contains 'forelle' %} · {{ 'products.forelle' | t }}{% endif %}</p>
       {%- endif -%}
       <h1 class="pdp__title">{{ product.title | escape }}</h1>
-      <p class="pdp__price" data-price>
-        {%- if current.compare_at_price > current.price %}<s class="muted">{{ current.compare_at_price | money }}</s> {% endif -%}
-        {{ current.price | money }}
-      </p>
-      <p class="fine">{{ 'products.tax_included' | t }}</p>
+      {%- if quote -%}
+        <p class="pdp__price"><span class="price-quote">{{ 'products.price_on_request' | t }}</span></p>
+        <p class="fine">{{ 'products.price_on_request_note' | t }}</p>
+      {%- else -%}
+        <p class="pdp__price" data-price>
+          {%- if current.compare_at_price > current.price %}<s class="muted">{{ current.compare_at_price | money }}</s> {% endif -%}
+          {{ current.price | money }}
+        </p>
+        <p class="fine">{{ 'products.tax_included' | t }}</p>
+      {%- endif -%}
 
-      {%- form 'product', product, id: product_form_id, class: 'pdp__form', data-product-form: '' -%}
+      {%- form 'product', product, id: product_form_id, class: 'pdp__form', data-product-form: '', data-quote: quote, data-quote-url: settings.quote_url -%}
         <input type="hidden" name="id" value="{{ current.id }}" data-variant-id>
 
         {%- unless product.has_only_default_variant -%}
@@ -73,9 +82,13 @@
             <input type="number" name="quantity" value="1" min="1" aria-label="{{ 'cart.quantity' | t }}" id="pQty-{{ section.id }}">
             <button type="button" data-step="1" aria-label="{{ 'cart.increase' | t }}">+</button>
           </div>
+          {%- if quote -%}
+            <button type="submit" class="btn btn--lime btn--grow" data-quote-btn>{{ 'products.request_price' | t }}</button>
+          {%- else -%}
           <button type="submit" class="btn btn--lime btn--grow" data-add-btn data-label-add="{{ 'products.add_to_cart' | t }}" data-label-sold="{{ 'products.sold_out' | t }}" {% unless current.available %}disabled{% endunless %}>
             {%- if current.available %}{{ 'products.add_to_cart' | t }}{% else %}{{ 'products.sold_out' | t }}{% endif -%}
           </button>
+          {%- endif -%}
         </div>
         <p class="err" data-form-error hidden></p>
       {%- endform -%}

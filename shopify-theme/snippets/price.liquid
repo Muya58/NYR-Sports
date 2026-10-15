@@ -1,14 +1,23 @@
-{%- comment -%} Precio con «desde» para productos con varios precios o personalizables. Parámetro: product. {%- endcomment -%}
+{%- comment -%}
+  Precio de producto. En modo presupuesto (ajuste «Ocultar precios» o precio 0) muestra «Precio a consultar».
+  Parámetro: product.
+{%- endcomment -%}
 {%- liquid
+  assign quote = false
+  if settings.hide_prices or product.price_max == 0
+    assign quote = true
+  endif
   assign from = false
   if product.price_varies or product.tags contains 'personalizable'
     assign from = true
   endif
 -%}
 <span class="price-tag">
-  {%- if from -%}<small>{{ 'products.from' | t }}</small> {% endif -%}
-  {%- if product.compare_at_price > product.price -%}
-    <s class="muted">{{ product.compare_at_price | money }}</s>
+  {%- if quote -%}
+    <span class="price-quote">{{ 'products.price_on_request' | t }}</span>
+  {%- else -%}
+    {%- if from -%}<small>{{ 'products.from' | t }}</small> {% endif -%}
+    {%- if product.compare_at_price > product.price -%}<s class="muted">{{ product.compare_at_price | money }}</s>{%- endif -%}
+    {{ product.price | money }}
   {%- endif -%}
-  {{ product.price | money }}
 </span>

@@ -11,7 +11,7 @@
 
   /* ---------------- Catálogo ----------------
      sport: futbol · baloncesto · voley · balonmano · americano · beisbol · multi
-     brand: 'Forelle' para la gama en distribución exclusiva.
+     brand: 'Forelle' para la gama en distribución oficial.
      art: [render, colorA, colorB, dorsal, equipo, estilo] — ver js/art.js
      Productos y precios de ejemplo: sustituir por el catálogo real. */
   const SIZES = {
@@ -45,12 +45,12 @@
     { id: 'bs-jersey', sport: 'beisbol', name: 'Camiseta Béisbol', sub: 'Abotonada · sublimada', price: 44, art: ['jersey', WHITE, NAVY, '7', 'Bravos', 'baseball'], sizes: 'ropa', custom: true, desc: 'Camiseta abotonada con nombre del equipo en script y numeración. Para béisbol y softball.' },
     { id: 'bs-cap', sport: 'beisbol', name: 'Gorra Béisbol Personalizada', sub: 'Bordado 3D', price: 18, art: ['cap', NAVY, LIME], sizes: 'cap', desc: 'Gorra de seis paneles con escudo bordado en relieve y cierre ajustable.' },
     { id: 'mu-short', sport: 'multi', name: 'Pantalón Técnico Multideporte', sub: 'Entrenamiento', price: 15, art: ['shorts', NAVY, LIME], sizes: 'ropa', desc: 'Pantalón corto ligero para entrenamiento de cualquier deporte. Personalizable con escudo.' },
-    // Forelle — distribución exclusiva
-    { id: 'fo-helmet', sport: 'americano', brand: 'Forelle', name: 'Casco Fútbol Americano', sub: 'Adulto · con máscara', price: 289, art: ['helmet', NAVY, LIME], sizes: 'casco', tag: 'Exclusiva', desc: 'Casco de policarbonato con acolchado interior ajustable y máscara de acero. Gama Forelle.' },
+    // Forelle — distribución oficial
+    { id: 'fo-helmet', sport: 'americano', brand: 'Forelle', name: 'Casco Fútbol Americano', sub: 'Adulto · con máscara', price: 289, art: ['helmet', NAVY, LIME], sizes: 'casco', tag: 'Oficial', desc: 'Casco de policarbonato con acolchado interior ajustable y máscara de acero. Gama Forelle.' },
     { id: 'fo-pads', sport: 'americano', brand: 'Forelle', name: 'Hombreras', sub: 'Todas las posiciones', price: 169, art: ['pads', NAVY, LIME], sizes: 'hombrera', desc: 'Hombreras ligeras con ventilación y ajuste de doble lazo. Gama Forelle.' },
     { id: 'fo-gloves', sport: 'americano', brand: 'Forelle', name: 'Guantes Receptor', sub: 'Palma de agarre', price: 39, art: ['gloves', NAVY, LIME], sizes: 'guante', desc: 'Guantes con palma de alto agarre y dorso transpirable. Gama Forelle.' },
     { id: 'fo-ball', sport: 'americano', brand: 'Forelle', name: 'Balón Fútbol Americano', sub: 'Composite', price: 45, art: ['ball', 'football'], sizes: 'unica', desc: 'Balón de piel compuesta con laces de alto agarre. Gama Forelle.' },
-    { id: 'fo-bat', sport: 'beisbol', brand: 'Forelle', name: 'Bate de Aluminio', sub: 'Béisbol · aleación', price: 79, art: ['bat'], sizes: 'bate', tag: 'Exclusiva', desc: 'Bate de aluminio equilibrado con empuñadura antideslizante. Gama Forelle.' },
+    { id: 'fo-bat', sport: 'beisbol', brand: 'Forelle', name: 'Bate de Aluminio', sub: 'Béisbol · aleación', price: 79, art: ['bat'], sizes: 'bate', tag: 'Oficial', desc: 'Bate de aluminio equilibrado con empuñadura antideslizante. Gama Forelle.' },
     { id: 'fo-mitt', sport: 'beisbol', brand: 'Forelle', name: 'Guante de Béisbol', sub: 'Piel · infield / outfield', price: 69, art: ['mitt'], sizes: 'mitt', desc: 'Guante de piel con bolsillo profundo y ajuste en muñeca. Gama Forelle.' },
     { id: 'fo-softball', sport: 'beisbol', brand: 'Forelle', name: 'Bolas de Softball', sub: '12" · pack de 12', price: 54, art: ['ball', 'softball'], sizes: 'unica', desc: 'Bolas de softball de 12 pulgadas para entrenamiento y competición. Gama Forelle.' },
     // Calzado

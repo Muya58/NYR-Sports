@@ -39,7 +39,10 @@
     "volume_note": "Pedidos de 15 o más unidades: descuento por volumen aplicado automáticamente en la bolsa.",
     "description": "Descripción",
     "breadcrumb": "Ruta",
-    "view_image": "Ver imagen {{ n }}"
+    "view_image": "Ver imagen {{ n }}",
+    "price_on_request": "Precio a consultar",
+    "price_on_request_note": "Te enviamos precio y plazo de entrega en menos de 24 h laborables.",
+    "request_price": "Solicitar precio"
   },
   "collections": {
     "all": "Colecciones",
@@ -48,10 +51,16 @@
     "clear": "Quitar filtros",
     "min": "Mín. €",
     "max": "Máx. €",
-    "count": { "one": "{{ count }} producto", "other": "{{ count }} productos" },
+    "count": {
+      "one": "{{ count }} producto",
+      "other": "{{ count }} productos"
+    },
     "empty": "No hay productos con estos filtros.",
     "empty_setup": "Elige una colección para esta pestaña en el editor de temas.",
-    "view_all": { "one": "Ver {{ count }} producto", "other": "Ver los {{ count }} productos" }
+    "view_all": {
+      "one": "Ver {{ count }} producto",
+      "other": "Ver los {{ count }} productos"
+    }
   },
   "cart": {
     "title": "Tu bolsa",
@@ -100,9 +109,18 @@
   },
   "search": {
     "title": "Buscar",
-    "results": { "one": "{{ count }} resultado para «{{ terms }}»", "other": "{{ count }} resultados para «{{ terms }}»" },
+    "results": {
+      "one": "{{ count }} resultado para «{{ terms }}»",
+      "other": "{{ count }} resultados para «{{ terms }}»"
+    },
     "none": "No hay resultados. Prueba con otra palabra."
   },
-  "password": { "placeholder": "Contraseña", "enter": "Entrar" },
-  "gift_card": { "title": "Tarjeta regalo", "balance": "Saldo" }
+  "password": {
+    "placeholder": "Contraseña",
+    "enter": "Entrar"
+  },
+  "gift_card": {
+    "title": "Tarjeta regalo",
+    "balance": "Saldo"
+  }
 }

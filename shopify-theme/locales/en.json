@@ -39,7 +39,10 @@
     "volume_note": "Orders of 15+ units get a volume discount automatically in the cart.",
     "description": "Description",
     "breadcrumb": "Breadcrumb",
-    "view_image": "View image {{ n }}"
+    "view_image": "View image {{ n }}",
+    "price_on_request": "Price on request",
+    "price_on_request_note": "We'll send you price and lead time within 24 business hours.",
+    "request_price": "Request price"
   },
   "collections": {
     "all": "Collections",

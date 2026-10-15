@@ -27,6 +27,13 @@
     ]
   },
   {
+    "name": "Precios",
+    "settings": [
+      { "type": "checkbox", "id": "hide_prices", "label": "Ocultar precios (modo presupuesto)", "default": true, "info": "Muestra «Precio a consultar» y cambia el botón de compra por «Solicitar precio». Los productos con precio 0 siempre están en este modo." },
+      { "type": "text", "id": "quote_url", "label": "Enlace para solicitar precio", "default": "/pages/contact", "info": "Página con la sección Presupuesto (plantilla page.contact) o /#presupuesto." }
+    ]
+  },
+  {
     "name": "Carrito",
     "settings": [
       { "type": "number", "id": "free_shipping_threshold", "label": "Envío gratis a partir de (€)", "default": 150, "info": "Solo informativo en la bolsa: configura la tarifa real en Ajustes > Envíos. 0 para ocultar." },

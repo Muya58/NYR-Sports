@@ -7,7 +7,7 @@ actualizado: 2026-10-12
 - Lema: **Ropa • Calzado • Equipamiento**
 - **Uniformidad deportiva de todo tipo**: fútbol, baloncesto, vóley, balonmano y más (no solo fútbol americano).
 - **Multimarca**: distribuimos muchas marcas. *(Pendiente: lista de marcas para la web)*
-- **Forelle — distribución exclusiva** para la **Península, Baleares y Canarias**. Con Forelle cubrimos fútbol americano, **béisbol, softball** y demás deportes americanos.
+- **Forelle — distribuidor OFICIAL (no exclusivo)** en la **Península, Baleares y Canarias** (aclarado 15/10). Forelle es a su vez distribuidor multimarca (Rawlings, Easton, Riddell, Wilson, Nike…). Podemos usar sus fotos y textos. Con Forelle cubrimos fútbol americano, **béisbol, softball** y demás deportes americanos.
 - **Fabricación**: ropa a medida producida con **casas de fabricación en China**.
   - En la web se comunica como «producción a medida con nuestras fábricas asociadas y control de calidad en cada lote». Decidir si se quiere mencionar el origen.
 

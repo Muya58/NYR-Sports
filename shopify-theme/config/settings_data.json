@@ -4,7 +4,9 @@
     "color_lime": "#B8FC0B",
     "type_font": "inter_n4",
     "free_shipping_threshold": 150,
-    "cart_drawer": true
+    "cart_drawer": true,
+    "hide_prices": true,
+    "quote_url": "/pages/contact"
   },
   "presets": {
     "Default": {
@@ -12,7 +14,9 @@
       "color_lime": "#B8FC0B",
     "type_font": "inter_n4",
       "free_shipping_threshold": 150,
-      "cart_drawer": true
+      "cart_drawer": true,
+      "hide_prices": true,
+      "quote_url": "/pages/contact"
     }
   }
 }

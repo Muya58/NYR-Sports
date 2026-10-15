@@ -29,6 +29,26 @@
     tt = setTimeout(() => t.classList.remove('is-on'), 3200);
   }
 
+  /* ---------------- Solicitar precio ---------------- */
+  // Lleva al formulario de presupuesto con el mensaje ya escrito
+  function goQuote(url, msg) {
+    try { sessionStorage.setItem('nyr-quote', msg); } catch (_) {}
+    const target = url || '/pages/contact';
+    const sameHome = target.startsWith('#') || target.startsWith('/#');
+    if (sameHome && document.querySelector('[data-prefill]')) { prefillQuote(); document.querySelector('#presupuesto')?.scrollIntoView({ behavior: 'smooth' }); return; }
+    location.href = target;
+  }
+  function prefillQuote() {
+    const box = document.querySelector('[data-prefill="mensaje"]');
+    let msg = null;
+    try { msg = sessionStorage.getItem('nyr-quote'); } catch (_) {}
+    if (box && msg) {
+      box.value = msg;
+      try { sessionStorage.removeItem('nyr-quote'); } catch (_) {}
+      box.closest('form')?.querySelector('input')?.focus({ preventScroll: true });
+    }
+  }
+
   /* ---------------- Overlays ---------------- */
   let lastFocus = null;
   function openOverlay(o) {
@@ -130,7 +150,7 @@
     let variants = [];
     try { variants = JSON.parse($('[data-variants]', sec).textContent); } catch (_) {}
     const idInput = $('[data-variant-id]', form);
-    const addBtn = $('[data-add-btn]', form);
+    const addBtn = $('[data-add-btn]', form) || $('[data-quote-btn]', form);
     const priceEl = $('[data-price]', sec);
     const main = $('[data-main-media]', sec);
     const err = $('[data-form-error]', form);
@@ -160,9 +180,11 @@
       markAvailability();
       if (!v) { addBtn.disabled = true; return; }
       idInput.value = v.id;
-      addBtn.disabled = !v.available;
-      addBtn.textContent = v.available ? addBtn.dataset.labelAdd : addBtn.dataset.labelSold;
-      priceEl.innerHTML = (v.compare ? `<s class="muted">${v.compare}</s> ` : '') + v.price;
+      if (form.dataset.quote !== 'true') {
+        addBtn.disabled = !v.available;
+        addBtn.textContent = v.available ? addBtn.dataset.labelAdd : addBtn.dataset.labelSold;
+        if (priceEl) priceEl.innerHTML = (v.compare ? `<s class="muted">${v.compare}</s> ` : '') + v.price;
+      }
       if (v.image && main) {
         main.innerHTML = `<img src="${v.image}" alt="">`;
       }
@@ -185,6 +207,14 @@
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
+      if (form.dataset.quote === 'true') {
+        const opts = $$('fieldset.opt', form).map((fs) => `${$('legend', fs).firstChild.textContent.replace(':', '').trim()}: ${$('input:checked', fs)?.value || ''}`);
+        const props = $$('input[name^="properties["]', form).filter((i) => i.value.trim()).map((i) => `${i.name.slice(11, -1)}: ${i.value.trim()}`);
+        const qty = $('input[name="quantity"]', form)?.value || 1;
+        const msg = [`${$('.pdp__title', sec)?.textContent.trim()} (${location.pathname})`, ...opts, ...props, `Unidades: ${qty}`].join('\n');
+        goQuote(form.dataset.quoteUrl, msg);
+        return;
+      }
       err.hidden = true;
       const fd = new FormData(form);
       const properties = {};
@@ -212,6 +242,8 @@
       if (on) { st[g.dataset.target] = on.dataset.c; st[g.dataset.target + 'n'] = on.dataset.n; }
     });
     const sizeSel = $('[data-config-size]', form);
+    const quote = box.dataset.quote === 'true';
+    if (quote) $('[data-config-add]', box).textContent = box.dataset.quoteLabel;
 
     function art() {
       const s = sports[st.i];
@@ -226,10 +258,10 @@
       sizeSel.innerHTML = s.variants.map((v) => `<option value="${v.id}"${v.available ? '' : ' disabled'}>${v.title === 'Default Title' ? '—' : v.title}${v.available ? '' : ' ✕'}</option>`).join('');
       const firstOk = s.variants.find((v) => v.available);
       if (firstOk) sizeSel.value = firstOk.id;
-      $('[data-config-price]', box).textContent = s.variants[0]?.price || '—';
+      $('[data-config-price]', box).textContent = quote ? box.dataset.quotePrice : (s.variants[0]?.price || '—');
       const missing = !s.variants.length;
-      $('[data-config-note]', box).hidden = !missing;
-      $('[data-config-add]', box).disabled = missing;
+      $('[data-config-note]', box).hidden = !missing || quote;
+      $('[data-config-add]', box).disabled = missing && !quote;
     }
     function draw() {
       if (!window.NYRArt) return;
@@ -262,6 +294,13 @@
         Dorsal: form.num.value || '—',
       };
       if (form.team.value.trim()) properties.Equipo = form.team.value.trim();
+      if (quote) {
+        btn.classList.remove('is-loading');
+        const size = sizeSel.selectedOptions[0]?.textContent || '';
+        const msg = [`Equipación ${s.label}${s.product ? ` (${s.product})` : ''}`, ...Object.entries(properties).map(([k, v]) => `${k}: ${v}`), size && size !== '—' ? `Talla: ${size}` : '', `Unidades: ${form.qty.value}`].filter(Boolean).join('\n');
+        goQuote(box.dataset.quoteUrl, msg);
+        return;
+      }
       addToCart([{ id: Number(sizeSel.value), quantity: Math.max(1, Number(form.qty.value) || 1), properties }], s.product)
         .catch((ex) => toast(ex.message))
         .finally(() => btn.classList.remove('is-loading'));
@@ -337,6 +376,7 @@
   function boot() {
     renderArt();
     observeReveal();
+    prefillQuote();
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();

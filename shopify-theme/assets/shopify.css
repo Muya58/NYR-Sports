@@ -154,3 +154,7 @@
   .filter__menu { position: fixed; left: 16px; right: 16px; top: auto; bottom: 16px; min-width: 0; max-height: 60vh; }
   .footer__legal { flex-direction: column; align-items: flex-start; }
 }
+
+/* Modo presupuesto (precios ocultos) */
+.price-quote { font-size: .92em; font-weight: 600; color: var(--navy-500); }
+.pdp__price .price-quote { font-size: 22px; color: var(--navy); }

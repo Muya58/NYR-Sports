@@ -3,15 +3,19 @@
 
 Uso:
   python3 -I tools/forelle_to_shopify.py FEED.xml SALIDA_DIR [--status draft|active]
-         [--markup 1.0] [--only-stock] [--skip-fanzone] [--per-file 500]
+         [--no-price | --markup 1.0] [--policy continue|deny] [--only-stock] [--skip-fanzone]
+         [--translations catalogo/traduccion/es.json] [--per-file 500]
 
 - Agrupa las variantes (CHILD) por ParentId; los SINGLE son productos de una variante.
 - Opciones: «Talla» y/o «Color» según lo que varíe; si hay combinaciones repetidas usa «Modelo».
 - Etiquetas: deporte, tipo, subcategoría, «forelle», «calzado», género.
-- Precio = Price del feed × markup (redondeado a ,95 si markup != 1).
+- Precio = Price del feed × markup (redondeado a ,95 si markup != 1), o 0 con --no-price
+  (el tema muestra «Precio a consultar»). El PVP del feed se guarda en la etiqueta «pvp-de-XX».
+- --policy continue: se puede vender sin stock (bajo pedido a Forelle).
+- --translations: JSON {sha1(párrafo en inglés): párrafo en español}; lo no traducido queda en inglés.
 - Estado por defecto: draft (no visible hasta que se publique).
 """
-import argparse, collections, csv, html, os, re, sys, unicodedata
+import argparse, collections, csv, hashlib, html, json, os, re, sys, unicodedata
 import xml.etree.ElementTree as ET
 
 SPORT = {
@@ -103,10 +107,23 @@ def base_title(p):
     return name.strip()
 
 
+TR = {}
+
+
+def para_key(s):
+    return hashlib.sha1(s.encode('utf-8')).hexdigest()[:16]
+
+
+CSS_JUNK = re.compile(r'^[.#]?[\w-]+(\s+[\w.-]+)*\s*\{|^[\w-]+\s*:\s*[^.]*;\s*$|^\}$')
+
+
+def paragraphs(p):
+    parts = [s.strip() for s in re.split(r'\s{2,}', txt(p, 'Description')) if s.strip()]
+    return [s for s in parts if not CSS_JUNK.match(s)]
+
+
 def body_html(p):
-    d = txt(p, 'Description')
-    parts = [s.strip() for s in re.split(r'\s{2,}', d) if s.strip()]
-    out = ''.join(f'<p>{html.escape(s)}</p>' for s in parts)
+    out = ''.join(f'<p>{html.escape(TR.get(para_key(s), s))}</p>' for s in paragraphs(p))
     gpsr = ext(p, 'GPSRMarketParticipant')
     if gpsr:
         out += f'<p><small>Responsable en la UE (GPSR): {html.escape(gpsr)}</small></p>'
@@ -128,7 +145,12 @@ def main():
     ap.add_argument('--only-stock', action='store_true')
     ap.add_argument('--skip-fanzone', action='store_true')
     ap.add_argument('--per-file', type=int, default=500)
+    ap.add_argument('--no-price', action='store_true')
+    ap.add_argument('--policy', default='continue', choices=['continue', 'deny'])
+    ap.add_argument('--translations')
     a = ap.parse_args()
+    if a.translations and os.path.exists(a.translations):
+        TR.update(json.load(open(a.translations, encoding='utf-8')))
 
     products = ET.parse(a.feed).getroot().findall('Product')
     # Agrupación: CHILD por ParentId. Los SINGLE que son tallas/manos del mismo modelo
@@ -199,6 +221,8 @@ def main():
         g = GENDER.get(ext(first, 'Gender'))
         if g: tags.add(g)
         if any(int(txt(v, 'Stock') or 0) > 0 for v in vs): tags.add('en-stock')
+        pvp = txt(first, 'Price')
+        if pvp: tags.add('pvp-de-' + str(round(float(pvp))))
 
         images = []
         for v in vs:
@@ -223,12 +247,12 @@ def main():
                 r['Option1 Name'] = 'Title' if i == 0 else ''
                 r['Option1 Value'] = 'Default Title'
             r.update({'Variant SKU': txt(v, 'MerchantProductNo'), 'Variant Grams': '0', 'Variant Inventory Tracker': 'shopify',
-                      'Variant Inventory Qty': str(max(0, int(txt(v, 'Stock') or 0))), 'Variant Inventory Policy': 'deny',
-                      'Variant Fulfillment Service': 'manual', 'Variant Price': price(txt(v, 'Price'), a.markup),
+                      'Variant Inventory Qty': str(max(0, int(txt(v, 'Stock') or 0))), 'Variant Inventory Policy': a.policy,
+                      'Variant Fulfillment Service': 'manual', 'Variant Price': '0.00' if a.no_price else price(txt(v, 'Price'), a.markup),
                       'Variant Requires Shipping': 'TRUE', 'Variant Taxable': 'TRUE', 'Variant Barcode': txt(v, 'Ean'),
                       'Variant Weight Unit': 'kg', 'Variant Image': txt(v, 'ImageUrl') if len(vs) > 1 else ''})
             lp = txt(v, 'ListPrice')
-            if lp and float(lp) > float(txt(v, 'Price') or 0):
+            if not a.no_price and lp and float(lp) > float(txt(v, 'Price') or 0):
                 r['Variant Compare At Price'] = price(lp, a.markup)
             if i < len(images):
                 r.update({'Image Src': images[i], 'Image Position': str(i + 1), 'Image Alt Text': title})
@@ -253,6 +277,7 @@ def main():
             for rows in chunk:
                 w.writerows(rows)
         print(f'{path}  {os.path.getsize(path) / 1e6:.1f} MB  {len(chunk)} productos')
+    stats['translated_paragraphs_used'] = len(TR)
     print(dict(stats))
 
 

@@ -34,7 +34,7 @@
               {%- for s in sports %}<option>{{ s | strip }}</option>{% endfor -%}
             </select>
           </label>
-          <label class="field"><span>{{ 'quote.message' | t }}</span><textarea id="qMsg" name="contact[body]" rows="3"></textarea></label>
+          <label class="field"><span>{{ 'quote.message' | t }}</span><textarea id="qMsg" name="contact[body]" rows="4" data-prefill="mensaje"></textarea></label>
           <button class="btn btn--lime btn--block" type="submit">{{ 'quote.send' | t }}</button>
           <p class="fine">{{ section.settings.fine | escape }}</p>
         {%- endif -%}

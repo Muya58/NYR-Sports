@@ -5,7 +5,7 @@
       "blocks": {
         "s1": { "type": "stat", "settings": { "value": "7+", "label": "deportes" } },
         "s2": { "type": "stat", "settings": { "value": "Multimarca", "label": "primeras marcas del sector" } },
-        "s3": { "type": "stat", "settings": { "value": "Exclusiva", "label": "Forelle en España" } },
+        "s3": { "type": "stat", "settings": { "value": "Oficial", "label": "distribuidor Forelle" } },
         "s4": { "type": "stat", "settings": { "value": "A medida", "label": "producción para clubes y colegios" } }
       },
       "block_order": ["s1", "s2", "s3", "s4"],

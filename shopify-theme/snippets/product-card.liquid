@@ -17,6 +17,9 @@
   if product.has_only_default_variant
     assign single_variant = true
   endif
+  if settings.hide_prices or product.price_max == 0
+    assign single_variant = false
+  endif
 -%}
 <article class="product reveal">
   <a href="{{ product.url }}" class="product__link" aria-label="{{ product.title | escape }}"></a>

@@ -1,6 +1,6 @@
 # NYR Sports — Web e-commerce
 
-Landing y tienda online minimalista (estética Apple) de NYR Sports: uniformidad deportiva multimarca (fútbol, baloncesto, vóley, balonmano…) y distribución exclusiva de Forelle en la Península, Baleares y Canarias.
+Landing y tienda online minimalista (estética Apple) de NYR Sports: uniformidad deportiva multimarca (fútbol, baloncesto, vóley, balonmano…) y distribución oficial de Forelle en la Península, Baleares y Canarias.
 Navy `#01144C` para estructura, lima `#B8FC0B` para llamadas a la acción. HTML/CSS/JS sin dependencias.
 
 ## Ver en local

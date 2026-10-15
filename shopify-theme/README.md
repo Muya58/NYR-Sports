@@ -10,12 +10,22 @@ Paquete listo para subir: [`dist/nyr-sports-theme.zip`](../dist/nyr-sports-theme
 2. Elige `nyr-sports-theme.zip`. Se sube **sin publicar**: puedes previsualizarlo y editarlo antes.
 3. **Personalizar** abre el editor visual: todos los textos, colores, imágenes y secciones son editables.
 
+## 1b. Precios ocultos (modo presupuesto) — activado por defecto
+En **Personalizar → Ajustes del tema → Precios**: «Ocultar precios» muestra «Precio a consultar» y el botón
+«Solicitar precio», que abre el formulario de presupuesto con el producto, talla y unidades ya escritos.
+Crea una página **Contacto** (`/pages/contact`) con la plantilla **page.contact** (incluye el formulario).
+Cuando tengáis tarifas, desactiva el ajuste y los precios y el botón de compra aparecen solos.
+
 ## 2. Importar el catálogo Forelle
 Los CSV están en [`catalogo/shopify/`](../catalogo/shopify/) (generados con `tools/forelle_to_shopify.py`).
 1. **Productos → Importar** → sube `forelle-productos-01.csv` (y luego 02, 03…).
-2. Los productos entran como **borrador** (no visibles) con fotos, tallas, colores, stock, EAN y SKU.
-3. Para regenerar con otro margen o solo con stock:
-   `python3 -I tools/forelle_to_shopify.py feed.xml catalogo/shopify --markup 1.0 --only-stock`
+2. Los productos entran como **borrador** (no visibles) con fotos, tallas, colores, stock, EAN y SKU,
+   **sin precio** (0 €, el tema muestra «Precio a consultar») y con **venta sin stock permitida** (bajo pedido a Forelle).
+   El PVP alemán del feed queda como referencia en la etiqueta `pvp-de-XX`.
+3. Regenerar (p. ej. con precios cuando haya tarifa, o con más traducciones):
+   `python3 -I tools/forelle_to_shopify.py catalogo/origen/forelle-feed.xml catalogo/shopify --no-price --policy continue --translations catalogo/traduccion/es.json`
+4. Traducción de descripciones: `tools/extract_texts.py` crea lotes en `catalogo/traduccion/pendiente/`;
+   las traducciones se acumulan en `catalogo/traduccion/es.json` (lo no traducido queda en inglés).
 
 ## 3. Crear colecciones automáticas (Productos → Colecciones → Crear)
 Tipo **Automatizada**, condición «Etiqueta del producto es igual a»:

@@ -12,7 +12,10 @@
     {%- if section.settings.text != blank %}<p class="lead">{{ section.settings.text }}</p>{% endif -%}
   </header>
 
-  <div class="config reveal" data-configurator data-min="{{ section.settings.min_qty }}">
+  {%- liquid
+    assign quote = settings.hide_prices
+  -%}
+  <div class="config reveal" data-configurator data-min="{{ section.settings.min_qty }}" data-quote="{{ quote }}" data-quote-url="{{ settings.quote_url }}" data-quote-label="{{ 'products.request_price' | t }}" data-quote-price="{{ 'products.price_on_request' | t }}">
     <div class="config__preview">
       <div class="segmented segmented--float" role="tablist" aria-label="{{ 'config.sport' | t }}">
         {%- for block in section.blocks -%}
