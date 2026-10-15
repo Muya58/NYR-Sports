@@ -1,5 +1,5 @@
 ---
-estado: decidido, pendiente de cuenta
+estado: tema y catálogo preparados, pendiente de tienda
 tags: [proyecto, shopify]
 ---
 # 🛍️ Migración a Shopify
@@ -20,3 +20,8 @@ tags: [proyecto, shopify]
 - **Canarias**: IGIC en lugar de IVA y paso por aduana → zonas de envío e impuestos separadas (Península, Baleares, Canarias). Confirmar con gestoría.
 - **B2B** (clubes/colegios): B2B nativo solo en Shopify Plus → usar descuentos automáticos por volumen, pedidos en borrador o app de presupuestos.
 - **Personalización** (dorsal, nombre, colores): guardar como propiedades de línea del pedido para producción.
+
+## Avance 15/10/2026
+- Tema a medida listo: `shopify-theme/` → `dist/nyr-sports-theme.zip` (guía en `shopify-theme/README.md`).
+- Catálogo Forelle convertido: `catalogo/shopify/forelle-productos-0X.csv` (2.525 productos, borrador).
+- Ver [[2026-10-15]].

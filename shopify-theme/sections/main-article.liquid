@@ -1,0 +1,9 @@
+<article class="section page">
+  <p class="fine">{{ article.published_at | date: format: 'date' }}</p>
+  <h1>{{ article.title | escape }}</h1>
+  {%- if article.image %}<div class="page__hero">{{ article.image | image_url: width: 1600 | image_tag: widths: '800, 1200, 1600', sizes: '(min-width: 900px) 860px, 92vw' }}</div>{% endif -%}
+  <div class="rte">{{ article.content }}</div>
+</article>
+{% schema %}
+{ "name": "Artículo" }
+{% endschema %}

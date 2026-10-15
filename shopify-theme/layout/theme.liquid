@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="{{ settings.color_navy }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 64, height: 64 }}">
+    {%- else -%}
+      <link rel="icon" type="image/svg+xml" href="{{ 'nyr-icon.svg' | asset_url }}">
+    {%- endif -%}
+    <link rel="apple-touch-icon" href="{{ 'nyr-icon.svg' | asset_url }}">
+
+    <title>
+      {{- page_title -}}
+      {%- if current_tags %} &ndash; {{ current_tags | join: ', ' }}{% endif -%}
+      {%- if current_page != 1 %} &ndash; {{ 'general.page' | t: page: current_page }}{% endif -%}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    </title>
+    {%- if page_description -%}
+      <meta name="description" content="{{ page_description | escape }}">
+    {%- endif -%}
+
+    {% render 'meta-tags' %}
+
+    {%- liquid
+      assign f = settings.type_font
+      assign f500 = f | font_modify: 'weight', '500'
+      assign f600 = f | font_modify: 'weight', '600'
+      assign f700 = f | font_modify: 'weight', '700'
+      assign f800 = f | font_modify: 'weight', '800'
+    -%}
+    <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+    <style>
+      {{ f | font_face: font_display: 'swap' }}
+      {{ f500 | font_face: font_display: 'swap' }}
+      {{ f600 | font_face: font_display: 'swap' }}
+      {{ f700 | font_face: font_display: 'swap' }}
+      {{ f800 | font_face: font_display: 'swap' }}
+    </style>
+
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+    {{ 'shopify.css' | asset_url | stylesheet_tag }}
+    <style>
+      :root {
+        --navy: {{ settings.color_navy }};
+        --lime: {{ settings.color_lime }};
+        --font: {{ settings.type_font.family }}, "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+      }
+    </style>
+
+    <script>
+      window.NYR = {
+        routes: {
+          root: {{ routes.root_url | json }},
+          cart: {{ routes.cart_url | json }},
+          cartAdd: {{ routes.cart_add_url | json }},
+          cartChange: {{ routes.cart_change_url | json }}
+        },
+        strings: {
+          added: {{ 'cart.added' | t | json }},
+          viewCart: {{ 'cart.view' | t | json }},
+          error: {{ 'cart.error' | t | json }}
+        }
+      };
+    </script>
+    <script src="{{ 'art.js' | asset_url }}" defer></script>
+    <script src="{{ 'theme.js' | asset_url }}" defer></script>
+
+    {{ content_for_header }}
+  </head>
+
+  <body class="template-{{ template.name }}" data-cart-drawer="{{ settings.cart_drawer }}">
+    <a class="skip" href="#main">{{ 'general.skip' | t }}</a>
+
+    {% sections 'header-group' %}
+
+    <main id="main" role="main">
+      {{ content_for_layout }}
+    </main>
+
+    {% sections 'footer-group' %}
+
+    {% section 'cart-drawer' %}
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>

@@ -1,0 +1,77 @@
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__brand">
+      {%- if section.settings.logo != blank -%}
+        {{ section.settings.logo | image_url: width: 320 | image_tag: class: 'footer__logo', alt: shop.name }}
+      {%- else -%}
+        <img class="footer__logo" src="{{ 'nyr-logo-white.png' | asset_url }}" alt="{{ shop.name | escape }}" width="140" height="155" loading="lazy">
+      {%- endif -%}
+      {%- if section.settings.text != blank %}<p><small>{{ section.settings.text }}</small></p>{% endif -%}
+    </div>
+
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when 'menu' -%}
+          <div {{ block.shopify_attributes }}>
+            <h4>{{ block.settings.title | escape }}</h4>
+            {%- for link in block.settings.menu.links -%}
+              <a href="{{ link.url }}">{{ link.title | escape }}</a>
+            {%- endfor -%}
+          </div>
+        {%- when 'newsletter' -%}
+          <div class="footer__news" {{ block.shopify_attributes }}>
+            <h4>{{ block.settings.title | escape }}</h4>
+            {%- form 'customer', id: 'newsForm' -%}
+              <input type="hidden" name="contact[tags]" value="newsletter">
+              {%- if form.posted_successfully? -%}
+                <p class="ok">{{ 'footer.newsletter_ok' | t }}</p>
+              {%- else -%}
+                <div class="news">
+                  <input type="email" name="contact[email]" id="newsEmail-{{ block.id }}" placeholder="{{ 'footer.email' | t }}" aria-label="{{ 'footer.email' | t }}" required autocomplete="email">
+                  <button class="btn btn--lime btn--sm">{{ 'footer.subscribe' | t }}</button>
+                </div>
+                {%- if form.errors %}<p class="err">{{ form.errors.translated_fields.email | default: 'Email' }} {{ form.errors.messages.email }}</p>{% endif -%}
+              {%- endif -%}
+            {%- endform -%}
+          </div>
+      {%- endcase -%}
+    {%- endfor -%}
+  </div>
+  <div class="footer__legal">
+    <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. {{ section.settings.legal }}</span>
+    {%- if section.settings.show_payments and shop.enabled_payment_types.size > 0 -%}
+      <ul class="payments" aria-label="{{ 'footer.payments' | t }}">
+        {%- for type in shop.enabled_payment_types -%}<li>{{ type | payment_type_svg_tag }}</li>{%- endfor -%}
+      </ul>
+    {%- endif -%}
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Pie de página",
+  "class": "section-footer",
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logo (opcional)", "info": "Por defecto: logo NYR Sports en blanco." },
+    { "type": "inline_richtext", "id": "text", "label": "Texto", "default": "Uniformidad deportiva multimarca. Distribuidor exclusivo de Forelle en la Península, Baleares y Canarias." },
+    { "type": "text", "id": "legal", "label": "Texto legal", "default": "Todos los derechos reservados." },
+    { "type": "checkbox", "id": "show_payments", "label": "Mostrar métodos de pago", "default": true }
+  ],
+  "blocks": [
+    {
+      "type": "menu",
+      "name": "Menú",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Título", "default": "Tienda" },
+        { "type": "link_list", "id": "menu", "label": "Menú", "default": "footer" }
+      ]
+    },
+    {
+      "type": "newsletter",
+      "name": "Boletín",
+      "limit": 1,
+      "settings": [ { "type": "text", "id": "title", "label": "Título", "default": "Novedades" } ]
+    }
+  ]
+}
+{% endschema %}

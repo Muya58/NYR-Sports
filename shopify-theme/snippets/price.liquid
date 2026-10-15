@@ -1,0 +1,14 @@
+{%- comment -%} Precio con «desde» para productos con varios precios o personalizables. Parámetro: product. {%- endcomment -%}
+{%- liquid
+  assign from = false
+  if product.price_varies or product.tags contains 'personalizable'
+    assign from = true
+  endif
+-%}
+<span class="price-tag">
+  {%- if from -%}<small>{{ 'products.from' | t }}</small> {% endif -%}
+  {%- if product.compare_at_price > product.price -%}
+    <s class="muted">{{ product.compare_at_price | money }}</s>
+  {%- endif -%}
+  {{ product.price | money }}
+</span>

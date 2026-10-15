@@ -1,0 +1,15 @@
+<section class="section page{% if section.settings.center %} center{% endif %}">
+  {%- if section.settings.heading != blank %}<h2>{{ section.settings.heading | escape }}</h2>{% endif -%}
+  {%- if section.settings.text != blank %}<div class="rte">{{ section.settings.text }}</div>{% endif -%}
+</section>
+{% schema %}
+{
+  "name": "Texto",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Titular", "default": "Sobre nosotros" },
+    { "type": "richtext", "id": "text", "label": "Texto", "default": "<p>Cuenta aquí la historia de NYR Sports.</p>" },
+    { "type": "checkbox", "id": "center", "label": "Centrado", "default": true }
+  ],
+  "presets": [ { "name": "Texto" } ]
+}
+{% endschema %}

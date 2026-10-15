@@ -1,0 +1,123 @@
+{
+  "general": {
+    "skip": "Skip to content",
+    "close": "Close",
+    "home": "Home",
+    "page": "Page {{ page }}",
+    "pagination": "Pagination",
+    "previous": "Previous",
+    "next": "Next",
+    "not_found": "Page not found",
+    "not_found_text": "The page you are looking for does not exist or has moved."
+  },
+  "header": {
+    "menu": "Menu",
+    "search": "Search",
+    "search_placeholder": "Search helmets, bats, gloves, uniforms…",
+    "account": "Account",
+    "cart": "Open cart"
+  },
+  "footer": {
+    "email": "Your email",
+    "subscribe": "Join",
+    "newsletter_ok": "Thanks! We'll keep you posted.",
+    "payments": "Payment methods"
+  },
+  "products": {
+    "from": "from",
+    "add_to_cart": "Add to cart",
+    "add_named": "Add {{ title }}",
+    "sold_out": "Sold out",
+    "best_seller": "Best seller",
+    "exclusive": "Exclusive",
+    "new": "New",
+    "forelle": "Forelle distribution",
+    "tax_included": "VAT included. Shipping calculated at checkout.",
+    "number": "Number",
+    "back_name": "Name on back",
+    "optional": "Optional",
+    "volume_note": "Orders of 15+ units get a volume discount automatically in the cart.",
+    "description": "Description",
+    "breadcrumb": "Breadcrumb",
+    "view_image": "View image {{ n }}"
+  },
+  "collections": {
+    "all": "Collections",
+    "filter": "Filter",
+    "sort": "Sort",
+    "clear": "Clear filters",
+    "min": "Min €",
+    "max": "Max €",
+    "count": {
+      "one": "{{ count }} product",
+      "other": "{{ count }} products"
+    },
+    "empty": "No products match these filters.",
+    "empty_setup": "Pick a collection for this tab in the theme editor.",
+    "view_all": {
+      "one": "View {{ count }} product",
+      "other": "View all {{ count }} products"
+    }
+  },
+  "cart": {
+    "title": "Your cart",
+    "empty": "Your cart is empty.",
+    "continue": "Continue shopping",
+    "subtotal": "Subtotal",
+    "checkout": "Check out",
+    "view": "View cart",
+    "update": "Update",
+    "remove": "Remove",
+    "quantity": "Quantity",
+    "increase": "Increase",
+    "decrease": "Decrease",
+    "note": "Order notes (club, delivery date…)",
+    "taxes_note": "Taxes included. Shipping calculated at checkout.",
+    "free_shipping_left_html": "<b>{{ amount }}</b> away from free shipping",
+    "free_shipping_ok": "Free shipping!",
+    "added": "Added to cart",
+    "error": "Could not add the item. Please try again."
+  },
+  "config": {
+    "sport": "Sport",
+    "main_color": "Main colour",
+    "detail_color": "Trim colour",
+    "number": "Number",
+    "kit": "Kit",
+    "size": "Size",
+    "qty": "Units",
+    "team": "Team name (optional)",
+    "team_placeholder": "e.g. CD Las Rozas",
+    "per_unit": "/ unit",
+    "add": "Add to order",
+    "no_product": "No product assigned to this sport yet. Assign one in the theme editor."
+  },
+  "quote": {
+    "club": "Club, school or store",
+    "name": "Name",
+    "units": "Units",
+    "email": "Email",
+    "phone": "Phone",
+    "sport": "Sport",
+    "message": "What do you need?",
+    "send": "Send request",
+    "sent": "Request sent",
+    "sent_text": "An account manager will reply within 24 hours."
+  },
+  "search": {
+    "title": "Search",
+    "results": {
+      "one": "{{ count }} result for “{{ terms }}”",
+      "other": "{{ count }} results for “{{ terms }}”"
+    },
+    "none": "No results. Try another word."
+  },
+  "password": {
+    "placeholder": "Password",
+    "enter": "Enter"
+  },
+  "gift_card": {
+    "title": "Gift card",
+    "balance": "Balance"
+  }
+}

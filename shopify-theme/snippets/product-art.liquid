@@ -1,0 +1,25 @@
+{%- comment -%}
+  Imagen del producto o, si aún no tiene foto, un render vectorial de assets/art.js.
+  El render se elige con una etiqueta del producto con el formato:
+    art:tipo|colorA|colorB|dorsal|equipo|estilo
+  Ej.: art:jersey|#01144C|#B8FC0B|9||soccer  ·  art:ball|basket  ·  art:helmet|#01144C|#B8FC0B
+  Parámetros: product (obligatorio), width (px de la imagen, por defecto 600), sizes.
+{%- endcomment -%}
+{%- liquid
+  assign img_width = width | default: 600
+  assign art_tag = ''
+  for tag in product.tags
+    if tag contains 'art:'
+      assign art_tag = tag | remove_first: 'art:'
+      break
+    endif
+  endfor
+-%}
+{%- if product.featured_media -%}
+  {{ product.featured_media | image_url: width: img_width | image_tag: loading: 'lazy', widths: '300, 450, 600, 900', sizes: sizes, alt: product.featured_media.alt | default: product.title, class: 'product-img' }}
+{%- elsif art_tag != blank -%}
+  {%- assign p = art_tag | split: '|' -%}
+  <div class="art-slot" data-art="{{ p[0] }}" data-a="{{ p[1] }}" data-b="{{ p[2] }}" data-num="{{ p[3] }}" data-team="{{ p[4] }}" data-style="{{ p[5] }}" role="img" aria-label="{{ product.title | escape }}"></div>
+{%- else -%}
+  {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+{%- endif -%}

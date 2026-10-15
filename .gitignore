@@ -1,0 +1,3 @@
+# Feeds de proveedores (datos de origen, no se versionan)
+catalogo/origen/
+*.xml.bak

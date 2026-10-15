@@ -1,0 +1,22 @@
+{%- layout none -%}
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ 'gift_card.title' | t }} · {{ shop.name }}</title>
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+    {{ 'shopify.css' | asset_url | stylesheet_tag }}
+    <script src="{{ 'vendor/qrcode.js' | shopify_asset_url }}" defer></script>
+  </head>
+  <body>
+    <main class="section page center giftcard">
+      <img src="{{ 'nyr-icon.svg' | asset_url }}" alt="" width="64" height="64">
+      <h1>{{ gift_card.initial_value | money }}</h1>
+      <p class="lead">{{ 'gift_card.balance' | t }}: {{ gift_card.balance | money }}</p>
+      <p class="order-id">{{ gift_card.code | format_code }}</p>
+      <div id="QrCode" data-identifier="{{ gift_card.qr_identifier }}"></div>
+      <a class="btn btn--lime" href="{{ shop.url }}">{{ 'cart.continue' | t }}</a>
+    </main>
+  </body>
+</html>

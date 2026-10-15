@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="NYR Sports">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0D2470"/>
+      <stop offset="1" stop-color="#01144C"/>
+    </linearGradient>
+  </defs>
+  <rect width="120" height="120" rx="27" fill="url(#bg)"/>
+  <g transform="translate(14.5 26.5) scale(.158)">
+    <path fill="#B8FC0B" d="M8 388 97 121 184 90 466 407 365 407 165 183 127 310Z"/>
+    <path fill="#B8FC0B" d="M166 10 253 10 468 248 468 125 565 50 565 313 489 369Z"/>
+  </g>
+</svg>

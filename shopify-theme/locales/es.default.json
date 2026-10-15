@@ -1,0 +1,108 @@
+{
+  "general": {
+    "skip": "Saltar al contenido",
+    "close": "Cerrar",
+    "home": "Inicio",
+    "page": "Página {{ page }}",
+    "pagination": "Paginación",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "not_found": "Página no encontrada",
+    "not_found_text": "La página que buscas no existe o se ha movido."
+  },
+  "header": {
+    "menu": "Menú",
+    "search": "Buscar",
+    "search_placeholder": "Buscar cascos, bates, guantes, equipaciones…",
+    "account": "Mi cuenta",
+    "cart": "Abrir bolsa"
+  },
+  "footer": {
+    "email": "Tu email",
+    "subscribe": "Unirme",
+    "newsletter_ok": "¡Gracias! Te avisaremos de las novedades.",
+    "payments": "Métodos de pago"
+  },
+  "products": {
+    "from": "desde",
+    "add_to_cart": "Añadir a la bolsa",
+    "add_named": "Añadir {{ title }}",
+    "sold_out": "Agotado",
+    "best_seller": "Más vendido",
+    "exclusive": "Exclusiva",
+    "new": "Nuevo",
+    "forelle": "Distribución Forelle",
+    "tax_included": "IVA incluido. Envío calculado en el pago.",
+    "number": "Dorsal",
+    "back_name": "Nombre en espalda",
+    "optional": "Opcional",
+    "volume_note": "Pedidos de 15 o más unidades: descuento por volumen aplicado automáticamente en la bolsa.",
+    "description": "Descripción",
+    "breadcrumb": "Ruta",
+    "view_image": "Ver imagen {{ n }}"
+  },
+  "collections": {
+    "all": "Colecciones",
+    "filter": "Filtrar",
+    "sort": "Ordenar",
+    "clear": "Quitar filtros",
+    "min": "Mín. €",
+    "max": "Máx. €",
+    "count": { "one": "{{ count }} producto", "other": "{{ count }} productos" },
+    "empty": "No hay productos con estos filtros.",
+    "empty_setup": "Elige una colección para esta pestaña en el editor de temas.",
+    "view_all": { "one": "Ver {{ count }} producto", "other": "Ver los {{ count }} productos" }
+  },
+  "cart": {
+    "title": "Tu bolsa",
+    "empty": "Tu bolsa está vacía.",
+    "continue": "Seguir comprando",
+    "subtotal": "Subtotal",
+    "checkout": "Pagar",
+    "view": "Ver bolsa",
+    "update": "Actualizar",
+    "remove": "Eliminar",
+    "quantity": "Cantidad",
+    "increase": "Más",
+    "decrease": "Menos",
+    "note": "Notas del pedido (club, fecha de entrega…)",
+    "taxes_note": "Impuestos incluidos. Envío calculado en el pago.",
+    "free_shipping_left_html": "Te faltan <b>{{ amount }}</b> para el envío gratis",
+    "free_shipping_ok": "¡Envío gratis!",
+    "added": "Añadido a la bolsa",
+    "error": "No se ha podido añadir. Inténtalo de nuevo."
+  },
+  "config": {
+    "sport": "Deporte",
+    "main_color": "Color principal",
+    "detail_color": "Color de detalle",
+    "number": "Dorsal",
+    "kit": "Equipación",
+    "size": "Talla",
+    "qty": "Unidades",
+    "team": "Nombre del equipo (opcional)",
+    "team_placeholder": "p. ej. CD Las Rozas",
+    "per_unit": "/ unidad",
+    "add": "Añadir al pedido",
+    "no_product": "Este deporte aún no tiene producto asignado. Asígnalo en el editor de temas."
+  },
+  "quote": {
+    "club": "Club, colegio o tienda",
+    "name": "Nombre",
+    "units": "Unidades",
+    "email": "Email",
+    "phone": "Teléfono",
+    "sport": "Deporte",
+    "message": "¿Qué necesitáis?",
+    "send": "Enviar solicitud",
+    "sent": "Solicitud enviada",
+    "sent_text": "Un gestor de cuenta te escribirá en menos de 24 h."
+  },
+  "search": {
+    "title": "Buscar",
+    "results": { "one": "{{ count }} resultado para «{{ terms }}»", "other": "{{ count }} resultados para «{{ terms }}»" },
+    "none": "No hay resultados. Prueba con otra palabra."
+  },
+  "password": { "placeholder": "Contraseña", "enter": "Entrar" },
+  "gift_card": { "title": "Tarjeta regalo", "balance": "Saldo" }
+}

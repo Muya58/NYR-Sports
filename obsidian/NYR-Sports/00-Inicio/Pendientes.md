@@ -9,3 +9,5 @@
 - [ ] Decidir con el socio qué cuenta de Shopify usamos
 - [ ] Fotos originales (bloquea folletos, trípticos y lonas)
 - [ ] Primer folleto / tríptico / lona — en pausa hasta tener fotos
+- [ ] Confirmar tienda Shopify de pago y subir el tema
+- [ ] Decidir precios, stock, idioma y alcance del catálogo Forelle

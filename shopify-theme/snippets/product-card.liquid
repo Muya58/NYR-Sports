@@ -1,0 +1,43 @@
+{%- comment -%}
+  Tarjeta de producto. Parámetros: product, show_quick_add (bool).
+  Etiquetas reconocidas: «personalizable», «exclusiva», «nuevo», «mas-vendido».
+{%- endcomment -%}
+{%- liquid
+  assign badge = ''
+  if product.tags contains 'mas-vendido'
+    assign badge = 'products.best_seller' | t
+  elsif product.tags contains 'exclusiva'
+    assign badge = 'products.exclusive' | t
+  elsif product.tags contains 'nuevo'
+    assign badge = 'products.new' | t
+  elsif product.available == false
+    assign badge = 'products.sold_out' | t
+  endif
+  assign single_variant = false
+  if product.has_only_default_variant
+    assign single_variant = true
+  endif
+-%}
+<article class="product reveal">
+  <a href="{{ product.url }}" class="product__link" aria-label="{{ product.title | escape }}"></a>
+  {%- if badge != blank %}<span class="tag">{{ badge }}</span>{% endif -%}
+  {%- if product.vendor == 'Forelle' %}<span class="brand-tag">Forelle</span>{% endif -%}
+  <div class="product__art">
+    {% render 'product-art', product: product, width: 600, sizes: '(min-width: 990px) 380px, (min-width: 600px) 45vw, 90vw' %}
+  </div>
+  <div class="product__info">
+    <h3>{{ product.title | escape }}</h3>
+    {%- assign sub = product.metafields.custom.subtitulo.value | default: product.type -%}
+    {%- if sub != blank %}<p class="muted">{{ sub | escape }}</p>{% endif -%}
+    <div class="product__row">
+      <b>{% render 'price', product: product %}</b>
+      {%- if show_quick_add and single_variant and product.available -%}
+        <button type="button" class="add" data-quick-add="{{ product.selected_or_first_available_variant.id }}" aria-label="{{ 'products.add_named' | t: title: product.title | escape }}">
+          {% render 'icon', name: 'plus' %}
+        </button>
+      {%- else -%}
+        <a href="{{ product.url }}" class="add" tabindex="-1" aria-hidden="true">{% render 'icon', name: 'plus' %}</a>
+      {%- endif -%}
+    </div>
+  </div>
+</article>

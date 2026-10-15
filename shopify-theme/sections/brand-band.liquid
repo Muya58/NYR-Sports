@@ -1,0 +1,56 @@
+<section class="brandband">
+  <div class="brandband__inner">
+    <figure class="brandband__logo reveal">
+      {%- if section.settings.image != blank -%}
+        {{ section.settings.image | image_url: width: 1400 | image_tag: widths: '600, 900, 1400', sizes: '(min-width: 900px) 560px, 92vw', loading: 'lazy' }}
+      {%- else -%}
+        <img src="{{ 'nyr-logo-cristal.jpg' | asset_url }}" alt="{{ shop.name | escape }}" width="1400" height="1400" loading="lazy">
+      {%- endif -%}
+    </figure>
+    <div class="brandband__copy reveal">
+      {%- if section.settings.eyebrow != blank %}<p class="eyebrow eyebrow--lime">{{ section.settings.eyebrow | escape }}</p>{% endif -%}
+      <h2>{{ section.settings.heading | newline_to_br }}</h2>
+      {%- if section.settings.text != blank %}<p>{{ section.settings.text }}</p>{% endif -%}
+      {%- if section.blocks.size > 0 -%}
+        <ul class="brandband__pillars">
+          {%- for block in section.blocks -%}
+            <li {{ block.shopify_attributes }}><b>{{ block.settings.title | escape }}</b><span>{{ block.settings.text | escape }}</span></li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Banda de marca",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Imagen", "info": "Por defecto: logo NYR en cristal." },
+    { "type": "text", "id": "eyebrow", "label": "Antetítulo", "default": "NYR Sports" },
+    { "type": "textarea", "id": "heading", "label": "Titular (una línea por frase)", "default": "Ropa.\nCalzado.\nEquipamiento." },
+    { "type": "inline_richtext", "id": "text", "label": "Texto", "default": "Todo lo que un club necesita para competir, de la primera equipación a la última bota. Fabricamos uniformidad a medida, distribuimos las mejores marcas y somos la casa de Forelle en España." }
+  ],
+  "blocks": [
+    {
+      "type": "pillar",
+      "name": "Pilar",
+      "limit": 4,
+      "settings": [
+        { "type": "text", "id": "title", "label": "Título", "default": "Ropa" },
+        { "type": "text", "id": "text", "label": "Texto", "default": "Equipaciones, chándales y textil de club" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Banda de marca",
+      "blocks": [
+        { "type": "pillar", "settings": { "title": "Ropa", "text": "Equipaciones, chándales y textil de club" } },
+        { "type": "pillar", "settings": { "title": "Calzado", "text": "Botas y zapatillas por deporte" } },
+        { "type": "pillar", "settings": { "title": "Equipamiento", "text": "Protecciones, balones y material" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

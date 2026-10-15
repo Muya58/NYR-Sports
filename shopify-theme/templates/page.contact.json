@@ -1,0 +1,7 @@
+{
+  "sections": {
+    "main": { "type": "main-page", "settings": {} },
+    "quote": { "type": "quote-form", "settings": {} }
+  },
+  "order": ["main", "quote"]
+}

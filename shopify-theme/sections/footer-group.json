@@ -1,0 +1,17 @@
+{
+  "type": "footer",
+  "name": "Pie de página",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "menu_shop": { "type": "menu", "settings": { "title": "Tienda", "menu": "main-menu" } },
+        "menu_help": { "type": "menu", "settings": { "title": "Ayuda", "menu": "footer" } },
+        "news": { "type": "newsletter", "settings": { "title": "Novedades" } }
+      },
+      "block_order": ["menu_shop", "menu_help", "news"],
+      "settings": {}
+    }
+  },
+  "order": ["footer"]
+}

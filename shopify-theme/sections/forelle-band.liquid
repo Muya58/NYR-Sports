@@ -1,0 +1,48 @@
+<section class="feature" id="forelle">
+  <div class="feature__inner">
+    <div class="feature__copy reveal">
+      {%- if section.settings.eyebrow != blank %}<p class="eyebrow eyebrow--lime">{{ section.settings.eyebrow | escape }}</p>{% endif -%}
+      <h2>{{ section.settings.heading | newline_to_br }}</h2>
+      {%- if section.settings.text != blank %}<p>{{ section.settings.text }}</p>{% endif -%}
+      {%- assign places = section.settings.territories | split: ',' -%}
+      {%- if places.size > 0 -%}
+        <ul class="territories">{%- for t in places %}<li><b>{{ t | strip }}</b></li>{% endfor -%}</ul>
+      {%- endif -%}
+      <div class="feature__cta">
+        {%- if section.settings.button_label != blank -%}
+          <a href="{{ section.settings.button_link | default: routes.all_products_collection_url }}" class="btn btn--lime">{{ section.settings.button_label | escape }}</a>
+        {%- endif -%}
+        {%- if section.settings.link_label != blank -%}
+          <a href="{{ section.settings.link_url | default: '#' }}" class="link-arrow link-arrow--light">{{ section.settings.link_label | escape }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+    <div class="feature__art reveal">
+      {%- if section.settings.image != blank -%}
+        {{ section.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', class: 'feature__img', widths: '600, 900, 1200', sizes: '(min-width: 900px) 50vw, 92vw' }}
+      {%- else -%}
+        <div class="fa fa--helmet" data-art="helmet" data-a="#0A2163" data-b="#B8FC0B"></div>
+        <div class="fa fa--mitt" data-art="mitt"></div>
+        <div class="fa fa--ball" data-art="ball" data-a="baseball"></div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Banda Forelle",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Antetítulo", "default": "Distribución exclusiva" },
+    { "type": "textarea", "id": "heading", "label": "Titular", "default": "Forelle.\nSolo con nosotros." },
+    { "type": "inline_richtext", "id": "text", "label": "Texto", "default": "Somos el distribuidor exclusivo de Forelle para la Península, Baleares y Canarias: Rawlings, Easton, Riddell, Wilson, Nike y las mejores marcas de fútbol americano, béisbol y softball, con stock y servicio en España." },
+    { "type": "text", "id": "territories", "label": "Territorios (separados por comas)", "default": "Península, Baleares, Canarias" },
+    { "type": "text", "id": "button_label", "label": "Botón", "default": "Ver catálogo Forelle" },
+    { "type": "url", "id": "button_link", "label": "Enlace del botón" },
+    { "type": "text", "id": "link_label", "label": "Enlace secundario", "default": "Soy tienda o federación" },
+    { "type": "url", "id": "link_url", "label": "URL del enlace secundario" },
+    { "type": "image_picker", "id": "image", "label": "Imagen (opcional)" }
+  ],
+  "presets": [ { "name": "Banda Forelle" } ]
+}
+{% endschema %}

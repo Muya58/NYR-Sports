@@ -1,0 +1,15 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "k1": { "type": "perk", "settings": { "text": "Envío gratis desde 150 €" } },
+        "k2": { "type": "perk", "settings": { "text": "Devolución gratuita en 30 días" } },
+        "k3": { "type": "perk", "settings": { "text": "Garantía oficial de la marca" } }
+      },
+      "block_order": ["k1", "k2", "k3"],
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

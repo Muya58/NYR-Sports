@@ -1,0 +1,72 @@
+{%- comment -%} Formulario de presupuesto: usa el formulario de contacto de Shopify, que llega al email de la tienda. {%- endcomment -%}
+<section class="section section--soft" id="presupuesto">
+  <div class="split">
+    <div class="reveal">
+      {%- if section.settings.eyebrow != blank %}<p class="eyebrow">{{ section.settings.eyebrow | escape }}</p>{% endif -%}
+      <h2>{{ section.settings.heading | newline_to_br }}</h2>
+      {%- if section.settings.text != blank %}<p class="lead">{{ section.settings.text }}</p>{% endif -%}
+      {%- if section.blocks.size > 0 -%}
+        <ul class="checks">{%- for block in section.blocks %}<li {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</li>{% endfor -%}</ul>
+      {%- endif -%}
+    </div>
+    <div class="card reveal">
+      {%- form 'contact', id: 'quoteForm', class: 'form' -%}
+        {%- if form.posted_successfully? -%}
+          <div class="done done--sm">
+            <svg viewBox="0 0 80 80" class="done__check" aria-hidden="true"><circle cx="40" cy="40" r="36"/><path d="M25 41l10 10 21-22"/></svg>
+            <h3>{{ 'quote.sent' | t }}</h3>
+            <p class="muted">{{ 'quote.sent_text' | t }}</p>
+          </div>
+        {%- else -%}
+          <h3>{{ section.settings.form_title | escape }}</h3>
+          {%- if form.errors -%}<p class="err">{{ form.errors | default_errors }}</p>{%- endif -%}
+          <input type="hidden" name="contact[Asunto]" value="Presupuesto web">
+          <label class="field"><span>{{ 'quote.club' | t }}</span><input id="qClub" name="contact[Club]" required autocomplete="organization"></label>
+          <div class="row">
+            <label class="field"><span>{{ 'quote.name' | t }}</span><input id="qName" name="contact[name]" required autocomplete="name"></label>
+            <label class="field"><span>{{ 'quote.units' | t }}</span><input id="qUnits" name="contact[Unidades]" inputmode="numeric" required></label>
+          </div>
+          <label class="field"><span>{{ 'quote.email' | t }}</span><input id="qEmail" name="contact[email]" type="email" required autocomplete="email" value="{{ form.email }}"></label>
+          <label class="field"><span>{{ 'quote.phone' | t }}</span><input id="qPhone" name="contact[phone]" type="tel" autocomplete="tel"></label>
+          <label class="field"><span>{{ 'quote.sport' | t }}</span>
+            <select id="qSport" name="contact[Deporte]">
+              {%- assign sports = section.settings.sports | split: ',' -%}
+              {%- for s in sports %}<option>{{ s | strip }}</option>{% endfor -%}
+            </select>
+          </label>
+          <label class="field"><span>{{ 'quote.message' | t }}</span><textarea id="qMsg" name="contact[body]" rows="3"></textarea></label>
+          <button class="btn btn--lime btn--block" type="submit">{{ 'quote.send' | t }}</button>
+          <p class="fine">{{ section.settings.fine | escape }}</p>
+        {%- endif -%}
+      {%- endform -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Presupuesto",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Antetítulo", "default": "Multimarca y fabricación propia" },
+    { "type": "textarea", "id": "heading", "label": "Titular", "default": "Las marcas que buscas.\nLa equipación que imaginas." },
+    { "type": "inline_richtext", "id": "text", "label": "Texto", "default": "Trabajamos con las principales marcas del sector y producimos uniformidad a medida para cualquier deporte. Un solo interlocutor para clubes, colegios, tiendas y federaciones." },
+    { "type": "text", "id": "form_title", "label": "Título del formulario", "default": "Pide tu presupuesto" },
+    { "type": "text", "id": "sports", "label": "Deportes del desplegable", "default": "Fútbol, Baloncesto, Vóley, Balonmano, Fútbol americano, Béisbol / softball, Otro" },
+    { "type": "text", "id": "fine", "label": "Nota", "default": "Te respondemos en menos de 24 h laborables." }
+  ],
+  "blocks": [
+    { "type": "check", "name": "Punto", "settings": [ { "type": "text", "id": "text", "label": "Texto", "default": "Fútbol, fútbol sala, baloncesto, vóley y balonmano" } ] }
+  ],
+  "presets": [
+    {
+      "name": "Presupuesto",
+      "blocks": [
+        { "type": "check", "settings": { "text": "Fútbol, fútbol sala, baloncesto, vóley y balonmano" } },
+        { "type": "check", "settings": { "text": "Fútbol americano, béisbol y softball con Forelle" } },
+        { "type": "check", "settings": { "text": "Ropa de paseo, chándales y textil para el club" } },
+        { "type": "check", "settings": { "text": "Gestor de cuenta para pedidos de club y tiendas" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

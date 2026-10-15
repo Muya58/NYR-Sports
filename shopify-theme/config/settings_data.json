@@ -1,0 +1,18 @@
+{
+  "current": {
+    "color_navy": "#01144C",
+    "color_lime": "#B8FC0B",
+    "type_font": "inter_n4",
+    "free_shipping_threshold": 150,
+    "cart_drawer": true
+  },
+  "presets": {
+    "Default": {
+      "color_navy": "#01144C",
+      "color_lime": "#B8FC0B",
+    "type_font": "inter_n4",
+      "free_shipping_threshold": 150,
+      "cart_drawer": true
+    }
+  }
+}

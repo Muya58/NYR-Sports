@@ -1,0 +1,58 @@
+<header class="nav" id="nav" data-section="{{ section.id }}">
+  <div class="nav__inner">
+    <a href="{{ routes.root_url }}" class="brand" aria-label="{{ shop.name | escape }}">
+      {%- if section.settings.icon != blank -%}
+        {{ section.settings.icon | image_url: width: 80 | image_tag: class: 'brand__icon', width: 34, height: 34, alt: '' }}
+      {%- else -%}
+        <img class="brand__icon" src="{{ 'nyr-icon.svg' | asset_url }}" alt="" width="34" height="34">
+      {%- endif -%}
+      {%- if section.settings.wordmark != blank -%}
+        {{ section.settings.wordmark | image_url: width: 300 | image_tag: class: 'brand__word', alt: shop.name, height: 26 }}
+      {%- else -%}
+        <img class="brand__word" src="{{ 'nyr-wordmark-navy.png' | asset_url }}" alt="{{ shop.name | escape }}" width="59" height="26">
+      {%- endif -%}
+    </a>
+
+    <nav class="nav__links" id="navLinks" aria-label="{{ 'header.menu' | t }}">
+      {%- for link in section.settings.menu.links -%}
+        <a href="{{ link.url }}"{% if link.active %} aria-current="page"{% endif %}>{{ link.title | escape }}</a>
+      {%- endfor -%}
+    </nav>
+
+    <div class="nav__actions">
+      <button class="icon-btn" id="searchBtn" type="button" aria-label="{{ 'header.search' | t }}" aria-controls="search" aria-expanded="false">
+        {% render 'icon', name: 'search' %}
+      </button>
+      {%- if shop.customer_accounts_enabled -%}
+        <a class="icon-btn" href="{{ routes.account_url }}" aria-label="{{ 'header.account' | t }}">{% render 'icon', name: 'account' %}</a>
+      {%- endif -%}
+      <a class="icon-btn cart-btn" id="cartBtn" href="{{ routes.cart_url }}" aria-label="{{ 'header.cart' | t }}">
+        {% render 'icon', name: 'cart' %}
+        <span class="badge" id="cartCount"{% if cart.item_count == 0 %} hidden{% endif %}>{{ cart.item_count }}</span>
+      </a>
+      <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="{{ 'header.menu' | t }}" aria-expanded="false" aria-controls="navLinks">
+        {% render 'icon', name: 'menu' %}
+      </button>
+    </div>
+  </div>
+
+  <div class="search" id="search" hidden>
+    <form action="{{ routes.search_url }}" method="get" role="search" class="search__inner">
+      {% render 'icon', name: 'search' %}
+      <input type="search" name="q" id="searchInput" value="{{ search.terms | escape }}" placeholder="{{ 'header.search_placeholder' | t }}" aria-label="{{ 'header.search' | t }}">
+      <input type="hidden" name="type" value="product">
+    </form>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Cabecera",
+  "class": "section-header",
+  "settings": [
+    { "type": "image_picker", "id": "icon", "label": "Icono (opcional)", "info": "Por defecto: símbolo NYR en cuadrado navy." },
+    { "type": "image_picker", "id": "wordmark", "label": "Logotipo de texto (opcional)", "info": "Por defecto: NYR SPORTS en navy." },
+    { "type": "link_list", "id": "menu", "label": "Menú", "default": "main-menu" }
+  ]
+}
+{% endschema %}

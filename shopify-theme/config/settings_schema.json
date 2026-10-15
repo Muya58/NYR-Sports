@@ -1,0 +1,36 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "NYR Sports",
+    "theme_version": "1.0.0",
+    "theme_author": "NYR Sports",
+    "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
+    "theme_support_url": "https://help.shopify.com"
+  },
+  {
+    "name": "Colores de marca",
+    "settings": [
+      { "type": "color", "id": "color_navy", "label": "Navy (estructura)", "default": "#01144C" },
+      { "type": "color", "id": "color_lime", "label": "Lima (acción y destaques)", "default": "#B8FC0B" }
+    ]
+  },
+  {
+    "name": "Tipografía",
+    "settings": [
+      { "type": "font_picker", "id": "type_font", "label": "Fuente", "default": "inter_n4", "info": "Se cargan automáticamente los pesos 400 a 800." }
+    ]
+  },
+  {
+    "name": "Favicon",
+    "settings": [
+      { "type": "image_picker", "id": "favicon", "label": "Favicon", "info": "Por defecto: símbolo NYR. Recomendado 64×64 px." }
+    ]
+  },
+  {
+    "name": "Carrito",
+    "settings": [
+      { "type": "number", "id": "free_shipping_threshold", "label": "Envío gratis a partir de (€)", "default": 150, "info": "Solo informativo en la bolsa: configura la tarifa real en Ajustes > Envíos. 0 para ocultar." },
+      { "type": "checkbox", "id": "cart_drawer", "label": "Abrir bolsa lateral al añadir", "default": true }
+    ]
+  }
+]

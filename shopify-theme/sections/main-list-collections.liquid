@@ -1,0 +1,21 @@
+<section class="section plp">
+  <header class="plp__head"><h1>{{ 'collections.all' | t }}</h1></header>
+  <div class="grid">
+    {%- for collection in collections -%}
+      <a class="product colcard" href="{{ collection.url }}">
+        <div class="product__art">
+          {%- if collection.featured_image -%}
+            {{ collection.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', class: 'product-img' }}
+          {%- elsif collection.products.first -%}
+            {% render 'product-art', product: collection.products.first, width: 600 %}
+          {%- endif -%}
+        </div>
+        <div class="product__info"><h3>{{ collection.title | escape }}</h3><p class="muted">{{ 'collections.count' | t: count: collection.products_count }}</p></div>
+      </a>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Lista de colecciones" }
+{% endschema %}

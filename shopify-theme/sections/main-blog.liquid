@@ -1,0 +1,17 @@
+{%- paginate blog.articles by 9 -%}
+<section class="section plp">
+  <header class="plp__head"><h1>{{ blog.title | escape }}</h1></header>
+  <div class="grid">
+    {%- for article in blog.articles -%}
+      <a class="product colcard" href="{{ article.url }}">
+        {%- if article.image %}<div class="product__art">{{ article.image | image_url: width: 600 | image_tag: loading: 'lazy', class: 'product-img' }}</div>{% endif -%}
+        <div class="product__info"><p class="fine">{{ article.published_at | date: format: 'date' }}</p><h3>{{ article.title | escape }}</h3><p class="muted">{{ article.excerpt_or_content | strip_html | truncate: 120 }}</p></div>
+      </a>
+    {%- endfor -%}
+  </div>
+  {% render 'pagination', paginate: paginate %}
+</section>
+{%- endpaginate -%}
+{% schema %}
+{ "name": "Blog" }
+{% endschema %}

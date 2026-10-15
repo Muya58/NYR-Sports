@@ -1,0 +1,72 @@
+<section class="section">
+  {%- if section.settings.heading != blank -%}
+    <header class="section__head reveal">
+      <h2>{{ section.settings.heading | escape }}<br><span class="muted">{{ section.settings.subheading | escape }}</span></h2>
+    </header>
+  {%- endif -%}
+  <div class="bento">
+    {%- for block in section.blocks -%}
+      {%- liquid
+        assign art = block.settings.art | split: '|'
+        assign url = block.settings.link | default: routes.all_products_collection_url
+        if block.settings.collection != blank
+          assign url = block.settings.collection.url
+        endif
+      -%}
+      <a href="{{ url }}" class="tile{% if block.settings.size == 'xl' %} tile--xl{% endif %}{% if block.settings.navy %} tile--navy{% endif %} reveal" {{ block.shopify_attributes }}>
+        <div class="tile__text">
+          {%- if block.settings.eyebrow != blank %}<p class="eyebrow{% if block.settings.navy %} eyebrow--lime{% endif %}">{{ block.settings.eyebrow | escape }}</p>{% endif -%}
+          <h3>{{ block.settings.title | escape }}</h3>
+          {%- if block.settings.text != blank %}<p>{{ block.settings.text | escape }}</p>{% endif -%}
+          {%- if block.settings.cta != blank %}<span class="link-arrow{% if block.settings.navy %} link-arrow--light{% endif %}">{{ block.settings.cta | escape }}</span>{% endif -%}
+        </div>
+        {%- if block.settings.image != blank -%}
+          <div class="tile__art tile__art--img">{{ block.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', sizes: '(min-width: 900px) 40vw, 80vw', widths: '450, 900' }}</div>
+        {%- else -%}
+          <div class="tile__art" data-art="{{ art[0] }}" data-a="{{ art[1] }}" data-b="{{ art[2] }}" data-num="{{ art[3] }}" data-team="{{ art[4] }}" data-style="{{ art[5] }}"></div>
+        {%- endif -%}
+      </a>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Deportes (mosaico)",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Titular", "default": "Un proveedor para todo el club." },
+    { "type": "text", "id": "subheading", "label": "Subtitular", "default": "Sea cual sea tu deporte." }
+  ],
+  "blocks": [
+    {
+      "type": "tile",
+      "name": "Deporte",
+      "settings": [
+        { "type": "text", "id": "eyebrow", "label": "Antetítulo" },
+        { "type": "text", "id": "title", "label": "Título", "default": "Fútbol" },
+        { "type": "text", "id": "text", "label": "Texto" },
+        { "type": "text", "id": "cta", "label": "Texto del enlace" },
+        { "type": "collection", "id": "collection", "label": "Colección" },
+        { "type": "url", "id": "link", "label": "Enlace (si no hay colección)" },
+        { "type": "select", "id": "size", "label": "Tamaño", "default": "normal", "options": [ { "value": "normal", "label": "Normal" }, { "value": "xl", "label": "Grande" } ] },
+        { "type": "checkbox", "id": "navy", "label": "Fondo navy", "default": false },
+        { "type": "image_picker", "id": "image", "label": "Imagen (opcional)", "info": "Sustituye al render vectorial." },
+        { "type": "text", "id": "art", "label": "Render vectorial", "default": "jersey|#B8FC0B|#01144C|9||soccer", "info": "tipo|colorA|colorB|dorsal|equipo|estilo. Tipos: jersey, tank, shorts, cap, bat, mitt, helmet, pads, cleat, gloves, ball (soccer, basket, volley, hand, baseball, softball, football)." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Deportes (mosaico)",
+      "blocks": [
+        { "type": "tile", "settings": { "eyebrow": "Fútbol y fútbol sala", "title": "Equipaciones de fútbol", "text": "Camiseta, pantalón y medias. Portero incluido.", "cta": "Ver equipaciones", "size": "xl", "navy": true, "art": "jersey|#B8FC0B|#01144C|9||soccer" } },
+        { "type": "tile", "settings": { "title": "Baloncesto", "text": "Reversibles y de partido.", "art": "tank|#1F6FEB|#F2F4F7|23" } },
+        { "type": "tile", "settings": { "title": "Vóley", "text": "Pista y playa.", "art": "ball|volley" } },
+        { "type": "tile", "settings": { "title": "Balonmano", "text": "Ajuste y resistencia.", "art": "ball|hand" } },
+        { "type": "tile", "settings": { "eyebrow": "Forelle", "title": "Fútbol americano", "text": "Cascos, hombreras y jerseys.", "art": "helmet|#01144C|#B8FC0B" } },
+        { "type": "tile", "settings": { "eyebrow": "Forelle", "title": "Béisbol y softball", "text": "Bates, guantes y uniformes.", "art": "bat" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
