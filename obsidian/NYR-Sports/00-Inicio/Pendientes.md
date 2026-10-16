@@ -13,3 +13,4 @@
 - [ ] José: importar los 6 CSV de `catalogo/shopify-mi-tienda/` (Productos → Importar)
 - [ ] Decidir precios, stock, idioma y alcance del catálogo Forelle
 - [ ] Decidir método de traducción (workflow / Claude solo / solo prioritario)
+- [ ] Reconectar Shopify a la tienda `n3vnfi-iy` (claude.ai → Conectores) y montar allí tema, colecciones y menús
