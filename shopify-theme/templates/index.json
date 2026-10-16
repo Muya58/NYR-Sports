@@ -3,88 +3,380 @@
     "hero": {
       "type": "hero",
       "blocks": {
-        "s1": { "type": "stat", "settings": { "value": "7+", "label": "deportes" } },
-        "s2": { "type": "stat", "settings": { "value": "Multimarca", "label": "primeras marcas del sector" } },
-        "s3": { "type": "stat", "settings": { "value": "Oficial", "label": "distribuidor Forelle" } },
-        "s4": { "type": "stat", "settings": { "value": "A medida", "label": "producción para clubes y colegios" } }
+        "s1": {
+          "type": "stat",
+          "settings": {
+            "value": "7+",
+            "label": "deportes"
+          }
+        },
+        "s2": {
+          "type": "stat",
+          "settings": {
+            "value": "Multimarca",
+            "label": "primeras marcas del sector"
+          }
+        },
+        "s3": {
+          "type": "stat",
+          "settings": {
+            "value": "Oficial",
+            "label": "distribuidor Forelle"
+          }
+        },
+        "s4": {
+          "type": "stat",
+          "settings": {
+            "value": "A medida",
+            "label": "producción para clubes y colegios"
+          }
+        }
       },
-      "block_order": ["s1", "s2", "s3", "s4"],
-      "settings": { "link_url": "#presupuesto", "button_link": "#personaliza" }
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4"
+      ],
+      "settings": {
+        "link_url": "#presupuesto",
+        "button_link": "#personaliza"
+      }
     },
     "brand": {
       "type": "brand-band",
       "blocks": {
-        "p1": { "type": "pillar", "settings": { "title": "Ropa", "text": "Equipaciones, chándales y textil de club" } },
-        "p2": { "type": "pillar", "settings": { "title": "Calzado", "text": "Botas y zapatillas por deporte" } },
-        "p3": { "type": "pillar", "settings": { "title": "Equipamiento", "text": "Protecciones, balones y material" } }
+        "p1": {
+          "type": "pillar",
+          "settings": {
+            "title": "Ropa",
+            "text": "Equipaciones, chándales y textil de club"
+          }
+        },
+        "p2": {
+          "type": "pillar",
+          "settings": {
+            "title": "Calzado",
+            "text": "Botas y zapatillas por deporte"
+          }
+        },
+        "p3": {
+          "type": "pillar",
+          "settings": {
+            "title": "Equipamiento",
+            "text": "Protecciones, balones y material"
+          }
+        }
       },
-      "block_order": ["p1", "p2", "p3"],
+      "block_order": [
+        "p1",
+        "p2",
+        "p3"
+      ],
       "settings": {}
     },
     "sports": {
       "type": "sports-bento",
       "blocks": {
-        "t1": { "type": "tile", "settings": { "eyebrow": "Fútbol y fútbol sala", "title": "Equipaciones de fútbol", "text": "Camiseta, pantalón y medias. Portero incluido.", "cta": "Ver equipaciones", "size": "xl", "navy": true, "art": "jersey|#B8FC0B|#01144C|9||soccer" } },
-        "t2": { "type": "tile", "settings": { "title": "Baloncesto", "text": "Reversibles y de partido.", "art": "tank|#1F6FEB|#F2F4F7|23" } },
-        "t3": { "type": "tile", "settings": { "title": "Vóley", "text": "Pista y playa.", "art": "ball|volley" } },
-        "t4": { "type": "tile", "settings": { "title": "Balonmano", "text": "Ajuste y resistencia.", "art": "ball|hand" } },
-        "t5": { "type": "tile", "settings": { "eyebrow": "Forelle", "title": "Fútbol americano", "text": "Cascos, hombreras y botas.", "art": "helmet|#01144C|#B8FC0B" } },
-        "t6": { "type": "tile", "settings": { "eyebrow": "Forelle", "title": "Béisbol y softball", "text": "Bates, guantes y protecciones.", "art": "bat" } }
+        "t1": {
+          "type": "tile",
+          "settings": {
+            "eyebrow": "Fútbol y fútbol sala",
+            "title": "Equipaciones de fútbol",
+            "text": "Camiseta, pantalón y medias. Portero incluido.",
+            "cta": "Ver equipaciones",
+            "size": "xl",
+            "navy": true,
+            "art": "jersey|#B8FC0B|#01144C|9||soccer"
+          }
+        },
+        "t2": {
+          "type": "tile",
+          "settings": {
+            "title": "Baloncesto",
+            "text": "Reversibles y de partido.",
+            "art": "tank|#1F6FEB|#F2F4F7|23"
+          }
+        },
+        "t3": {
+          "type": "tile",
+          "settings": {
+            "title": "Vóley",
+            "text": "Pista y playa.",
+            "art": "ball|volley"
+          }
+        },
+        "t4": {
+          "type": "tile",
+          "settings": {
+            "title": "Balonmano",
+            "text": "Ajuste y resistencia.",
+            "art": "ball|hand"
+          }
+        },
+        "t5": {
+          "type": "tile",
+          "settings": {
+            "eyebrow": "Forelle",
+            "title": "Fútbol americano",
+            "text": "Cascos, hombreras y botas.",
+            "art": "helmet|#01144C|#B8FC0B",
+            "collection": "futbol-americano"
+          }
+        },
+        "t6": {
+          "type": "tile",
+          "settings": {
+            "eyebrow": "Forelle",
+            "title": "Béisbol y softball",
+            "text": "Bates, guantes y protecciones.",
+            "art": "bat",
+            "collection": "beisbol-y-softball"
+          }
+        }
       },
-      "block_order": ["t1", "t2", "t3", "t4", "t5", "t6"],
+      "block_order": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6"
+      ],
       "settings": {}
     },
     "configurator": {
       "type": "team-configurator",
       "blocks": {
-        "c1": { "type": "sport", "settings": { "label": "Fútbol", "garment": "soccer" } },
-        "c2": { "type": "sport", "settings": { "label": "Baloncesto", "garment": "tank" } },
-        "c3": { "type": "sport", "settings": { "label": "Vóley", "garment": "soccer" } },
-        "c4": { "type": "sport", "settings": { "label": "Balonmano", "garment": "soccer" } },
-        "c5": { "type": "sport", "settings": { "label": "F. americano", "garment": "football" } },
-        "c6": { "type": "sport", "settings": { "label": "Béisbol", "garment": "baseball" } }
+        "c1": {
+          "type": "sport",
+          "settings": {
+            "label": "Fútbol",
+            "garment": "soccer"
+          }
+        },
+        "c2": {
+          "type": "sport",
+          "settings": {
+            "label": "Baloncesto",
+            "garment": "tank"
+          }
+        },
+        "c3": {
+          "type": "sport",
+          "settings": {
+            "label": "Vóley",
+            "garment": "soccer"
+          }
+        },
+        "c4": {
+          "type": "sport",
+          "settings": {
+            "label": "Balonmano",
+            "garment": "soccer"
+          }
+        },
+        "c5": {
+          "type": "sport",
+          "settings": {
+            "label": "F. americano",
+            "garment": "football"
+          }
+        },
+        "c6": {
+          "type": "sport",
+          "settings": {
+            "label": "Béisbol",
+            "garment": "baseball"
+          }
+        }
       },
-      "block_order": ["c1", "c2", "c3", "c4", "c5", "c6"],
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6"
+      ],
       "settings": {}
     },
     "shop": {
       "type": "featured-collections",
       "blocks": {
-        "k1": { "type": "collection", "settings": { "label": "Fútbol americano" } },
-        "k2": { "type": "collection", "settings": { "label": "Béisbol y softball" } },
-        "k3": { "type": "collection", "settings": { "label": "Calzado" } },
-        "k4": { "type": "collection", "settings": { "label": "Forelle" } }
+        "k1": {
+          "type": "collection",
+          "settings": {
+            "label": "Fútbol americano",
+            "collection": "futbol-americano"
+          }
+        },
+        "k2": {
+          "type": "collection",
+          "settings": {
+            "label": "Béisbol y softball",
+            "collection": "beisbol-y-softball"
+          }
+        },
+        "k3": {
+          "type": "collection",
+          "settings": {
+            "label": "Calzado",
+            "collection": "calzado"
+          }
+        },
+        "k4": {
+          "type": "collection",
+          "settings": {
+            "label": "Fan shop",
+            "collection": "fan-shop"
+          }
+        },
+        "k5": {
+          "type": "collection",
+          "settings": {
+            "label": "En stock",
+            "collection": "en-stock"
+          }
+        }
       },
-      "block_order": ["k1", "k2", "k3", "k4"],
+      "block_order": [
+        "k1",
+        "k2",
+        "k3",
+        "k4",
+        "k5"
+      ],
       "settings": {}
     },
-    "forelle": { "type": "forelle-band", "settings": { "link_url": "#presupuesto" } },
+    "forelle": {
+      "type": "forelle-band",
+      "settings": {
+        "link_url": "#presupuesto",
+        "button_link": "shopify://collections/catalogo-forelle"
+      }
+    },
     "clubs": {
       "type": "club-steps",
       "blocks": {
-        "a1": { "type": "step", "settings": { "title": "Diseña", "text": "Configura colores, escudos y dorsales online o con nuestro equipo de diseño." } },
-        "a2": { "type": "step", "settings": { "title": "Aprueba", "text": "Te enviamos el boceto de cada prenda para tu visto bueno antes de producir." } },
-        "a3": { "type": "step", "settings": { "title": "Fabricamos", "text": "Producción a medida con nuestras fábricas asociadas y control de calidad en cada lote." } },
-        "a4": { "type": "step", "settings": { "title": "Recibe", "text": "Entrega embolsada por jugador, lista para el vestuario, en toda España." } },
-        "b1": { "type": "tier", "settings": { "label": "15 – 29 uds.", "value": "−10%" } },
-        "b2": { "type": "tier", "settings": { "label": "30 – 59 uds.", "value": "−15%" } },
-        "b3": { "type": "tier", "settings": { "label": "60+ uds.", "value": "−22%", "highlight": true, "badge": "Más elegido" } },
-        "b4": { "type": "tier", "settings": { "label": "Colegios", "value": "Tarifa edu" } }
+        "a1": {
+          "type": "step",
+          "settings": {
+            "title": "Diseña",
+            "text": "Configura colores, escudos y dorsales online o con nuestro equipo de diseño."
+          }
+        },
+        "a2": {
+          "type": "step",
+          "settings": {
+            "title": "Aprueba",
+            "text": "Te enviamos el boceto de cada prenda para tu visto bueno antes de producir."
+          }
+        },
+        "a3": {
+          "type": "step",
+          "settings": {
+            "title": "Fabricamos",
+            "text": "Producción a medida con nuestras fábricas asociadas y control de calidad en cada lote."
+          }
+        },
+        "a4": {
+          "type": "step",
+          "settings": {
+            "title": "Recibe",
+            "text": "Entrega embolsada por jugador, lista para el vestuario, en toda España."
+          }
+        },
+        "b1": {
+          "type": "tier",
+          "settings": {
+            "label": "15 – 29 uds.",
+            "value": "−10%"
+          }
+        },
+        "b2": {
+          "type": "tier",
+          "settings": {
+            "label": "30 – 59 uds.",
+            "value": "−15%"
+          }
+        },
+        "b3": {
+          "type": "tier",
+          "settings": {
+            "label": "60+ uds.",
+            "value": "−22%",
+            "highlight": true,
+            "badge": "Más elegido"
+          }
+        },
+        "b4": {
+          "type": "tier",
+          "settings": {
+            "label": "Colegios",
+            "value": "Tarifa edu"
+          }
+        }
       },
-      "block_order": ["a1", "a2", "a3", "a4", "b1", "b2", "b3", "b4"],
-      "settings": { "button_link": "#presupuesto" }
+      "block_order": [
+        "a1",
+        "a2",
+        "a3",
+        "a4",
+        "b1",
+        "b2",
+        "b3",
+        "b4"
+      ],
+      "settings": {
+        "button_link": "#presupuesto"
+      }
     },
     "quote": {
       "type": "quote-form",
       "blocks": {
-        "q1": { "type": "check", "settings": { "text": "Fútbol, fútbol sala, baloncesto, vóley y balonmano" } },
-        "q2": { "type": "check", "settings": { "text": "Fútbol americano, béisbol y softball con Forelle" } },
-        "q3": { "type": "check", "settings": { "text": "Ropa de paseo, chándales y textil para el club" } },
-        "q4": { "type": "check", "settings": { "text": "Gestor de cuenta para pedidos de club y tiendas" } }
+        "q1": {
+          "type": "check",
+          "settings": {
+            "text": "Fútbol, fútbol sala, baloncesto, vóley y balonmano"
+          }
+        },
+        "q2": {
+          "type": "check",
+          "settings": {
+            "text": "Fútbol americano, béisbol y softball con Forelle"
+          }
+        },
+        "q3": {
+          "type": "check",
+          "settings": {
+            "text": "Ropa de paseo, chándales y textil para el club"
+          }
+        },
+        "q4": {
+          "type": "check",
+          "settings": {
+            "text": "Gestor de cuenta para pedidos de club y tiendas"
+          }
+        }
       },
-      "block_order": ["q1", "q2", "q3", "q4"],
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4"
+      ],
       "settings": {}
     }
   },
-  "order": ["hero", "brand", "sports", "configurator", "shop", "forelle", "clubs", "quote"]
+  "order": [
+    "hero",
+    "brand",
+    "sports",
+    "configurator",
+    "shop",
+    "forelle",
+    "clubs",
+    "quote"
+  ]
 }

@@ -3,7 +3,7 @@
 Vault de trabajo diario. Al retomar, lee primero el último diario.
 
 ## Navegación
-- [[2026-10-15|📅 Último diario]]
+- [[2026-10-16|📅 Último diario]]
 - [[Web-Ecommerce|🛒 Proyecto: Web e-commerce]]
 - [[Shopify|🛍️ Migración a Shopify]]
 - [[Empresa|🏢 Qué somos (negocio)]]
