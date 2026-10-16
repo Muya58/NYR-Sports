@@ -289,7 +289,7 @@ def main():
         images = []
         for v in vs:
             for t in ['ImageUrl'] + [f'ExtraImageUrl{i}' for i in range(1, 10)]:
-                u = txt(v, t)
+                u = txt(v, t).replace(' ', '%20')  # Shopify rechaza URLs con espacios
                 if u and u not in images:
                     images.append(u)
         images = images[:20]
@@ -312,7 +312,7 @@ def main():
                       'Variant Inventory Qty': str(max(0, int(txt(v, 'Stock') or 0))), 'Variant Inventory Policy': a.policy,
                       'Variant Fulfillment Service': 'manual', 'Variant Price': '0.00' if a.no_price else price(txt(v, 'Price'), a.markup),
                       'Variant Requires Shipping': 'TRUE', 'Variant Taxable': 'TRUE', 'Variant Barcode': txt(v, 'Ean'),
-                      'Variant Weight Unit': 'kg', 'Variant Image': txt(v, 'ImageUrl') if len(vs) > 1 else ''})
+                      'Variant Weight Unit': 'kg', 'Variant Image': txt(v, 'ImageUrl').replace(' ', '%20') if len(vs) > 1 else ''})
             lp = txt(v, 'ListPrice')
             if not a.no_price and lp and float(lp) > float(txt(v, 'Price') or 0):
                 r['Variant Compare At Price'] = price(lp, a.markup)
